@@ -1,0 +1,85 @@
+{% extends 'gestao/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+    
+</style>
+
+<div class="d-flex flex-column-fluid">
+	<!--begin::Container-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card card-custom gutter-b bg-white border-0">
+					<div class="card-body border-primary-custom border-0">
+						<div class="row ml-0 mr-0">
+							<div class="col">
+								<h3 class="card-label text-primary font-weight-bold mt-3 mb-2">Notifications</h3>
+							</div>
+						</div>
+                        <div id="notifications" class="m-4">
+                            <div class="nav-item border-bottom notification" >
+                                <div class="nav-link d-flex w-100 justify-content-between">
+                                    
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src={% static "assets/js/plugin.bundle.min.js" %}></script>
+
+<script>
+    jQuery(document).ready(function () {
+        const getNotifications = async () =>  {
+            setGlobalLoader();
+            let res = await axios.get('/getAllNotifications/',
+                    {
+                        headers: {'X-CSRFToken': csrftoken}
+                    }
+                );
+            if (res.data.status==="success"){
+                var htmlData = ``;
+                res?.data?.data?.forEach(notification => {
+                htmlData += `
+                            <div class="nav-item border-bottom notification m-2" >
+                                    <div class="row w-100">
+                                        <div class="nav-icon col-1 m-0">
+                                            <img class="notificationIcon" alt="bell" src="${notification.notificationType.icon}" />
+                                        </div>
+                                        <div class="nav-icon col-2 m-0">
+                                            <div class="text-muted">${moment(notification.datetime).format('DD/MM/YYYY, h:mm:ss a')}</div>
+                                        </div>
+                                        <div class="nav-text col-8 m-0">
+                                            ${ notification.targetUrl ?`
+                                                <a href="${notification.targetUrl}">
+                                                    <div class="font-weight-bold text-primary">${notification.notification}</div>
+                                                </a>`
+                                                :
+                                                `<div class="font-weight-bold">${notification.notification}</div>`
+                                            }
+                                        </div>
+                                        <div class="col-1 text-muted cursor-pointer m-0 font-size-h3 d-flex justify-content-end" onclick="readNotification('${notification.sp_id}')">
+                                            <i class="text-warning fab fa-font-awesome"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                document.getElementById('notifications').innerHTML = htmlData;
+            }
+            closeGlobalLoader();
+        }
+
+        getNotifications();
+
+    });
+</script>
+
+{% endblock %}

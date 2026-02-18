@@ -1,0 +1,1705 @@
+{% extends 'landing/landingBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
+
+<!--begin::Global Theme Styles(used by all pages)-->
+<link href={% static "assets/css/style.css" %} rel="stylesheet" type="text/css" />
+<!--end::Global Theme Styles-->
+
+<link href={% static "assets/api/pace/pace-theme-flat-top.css" %} rel="stylesheet" type="text/css" />
+<link href={% static "assets/api/mcustomscrollbar/jquery.mCustomScrollbar.css" %} rel="stylesheet"
+	type="text/css" />
+<link href={% static "assets/api/datatable/jquery.dataTables.min.css" %} rel="stylesheet" type="text/css" />
+<link href={% static "assets/api/multiple-select/multiple-select.min.css" %} rel="stylesheet">
+
+<link rel="shortcut icon" href={% static "assets/media/logos/favicon.ico" %} />
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+	.mainContainer{
+		margin-top: 50px;
+		display: flex;
+		max-width: 100%;
+		justify-content: center;
+		align-items: flex-start; /* Mudado para flex-start para melhor alinhamento */
+		padding: 1rem;
+		gap: 2rem; /* Espaçamento consistente entre os elementos */
+		flex-wrap: wrap;
+	}
+	.prevNextBtnContainer{
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	.subContainers{
+		flex: 1;
+		max-width: 600px;
+		min-width: 300px;
+		overflow-x: hidden;
+	}
+
+	.max-width-plan-card{
+		flex: 0 0 auto;
+		width: 100% !important;
+		max-width: 400px;
+		min-width: 300px;
+	}
+
+	/* Card uniforme para ambos os boxes */
+	.form-card, .plan-card {
+		background: #fff;
+		border-radius: 1rem;
+		box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+		border: 1px solid #e9ecef;
+		overflow: hidden;
+	}
+
+	.form-card .card-header {
+		background: linear-gradient(135deg, var(--bs-primary), #6f42c1);
+		color: white;
+		padding: 1.5rem;
+		margin-bottom: 0;
+	}
+
+	.form-card .card-body {
+		padding: 2rem;
+	}
+
+	.plan-card {
+		position: sticky;
+		top: 2rem; /* Fixa o card do plano quando rolar */
+	}
+
+	/* Estilos do plano da landing page */
+	.plano {
+		grid-column-gap: 15px;
+		grid-row-gap: 15px;
+		border: 2px solid #e0e0e0;
+		border-radius: 30px;
+		flex-flow: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		min-height: 600px;
+		padding: 30px;
+		display: flex;
+		position: relative;
+		background-color: #fff;
+	}
+
+	.plano .topo {
+		text-align: center;
+		width: 100%;
+		padding-bottom: 20px;
+	}
+
+	.plano .linha {
+		grid-column-gap: 16px;
+		grid-row-gap: 16px;
+		border-bottom: 2px solid #d3dce5;
+		grid-template-rows: auto auto;
+		grid-template-columns: .5fr .75fr;
+		width: 100%;
+		margin: 20px 0;
+	}
+
+	.plano .box-features {
+		grid-column-gap: 8px;
+		grid-row-gap: 8px;
+		flex-flow: column;
+		width: 100%;
+		min-height: 13%;
+		display: flex;
+	}
+
+	.plano .box-rodape {
+		grid-column-gap: 20px;
+		grid-row-gap: 20px;
+		background-color: #f4f6f8;
+		border-radius: 20px;
+		flex-flow: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		margin-top: 20px;
+		padding: 20px;
+		display: flex;
+	}
+
+	.plano .div-block-14, .plano .div-block-41 {
+		grid-column-gap: 8px;
+		grid-row-gap: 8px;
+		align-items: center;
+		margin-bottom: 12px;
+		display: flex;
+	}
+
+	.plano .div-block-14 img, .plano .div-block-41 img {
+		width: 20px;
+		height: 20px;
+		margin-right: 10px;
+	}
+
+	/* Tipografia específica da landing */
+	.poppins-bold-24 {
+		font-family: Poppins, sans-serif;
+		color: #6f4e8b;
+		font-size: 24px;
+		font-weight: 700;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.poppins-regular-16-preto {
+		font-family: Poppins, sans-serif;
+		color: #333;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.poppins-14 {
+		font-family: Poppins, sans-serif;
+		color: #666;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.opensans-bold-24 {
+		font-family: 'Open Sans', sans-serif;
+		color: #333;
+		font-size: 24px;
+		font-weight: 700;
+	}
+
+	.opensans-bold-48 {
+		font-family: 'Open Sans', sans-serif;
+		color: #6f4e8b;
+		font-size: 48px;
+		font-weight: 700;
+	}
+
+	.color-text-orange {
+		color: #ff6b35 !important;
+		text-decoration: none;
+		font-weight: 700;
+	}
+
+	.u-align-center {
+		text-align: center;
+	}
+
+	.margin-top-2rem {
+		margin-top: 2rem;
+	}
+
+	.weight-medium {
+		font-weight: 500;
+	}
+
+	.black {
+		font-weight: 700;
+		color: #333 !important;
+	}
+
+	/* Estilos da modal de documentos fiscais */
+	.bg-popup {
+		z-index: 299;
+		grid-column-gap: 16px;
+		grid-row-gap: 16px;
+		background-color: #00000080;
+		grid-template-rows: auto auto;
+		grid-template-columns: 1fr 1fr;
+		grid-auto-columns: 1fr;
+		height: 10000px;
+		display: none;
+		position: fixed;
+		inset: 0;
+	}
+
+	.pop-up {
+		z-index: 300;
+		box-sizing: border-box;
+		aspect-ratio: auto;
+		object-fit: cover;
+		background-color: #fff;
+		border: 1px solid #e0e0e0;
+		border-radius: 30px;
+		flex-flow: column;
+		align-self: auto;
+		align-items: center;
+		width: 80%;
+		max-width: 800px;
+		max-height: 90vh;
+		margin: 5vh auto;
+		display: none;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		overflow: hidden;
+	}
+
+	.div-block-44 {
+		grid-column-gap: 30px;
+		grid-row-gap: 30px;
+		justify-content: space-between;
+		align-items: center;
+		height: 80px;
+		margin-left: 20px;
+		margin-right: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 0;
+		padding-right: 0;
+		display: flex;
+	}
+
+	.div-block-43 {
+		flex-flow: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: auto;
+		height: 450px;
+		padding: 20px 60px 60px;
+		display: flex;
+		overflow-y: auto;
+	}
+
+	.div-block-45 {
+		margin-left: 20px;
+		margin-right: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.img-popup {
+		width: 100%;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		max-width: 600px;
+	}
+
+	.text-roxo {
+		color: #6f4e8b;
+	}
+
+	.link-block-4 {
+		cursor: pointer;
+		padding: 10px;
+		border-radius: 50%;
+		transition: background-color 0.2s ease;
+	}
+
+	.link-block-4:hover {
+		background-color: #f0f0f0;
+	}
+
+	.image-11 {
+		width: 24px;
+		height: 24px;
+	}
+
+	/* Responsividade da modal */
+	@media (max-width: 768px) {
+		.pop-up {
+			width: 95%;
+			max-width: none;
+			margin: 2.5vh auto;
+			max-height: 95vh;
+			border-radius: 15px;
+		}
+
+		.div-block-43 {
+			height: auto;
+			max-height: 70vh;
+			padding: 20px 20px 40px;
+		}
+
+		.div-block-44 {
+			width: 95%;
+			margin-bottom: 30px;
+			margin-left: 0;
+			margin-right: 0;
+			padding: 10px;
+		}
+
+		.poppins-bold-24 {
+			font-size: 18px;
+			text-align: center;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.pop-up {
+			width: 98%;
+			height: 95vh;
+			margin: 2.5vh auto;
+		}
+
+		.div-block-43 {
+			padding: 15px 15px 30px;
+			max-height: 75vh;
+		}
+
+		.poppins-14 {
+			font-size: 13px;
+			line-height: 1.5;
+		}
+
+		.img-popup {
+			max-width: 100%;
+		}
+	}
+
+	/* Estilos para lista de recursos do plano */
+	.plan-card .list-unstyled .media {
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 0.75rem;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		transition: background-color 0.2s ease;
+	}
+
+	.plan-card .list-unstyled .media:hover {
+		background-color: #f8f9fa;
+	}
+
+	.plan-card .list-unstyled .media i {
+		margin-right: 0.75rem;
+		margin-top: 0.25rem;
+		width: 20px;
+		text-align: center;
+	}
+
+	.plan-card .list-unstyled .media .media-body {
+		font-size: 0.9rem;
+		line-height: 1.4;
+		color: #495057;
+	}
+
+	/* Destaque para recursos especiais */
+	.plan-card .list-unstyled .media .media-body[style*="color:blue"] {
+		background: linear-gradient(135deg, #007bff, #6f42c1);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-weight: 700 !important;
+	}
+
+	.fixed-button-width{
+		min-width: 120px;
+		flex: 1;
+	}
+
+	/* Responsividade Mobile */
+	@media (max-width: 968px) {
+		.mainContainer {
+			flex-direction: column;
+			gap: 1.5rem;
+			align-items: center;
+		}
+		
+		.subContainers {
+			order: 1; /* Formulário primeiro em mobile */
+			max-width: 100%;
+			min-width: unset;
+		}
+		
+		.max-width-plan-card {
+			order: 2; /* Plano depois em mobile */
+			max-width: 100%;
+			min-width: unset;
+			position: static; /* Remove sticky em mobile */
+		}
+		
+		/* Responsividade para o plano da landing */
+		.plano {
+			min-height: auto;
+			padding: 20px;
+			border-radius: 20px;
+		}
+		
+		.plano .topo {
+			padding-bottom: 15px;
+		}
+		
+		.plano .box-rodape {
+			padding: 15px;
+			margin-top: 15px;
+		}
+		
+		.opensans-bold-48 {
+			font-size: 36px;
+		}
+		
+		.poppins-bold-24 {
+			font-size: 20px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.mainContainer {
+			margin-top: 20px;
+			padding: 1rem;
+		}
+		
+		.form-card .card-header {
+			padding: 1rem;
+			text-align: center;
+		}
+		
+		.form-card .card-body {
+			padding: 1.5rem;
+		}
+		
+		.prevNextBtnContainer {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+		
+		.prevNextBtnContainer .btn {
+			width: 100%;
+			min-width: unset;
+		}
+		
+		.fixed-button-width {
+			min-width: unset;
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.mainContainer {
+			padding: 0.25rem;
+		}
+		
+		.row.ml-4.mr-4 {
+			margin-left: 0.25rem !important;
+			margin-right: 0.25rem !important;
+		}
+		
+		.card {
+			border-radius: 0.5rem;
+		}
+	}
+
+	/* Melhorias específicas para formulário mobile */
+	@media (max-width: 768px) {
+		/* Inputs com tamanho adequado para touch - apenas páginas de subscription */
+		.subContainers .form-control-lg {
+			min-height: 48px; /* Tamanho mínimo recomendado para touch */
+			font-size: 16px; /* Previne zoom no iOS */
+		}
+		
+		/* Labels mais visíveis - apenas páginas de subscription */
+		.subContainers .font-size-h6 {
+			font-size: 0.9rem !important;
+			font-weight: 600 !important;
+		}
+		
+		/* Melhor espaçamento entre campos - apenas páginas de subscription */
+		.subContainers .form-group {
+			margin-bottom: 1.5rem;
+		}
+		
+		/* Alertas mais compactos - apenas páginas de subscription */
+		.subContainers .alert {
+			padding: 0.75rem;
+			font-size: 0.85rem;
+		}
+		
+		/* Botões com melhor UX mobile - apenas páginas de subscription */
+		.subContainers .btn-lg {
+			padding: 0.75rem 1rem;
+			font-size: 1rem;
+			min-height: 48px;
+		}
+		
+		/* Container de cupom responsivo */
+		.border.border-primary.rounded {
+			background-color: rgba(var(--bs-primary-rgb), 0.05);
+		}
+		
+		/* Textos de ajuda mais visíveis */
+		small.text-muted {
+			font-size: 0.8rem;
+			margin-top: 0.25rem;
+			display: block;
+		}
+		
+		/* Mensagens de erro inline */
+		p[id$="_error"] {
+			font-size: 0.75rem;
+			margin-top: 0.25rem;
+			margin-bottom: 0;
+		}
+	}
+
+	/* Melhorias para telas muito pequenas */
+	@media (max-width: 480px) {
+		.subContainers .form-control-lg {
+			font-size: 16px;
+			padding: 0.875rem 0.75rem;
+		}
+		
+		.subContainers .btn-lg {
+			font-size: 0.9rem;
+			padding: 0.75rem 0.5rem;
+		}
+		
+		/* Ajustar divisão de campos em telas pequenas - apenas páginas de subscription */
+		.subContainers .row .col-4,
+		.subContainers .row .col-8 {
+			margin-bottom: 0.5rem;
+		}
+		
+		/* DDD e telefone empilhados em telas muito pequenas - apenas páginas de subscription */
+		@media (max-width: 400px) {
+			.subContainers .row .col-4,
+			.subContainers .row .col-8 {
+				flex: 0 0 100%;
+				max-width: 100%;
+			}
+		}
+	}
+</style>
+
+
+<div class="mainContainer">
+	{% if page == 1 %}
+	<div class="subContainers">
+		<div class="form-card">
+			<div class="card-header">
+				<h3 class="mb-0 font-weight-bold">Informações para assinatura do plano</h3>
+				<small class="opacity-75">Preencha seus dados para continuar</small>
+			</div>
+			<div class="card-body">
+				<form method='POST' action="/accounts/planSubscription/{{identifier}}/{{page}}/">
+					{% csrf_token %}
+
+					<div class="form-group">
+						<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Nome</label>
+						{% render_field form.name class="form-control round form-control-lg mb-2" placeholder="Digite seu nome completo" %}
+					</div>
+					<div class="form-group">
+						<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Email</label>
+						{% render_field form.email id="email_id" class="form-control round form-control-lg mb-2" placeholder="seu@email.com" %}
+					</div>
+					
+					<div class="form-group">
+						<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">CPF</label>
+						{% render_field form.cpf_cnpj onchange="cpf_validation(this.value)" id="cpf_id" class="form-control round form-control-lg mb-2" placeholder="000.000.000-00" %}
+						<p id="cpf_error" class="text-danger small mt-1"></p>
+					</div>
+					
+					<div class="row">
+						<div class="col-4">
+							<div class="form-group">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">DDD</label>
+								{% render_field form.phone_prefix id="phone_prefix_value" class="form-control round form-control-lg mb-2" placeholder="DD" %}
+								<p id="phone_prefix_value_error" class="text-danger small mt-1"></p>
+							</div>
+						</div>
+						<div class="col-8">
+							<div class="form-group">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Celular</label>
+								{% render_field form.phone id="phone" class="form-control round form-control-lg mb-2" placeholder="99999-9999" %}
+								<p id="phone_error" class="text-danger small mt-1"></p>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">CEP</label>
+						{% render_field form.zip_code id="CEP" onblur="pesquisacep(this.value);" class="form-control round form-control-lg mb-2" placeholder="00000-000" %}
+						<small class="text-muted">Preencheremos o endereço automaticamente</small>
+					</div>
+					
+					<div class="row">
+						<div class="col-8">
+							<div class="form-group">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Rua</label>
+								{% render_field form.street id="rua" class="form-control round form-control-lg mb-2" placeholder="Nome da rua" %}
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Número</label>
+								{% render_field form.number class="form-control round form-control-lg mb-2" placeholder="123" %}
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Bairro</label>
+						{% render_field form.district id="bairro" class="form-control round form-control-lg mb-2" placeholder="Nome do bairro" %}
+					</div>
+					
+					<div class="row">
+						<div class="col-8">
+							<div class="form-group">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Cidade</label>
+								{% render_field form.city id="cidade" class="form-control round form-control-lg mb-2" placeholder="Nome da cidade" %}
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Estado</label>
+								{% render_field form.state id="uf" class="form-control round form-control-lg mb-2" placeholder="SP" %}
+							</div>
+						</div>
+					</div>
+					
+					<div class="mt-4">
+						<p class="text-dark text-center font-size-h6 mb-3">Se você recebeu um cupom de alguém, informe-o abaixo:</p>
+						<div class="border border-primary rounded p-3" style="background-color: rgba(var(--bs-primary-rgb), 0.05);">
+							<div class="form-group mb-0">
+								<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Cupom de desconto</label>
+								{% render_field form.codigo_cupom_desconto id="codigo_cupom_desconto" class="form-control round form-control-lg mb-2" placeholder="Digite o código do cupom" %}
+							</div>
+						</div>
+					</div>	
+						
+
+					<div class="mt-3">
+						{% if errors %}
+							{% for error in errors %}
+								<div class="alert alert-danger" role="alert">
+									<i class="fas fa-exclamation-triangle me-2"></i>
+									{% if error == "phone_prefix" %}
+										<strong>Atenção:</strong> O DDD do seu telefone não é válido.
+									{% elif error == "phone" %}
+										<strong>Atenção:</strong> O número do seu celular não é válido.
+									{% else %}
+										<strong>Erro:</strong> {{error}}
+									{% endif %}
+								</div>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<div class="mt-4 mb-4">
+						<div class="prevNextBtnContainer">
+							<a href="/accounts/planSubscription/{{identifier}}/1/" class="btn btn-outline-primary btn-lg fixed-button-width">
+								<i class="fas fa-arrow-left me-2"></i>VOLTAR
+							</a>
+							<button type="submit" class="btn btn-success btn-lg fixed-button-width">
+								PRÓXIMO<i class="fas fa-arrow-right ms-2"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- VALIDAÇÕES DO FORM EM JAVASCRIPT -->
+<script>
+
+	function cpf_validation(cpf){
+		console.log(cpf)
+		cpf = cpf.replace(/\D/g, '');
+		if(cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+		var result = true;
+		[9,10].forEach(function(j){
+			var soma = 0, r;
+			cpf.split(/(?=)/).splice(0,j).forEach(function(e, i){
+				soma += parseInt(e) * ((j+2)-(i+1));
+			});
+			r = soma % 11;
+			r = (r <2)?0:11-r;
+			if(r != cpf.substring(j, j+1)) result = false;
+		});
+		if (result){
+			document.getElementById('cpf_error').innerHTML = ""
+
+		} else {
+			document.getElementById('cpf_error').innerHTML = "Este CPF não é válido."
+		}
+		return result;
+	}
+    
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+
+	// Validação de email em javascript
+	let email_id = document.getElementById('email_id');
+	email_id.addEventListener('focusout', e=>{
+		var re = /\S+@\S+\.\S+/;
+		if (re.test(e.target.value)){
+			email_id.style.borderColor = 'green'
+		} else {
+			email_id.style.borderColor = 'red'
+			alert('Este email não é válido.')
+		}
+	});
+
+	// Força campo DDD vazio e validação
+	let phone_prefix = document.getElementById('phone_prefix_value');
+	if (phone_prefix) {
+		// Remove qualquer valor padrão como "55"
+		if (phone_prefix.value === '55') {
+			phone_prefix.value = '';
+		}
+		
+		phone_prefix.addEventListener('focusout', e=>{
+			if (e.target.value.length === 2){
+				phone_prefix.style.borderColor = 'green'
+				document.getElementById('phone_prefix_value_error').innerHTML = ""
+			} else {
+				phone_prefix.style.borderColor = 'red'
+				document.getElementById('phone_prefix_value_error').innerHTML = "O DDD precisa ter 2 dígitos."
+			}
+		});
+	}
+
+	// Validação de telefone em javascript
+	let phone = document.getElementById('phone');
+	if (phone) {
+		phone.addEventListener('focusout', e=>{
+			if (e.target.value.length === 9){
+				phone.style.borderColor = 'green'
+				document.getElementById('phone_error').innerHTML = ""
+			} else {
+				phone.style.borderColor = 'red'
+				document.getElementById('phone_error').innerHTML = "Este número deve ter nove dígitos começando sempre com número 9."
+			}
+		});
+	}
+
+    </script>
+
+
+	{% elif page == 2 %}
+	<div class="subContainers">
+		<div class="form-card">
+			<div class="card-header">
+				<h3 class="mb-0 font-weight-bold">Escolha o Método de Pagamento</h3>
+				<small class="opacity-75">Selecione sua forma de pagamento preferida</small>
+			</div>
+			<div class="card-body">
+				<form method='POST' action="/accounts/planSubscription/{{identifier}}/{{page}}/">
+					{% csrf_token %}
+					<div class="form-group">
+						<label class="card-label text-primary font-weight-bold mb-2 font-size-h6">Método de Pagamento</label>
+						{% render_field form.paymentMethod class="form-control round form-control-lg mb-2" %}
+					</div>
+					
+					<div class="mt-4 mb-4">
+						<div class="prevNextBtnContainer">
+							<a href="/accounts/planSubscription/{{identifier}}/1/" class="btn btn-outline-primary btn-lg fixed-button-width">
+								<i class="fas fa-arrow-left me-2"></i>VOLTAR
+							</a>
+							<button type="submit" class="btn btn-success btn-lg fixed-button-width">
+								PRÓXIMO<i class="fas fa-arrow-right ms-2"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% elif page == 3 %}
+	<div class="subContainers">
+		<div class="form-card">
+			<div class="card-header">
+				<h3 class="mb-0 font-weight-bold">Informações do Cartão de Crédito</h3>
+				<small class="opacity-75">Digite os dados do seu cartão de crédito</small>
+			</div>
+			<div class="card-body">
+									<style>
+
+										/* Credit Card Form - Versão Responsiva */
+										.usable-creditcard-form, .usable-creditcard-form * {
+											font-size: 14px;
+										}
+										.usable-creditcard-form {
+											position: relative;
+											padding: 0px;
+											max-width: 500px;
+											width: 100%;
+											margin-left: auto;
+											margin-right: auto;
+										}
+										.usable-creditcard-form .wrapper {
+											border: 1px solid #CCC;
+											border-top: 1px solid #AAA;
+											border-right: 1px solid #AAA;
+											height: 80px;
+											width: 100%;
+											max-width: 500px;
+											position: relative;
+											-webkit-border-radius: 8px;
+											-moz-border-radius: 8px;
+											border-radius: 8px;
+											background: #fff;
+										}
+										.usable-creditcard-form .input-group {
+											position: absolute;
+											top: 500px;
+										}
+										.usable-creditcard-form .input-group.nmb_a {
+											position: absolute;
+											width: 70%;
+											top: 0px;
+											left: 0px;
+										}
+										.usable-creditcard-form .input-group.nmb_b {
+											position: absolute;
+											width: 30%;
+											top: 0px;
+											right: 0px;
+										}
+										.usable-creditcard-form .input-group.nmb_b input,
+										.usable-creditcard-form .input-group.nmb_d input {
+											text-align: center;
+										}
+										.usable-creditcard-form .input-group.nmb_c {
+											position: absolute;
+											width: 70%;
+											top: 37px;
+											left: 0px;
+										}
+										.usable-creditcard-form .input-group.nmb_d {
+											position: absolute;
+											width: 30%;
+											top: 37px;
+											right: 0px;
+										}
+
+										/* Mobile Responsivo - Otimizado */
+										@media (max-width: 768px) {
+											.usable-creditcard-form {
+												max-width: 100%;
+												margin: 0 10px;
+											}
+											.usable-creditcard-form .wrapper {
+												height: 100px;
+												max-width: none;
+											}
+											.usable-creditcard-form .input-group.nmb_a {
+												width: 65%;
+											}
+											.usable-creditcard-form .input-group.nmb_b {
+												width: 35%;
+											}
+											.usable-creditcard-form .input-group.nmb_c {
+												width: 65%;
+												top: 45px;
+											}
+											.usable-creditcard-form .input-group.nmb_d {
+												width: 35%;
+												top: 45px;
+											}
+										}
+
+										@media (max-width: 576px) {
+											.usable-creditcard-form {
+												margin: 0 5px;
+											}
+											.usable-creditcard-form .wrapper {
+												height: 120px;
+											}
+											.usable-creditcard-form .input-group.nmb_a {
+												width: 60%;
+											}
+											.usable-creditcard-form .input-group.nmb_b {
+												width: 40%;
+											}
+											.usable-creditcard-form .input-group.nmb_c {
+												width: 60%;
+												top: 50px;
+											}
+											.usable-creditcard-form .input-group.nmb_d {
+												width: 40%;
+												top: 50px;
+											}
+										}
+
+										@media (max-width: 480px) {
+											.usable-creditcard-form {
+												margin: 0;
+											}
+											.usable-creditcard-form .wrapper {
+												height: 160px;
+												border-radius: 12px;
+											}
+											.usable-creditcard-form .input-group.nmb_a,
+											.usable-creditcard-form .input-group.nmb_c {
+												width: 100%;
+												left: 0;
+											}
+											.usable-creditcard-form .input-group.nmb_b,
+											.usable-creditcard-form .input-group.nmb_d {
+												width: 100%;
+												left: 0;
+												right: auto;
+											}
+											.usable-creditcard-form .input-group.nmb_b {
+												top: 40px;
+											}
+											.usable-creditcard-form .input-group.nmb_c {
+												top: 80px;
+											}
+											.usable-creditcard-form .input-group.nmb_d {
+												top: 120px;
+											}
+										}
+										
+										@media (max-width: 360px) {
+											.usable-creditcard-form .wrapper {
+												height: 180px;
+											}
+											.usable-creditcard-form .input-group.nmb_b {
+												top: 45px;
+											}
+											.usable-creditcard-form .input-group.nmb_c {
+												top: 90px;
+											}
+											.usable-creditcard-form .input-group.nmb_d {
+												top: 135px;
+											}
+										}
+										.usable-creditcard-form input {
+											background: none;
+											display: block;
+											width: 100%;
+											padding: 12px;
+											-moz-box-sizing: border-box;
+											-webkit-box-sizing: border-box;
+											box-sizing: border-box;
+											margin: 0px;
+											padding-left: 35px;
+											border: none;
+											font-size: 16px !important; /* Previne zoom no iOS */
+											outline: none;
+											transition: all 0.2s ease;
+										}
+
+										.usable-creditcard-form input:focus {
+											background-color: #f8f9fa;
+										}
+
+										@media (max-width: 480px) {
+											.usable-creditcard-form input {
+												padding: 14px;
+												padding-left: 35px;
+												font-size: 16px !important;
+												min-height: 44px; /* Touch-friendly */
+											}
+											.usable-creditcard-form .input-group .icon {
+												top: 11px;
+											}
+										}
+										.usable-creditcard-form .input-group .icon {
+											position: absolute;
+											width: 22px;
+											height: 22px;
+											background: #CCC;
+											left: 8px;
+											top: 7px;
+										}
+										.usable-creditcard-form .input-group.nmb_a input {
+											border-right: 1px solid #ECECEC;
+										}
+										.usable-creditcard-form .input-group.nmb_c input {
+											border-top: 1px solid #ECECEC;
+											border-right: 1px solid #ECECEC;
+										}
+
+										.usable-creditcard-form input::-webkit-input-placeholder {
+											font-size: 12px;
+											text-transform: none;
+										}
+										.usable-creditcard-form .input-group.nmb_d input {
+											border-top: 1px solid #ECECEC;
+										}
+
+										.usable-creditcard-form .input-group.nmb_c input {
+											text-transform: uppercase;
+										}
+										.usable-creditcard-form .accept {
+											color: #999;
+											font-size: 11px;
+											margin-bottom: 5px;
+										}
+										.usable-creditcard-form .footer {
+											display: none; /* Oculta a barra lilás */
+											margin-top: 3px;
+											position: relative;
+											margin-left: 5px;
+											margin-right: 5px;
+										}
+										.usable-creditcard-form .footer img {
+											padding: 0px;
+											margin: 0px;
+										}
+										.usable-creditcard-form .iugu-btn {
+											position: absolute;
+											top: 0px;
+											right: 0px;
+										}
+
+										/* Do not forget to store your images in a secure server */
+										.usable-creditcard-form .input-group .icon.ccic-name {
+											background: url("https://s3-sa-east-1.amazonaws.com/storage.pupui.com.br/9CA0F40E971643D1B7C8DE46BBC18396/assets/ccic-name.1cafa1882fdd56f8425de54a5a5bbd1e.png") no-repeat;
+										}
+										.usable-creditcard-form .input-group .icon.ccic-exp {
+											background: url("https://s3-sa-east-1.amazonaws.com/storage.pupui.com.br/9CA0F40E971643D1B7C8DE46BBC18396/assets/ccic-exp.05e708b1489d5e00c871f20ba33bbff3.png") no-repeat;
+										}
+										.usable-creditcard-form .input-group .icon.ccic-brand {
+											background: url("https://s3-sa-east-1.amazonaws.com/storage.pupui.com.br/9CA0F40E971643D1B7C8DE46BBC18396/assets/ccic-brands.48dba03883007f86e118f683dcfc4297.png") no-repeat;
+										}
+										.usable-creditcard-form .input-group .icon.ccic-cvv { background: url("https://s3-sa-east-1.amazonaws.com/storage.pupui.com.br/9CA0F40E971643D1B7C8DE46BBC18396/assets/ccic-cvv.1fe78dcc390427094bdc14dedea10f34.png") no-repeat; }
+
+										.usable-creditcard-form .input-group .icon.ccic-cvv,
+										.usable-creditcard-form .input-group .icon.ccic-brand
+										{
+											-webkit-transition:background-position .2s ease-in;
+											-moz-transition:background-position .2s ease-in;
+											-o-transition:background-position .2s ease-in;
+											transition:background-position .2s ease-in;
+										}
+
+										.amex .usable-creditcard-form .input-group .icon.ccic-cvv {
+											background-position: 0px -22px;
+										}
+
+										.amex .usable-creditcard-form .input-group .icon.ccic-brand {
+											background-position: 0px -110px;
+										}
+
+										.visa .usable-creditcard-form .input-group .icon.ccic-brand {
+											background-position: 0px -22px;
+										}
+
+										.diners .usable-creditcard-form .input-group .icon.ccic-brand {
+											background-position: 0px -88px;
+										}
+
+										.mastercard .usable-creditcard-form .input-group .icon.ccic-brand {
+											background-position: 0px -66px;
+										}
+
+										/* Non Credit Card Form - Token Area */
+										.token-area {
+											opacity: 0;
+											width: 0;
+											height: 0;
+											overflow: hidden;
+										}
+									</style>
+									<form id="payment-form" method="post">
+										{% csrf_token %}
+										<div class="usable-creditcard-form">
+										<div class="wrapper">
+											<div class="input-group nmb_a">
+											<div class="icon ccic-brand"></div>
+												<input autocomplete="off" class="credit_card_number" data-iugu="number" placeholder="Número do Cartão" type="text" value="" />
+											</div>
+											<div class="input-group nmb_b">
+											<div class="icon ccic-cvv"></div>
+												<input autocomplete="off" class="credit_card_cvv" data-iugu="verification_value" placeholder="CVV" type="text" value="" />
+											</div>
+											<div class="input-group nmb_c">
+											<div class="icon ccic-name"></div>
+												<input class="credit_card_name" data-iugu="full_name" placeholder="Titular do Cartão" type="text" value="" />
+											</div>
+											<div class="input-group nmb_d">
+											<div class="icon ccic-exp"></div>
+												<input autocomplete="off" class="credit_card_expiration" data-iugu="expiration" placeholder="MM/AA" type="text" value="" />
+											</div>
+										</div>
+										<div class="footer">
+											<img src="https://s3-sa-east-1.amazonaws.com/storage.pupui.com.br/9CA0F40E971643D1B7C8DE46BBC18396/assets/cc-icons.e8f4c6b4db3cc0869fa93ad535acbfe7.png" alt="Visa, Master, Diners. Amex" border="0" />
+											<a class="iugu-btn" href="http://iugu.com" tabindex="-1"><img src="https://s3-sa-east-1.amazonaws.com/storage.pupui.com.br/9CA0F40E971643D1B7C8DE46BBC18396/assets/payments-by-iugu.1df7caaf6958f1b5774579fa807b5e7f.png" alt="Pagamentos por Iugu" border="0" /></a>
+										</div>
+										</div>
+
+										<div class="token-area">
+											<label for="token"></label>
+											<input type="text" name="token" id="token" value="" readonly="true" size="64" style="text-align:center" />
+
+										</div>
+										
+										<div class="text-center">
+											<p id="credcar_error"></p>
+											<button type="submit" class="btn btn-success btn-lg font-size-h4 mt-4 credit-card-submit-btn">
+												{% if lastCreditCard %}
+													ALTERAR CARTÃO DE CRÉDITO
+												{% else %}
+													GRAVAR CARTÃO DE CRÉDITO
+												{% endif %}
+											</button>
+										</div>
+										
+										<style>
+											.credit-card-submit-btn {
+												min-height: 50px;
+												font-weight: bold;
+												border-radius: 8px;
+												transition: all 0.3s ease;
+												width: auto;
+												padding: 12px 24px;
+											}
+											
+											@media (max-width: 768px) {
+												.credit-card-submit-btn {
+													width: 100%;
+													max-width: 300px;
+													margin: 20px auto;
+													font-size: 16px !important;
+												}
+											}
+											
+											@media (max-width: 480px) {
+												.credit-card-submit-btn {
+													width: 100%;
+													max-width: none;
+													padding: 16px 20px;
+													font-size: 16px !important;
+													min-height: 54px;
+												}
+											}
+											
+										</style>  
+									</form>
+										
+									<script type="text/javascript" src="https://js.iugu.com/v2"></script>
+									<script>
+
+										// Iugu.setAccountID("17909A64A1EF4B459240135FDD46E9A8");
+										Iugu.setAccountID("3AB58592C97C4E56A96A28F98F60CAD7");
+										`{% if IS_IUGU_TEST_MODE_ON %}`
+										Iugu.setTestMode(true);
+										`{% endif %}`
+										Iugu.setup();
+										jQuery(function($) {
+											$('#payment-form').submit(function(evt) {
+												var form = $(this);
+												var tokenResponseHandler = function(data) {
+													
+													if (data.errors) {
+														let credcar_errors = `
+															<ul>
+																${!!data.errors.expiration?`<li style="font-weight:bold;" class="text-danger">Data de validade não é válida. Digite no seguinte formato MM/AA.</li>`:``}
+																${(!!data.errors.first_name || !!data.errors.last_name)?`<li style="font-weight:bold;" class="text-danger">O nome do titular do cartão digitado não é válido</li>`:``}
+																${!!data.errors.number?`<li style="font-weight:bold;" class="text-danger">Você não informou corretamente o número do cartão de crédito.</li>`:``}
+																${!!data.errors.record_invalid?`<li style="font-weight:bold;" class="text-danger">Você não informou corretamente o número do cartão de crédito.</li>`:``}
+																${!!data.errors.verification_value?`<li style="font-weight:bold;" class="text-danger">Você não informou corretamente o número de verificação.</li>`:``}
+															</ul>
+														`
+														document.getElementById("credcar_error").innerHTML = credcar_errors;
+														console.log(data.errors)
+													} else {
+														$("#token").val( data.id );
+														form.get(0).submit();
+													}
+													
+													// Seu código para continuar a submissão
+													// Ex: form.submit();
+												}
+												
+												Iugu.createPaymentToken(this, tokenResponseHandler);
+												return false;
+											});
+										});
+									</script>
+			</div>
+		</div>
+		
+		{% if lastCreditCard %}
+		<div class="form-card mt-4">
+			<div class="card-header">
+				<h3 class="mb-0 font-weight-bold">Cartão Selecionado Atualmente</h3>
+				<small class="opacity-75">Cartão que está sendo usado no momento</small>
+			</div>
+			<div class="card-body">
+				<h6 class="text-dark font-weight-bold">{{lastCreditCard}}</h6>
+			</div>
+		</div>
+		{% endif %}
+		
+		<div class="form-card mt-4">
+			<div class="card-body">
+				{% if errors %}
+					{% for error in errors %}
+						<div class="alert alert-danger d-flex align-items-center mb-3" role="alert">
+							<i class="fas fa-exclamation-triangle me-2"></i>
+							<div>
+								<strong>Erro:</strong> {{error}}
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+				
+				<div class="prevNextBtnContainer">
+					<a href="/accounts/planSubscription/{{identifier}}/2/" class="btn btn-outline-primary btn-lg fixed-button-width">
+						<i class="fas fa-arrow-left me-2"></i>VOLTAR
+					</a>
+					<a href="/accounts/planSubscription/{{identifier}}/4/" class="btn btn-success btn-lg fixed-button-width">
+						PRÓXIMO<i class="fas fa-arrow-right ms-2"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% else %}
+
+	<form method='POST' 
+		{% if changingPlan %}
+			action="/accounts/changePlanSubscription/{{identifier}}/{{page}}/"
+		{% else %} 
+			action="/accounts/planSubscription/{{identifier}}/{{page}}/" 
+		{% endif %}
+		id="theForm"
+		class="subContainers">
+		{% csrf_token %}
+		
+		<div class="form-card">
+			<div class="card-header">
+				<h3 class="mb-0 font-weight-bold">Revise as Informações do seu Plano</h3>
+				<small class="opacity-75">Confirme todos os dados antes de finalizar</small>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Nome:</h6>
+							<p class="text-dark mb-0">{{name}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Email:</h6>
+							<p class="text-dark mb-0">{{email}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Celular:</h6>
+							<p class="text-dark mb-0">+{{phone_prefix}} {{phone}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Método de Pagamento:</h6>
+							<p class="text-dark mb-0">
+								{% if paymentMethod == "bank slip" %}
+									Boleto Bancário
+								{% elif paymentMethod == "credit card" %}
+									Cartão de Crédito
+								{% else %}
+									PIX
+								{% endif %}
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Endereço:</h6>
+							<p class="text-dark mb-0">{{street|default_if_none:"Não Informado"}}, {{number|default_if_none:"Não Informado"}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">CEP:</h6>
+							<p class="text-dark mb-0">{{zip_code|default_if_none:"Não Informado"}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Bairro:</h6>
+							<p class="text-dark mb-0">{{district|default_if_none:"Não Informado"}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Cidade:</h6>
+							<p class="text-dark mb-0">{{city|default_if_none:"Não Informado"}}</p>
+						</div>
+						<div class="info-group mb-3">
+							<h6 class="text-primary font-weight-bold mb-1">Estado:</h6>
+							<p class="text-dark mb-0">{{state|default_if_none:"Não Informado"}}</p>
+						</div>
+					</div>
+				</div>
+				
+				{% if errors %} 
+					<div class="alert alert-danger d-flex align-items-center mt-4" role="alert">
+						<i class="fas fa-exclamation-triangle me-2"></i>
+						<div>
+							<strong>Erro:</strong> {{errors}}
+						</div>
+					</div>
+				{% else %}
+					<!-- Google Tag Manager - Conversão de Assinatura -->
+					<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+					})(window,document,'script','dataLayer','GTM-M48PPWX');</script>
+					<!-- End Google Tag Manager -->
+
+					<!-- Google Tag Manager (noscript) - Conversão de Assinatura -->
+					<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M48PPWX"
+					height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+					<!-- End Google Tag Manager (noscript) -->
+
+					<div class="success-message-container mt-4">
+						<div class="alert alert-success border-0" style="background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-radius: 12px;">
+							<div class="text-center">
+								<i class="fas fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
+								<h4 class="text-success font-weight-bold mb-2">🎉 Parabéns! Sua assinatura foi realizada com sucesso!</h4>
+								<p class="text-muted mb-4">
+									Obrigado por escolher o TicTag para gerenciar seu brechó. Sua jornada de sucesso começa agora!<br>
+									<strong>Clique no botão abaixo para acessar seu plano e gerenciar sua assinatura.</strong>
+								</p>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+				
+				{% if not paymentDone %}
+					<div class="prevNextBtnContainer mt-4">
+						<a href="/accounts/planSubscription/{{identifier}}/{{lastPage}}/" class="btn btn-outline-primary btn-lg fixed-button-width">
+							<i class="fas fa-arrow-left me-2"></i>VOLTAR
+						</a>
+						<button type="button" onclick="submitingSubscription()" class="btn btn-success btn-lg fixed-button-width">
+							CONCLUIR<i class="fas fa-check ms-2"></i>
+						</button>
+					</div>
+				{% else %}
+					<div class="text-center mt-4">
+						<a href="/accounts/subscription/" class="btn btn-success btn-xl subscription-btn" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); border: none; border-radius: 12px; padding: 16px 32px; font-size: 1.1rem; font-weight: bold; text-transform: uppercase; box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3); transition: all 0.3s ease;">
+							<i class="fas fa-crown me-2" style="color: #fff;"></i>VER PLANO E ASSINATURA
+						</a>
+						<p class="text-muted mt-3 small">
+							<i class="fas fa-info-circle me-1"></i>
+							Aqui você pode gerenciar seus dados, alterar planos e acompanhar faturas
+						</p>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</form>
+
+	<style>
+		.info-group {
+			padding: 12px 0;
+			border-bottom: 1px solid #f0f0f0;
+		}
+		
+		.info-group:last-child {
+			border-bottom: none;
+		}
+		
+		.info-group h6 {
+			font-size: 0.9rem;
+			margin-bottom: 4px;
+			color: #007bff;
+		}
+		
+		.info-group p {
+			font-size: 1rem;
+			font-weight: 500;
+			color: #333;
+		}
+		
+		/* Botão de assinatura com efeitos */
+		.subscription-btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4) !important;
+			background: linear-gradient(135deg, #218838 0%, #1e7e34 100%) !important;
+		}
+		
+		.subscription-btn:active {
+			transform: translateY(0);
+		}
+		
+		/* Responsividade */
+		@media (max-width: 768px) {
+			.info-group {
+				padding: 8px 0;
+			}
+			
+			.info-group h6 {
+				font-size: 0.85rem;
+			}
+			
+			.info-group p {
+				font-size: 0.95rem;
+			}
+			
+			.success-message-container h4 {
+				font-size: 1.3rem;
+			}
+			
+			.success-message-container p {
+				font-size: 0.9rem;
+			}
+			
+			.subscription-btn {
+				font-size: 1rem !important;
+				padding: 14px 24px !important;
+				width: 90%;
+				max-width: 300px;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.success-message-container .fas.fa-check-circle {
+				font-size: 2.5rem !important;
+			}
+			
+			.success-message-container h4 {
+				font-size: 1.1rem;
+			}
+			
+			.subscription-btn {
+				width: 100%;
+				font-size: 0.95rem !important;
+				padding: 16px 20px !important;
+			}
+		}
+	</style>
+
+	<script>
+		let submitedTheForm = false;
+		const submitingSubscription = () => {
+			if(!submitedTheForm){
+				var theForm = jQuery("#theForm");
+				submitedTheForm = true;
+				theForm.submit();
+			}else{
+				alert("Por favor aguarde sem clicar no botão. Ainda fechando a sua assinatura.");
+			}
+		}
+	</script>
+
+
+
+
+	{% endif %}
+	<div class="max-width-plan-card">
+		{% if identifier == 'TOTAL' %}
+		<!-- Card do plano TOTAL da landing page -->
+		<div id="w-node-c4674cbb-b727-afda-61b5-6a5588f8c724-6a95dbab" class="plano plan-card">
+			<div class="topo">
+				<div class="poppins-bold-24">TOTAL</div>
+				<div class="poppins-regular-16-preto u-align-center">Brechós que precisam<br>emitir notas fiscais.</div>
+				<div class="opensans-bold-24 margin-top-2rem">R$<span class="opensans-bold-48">288,00</span>/MÊS</div>
+				<div class="linha"></div>
+				<div class="box-features">
+					<div class="div-block-41"><img src="{% static 'newlanding/images/Check.svg' %}" loading="lazy" alt="">
+						<div class="poppins-regular-16-preto black">Tudo do plano essencial + total</div>
+					</div>
+					<div class="div-block-14"><img src="{% static 'newlanding/images/Check.svg' %}" loading="lazy" alt="">
+						<div class="poppins-regular-16-preto">Emissão de Cupom Fiscal-NFCE ou NFE, em breve NFSe</div>
+					</div>
+					<div class="div-block-14">
+						<div class="poppins-14">Até 100 emissões por mês já incluídas. <a href="#" data-w-id="f8e50738-07a0-50ab-8b99-b3feae43ef22">Clique aqui para ver o pacote adicional que melhor atende suas necessidades.</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div data-w-id="fcbb2eef-c1e1-3e22-e2b2-726a5bf43899" class="div-block-14"></div>
+			<div class="box-rodape">
+				<div class="div-block-14"><img src="{% static 'newlanding/images/CamSymbol.svg' %}" loading="lazy" alt="">
+					<div class="poppins-14">4 mil fotos já incluídas. Cada mil fotos adicionais: R$ 50,00/mês.</div>
+				</div>
+				<div class="div-block-14"><img src="{% static 'newlanding/images/Symbol.svg' %}" loading="lazy" alt="">
+					<div class="poppins-regular-16-preto weight-medium">Usuário adicional R$ 30,00/mês</div>
+				</div>
+				<div class="poppins-14">(O plano já inclui 1 usuário e você pode adicionar mais usuários ao seu plano.)</div>
+			</div>
+		</div>
+		{% else %}
+		<!-- Card genérico para outros planos -->
+		<div class="plan-card">
+			<div class="card-header text-center" style="background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 1.5rem;">
+				<h4 class="mb-1 font-weight-bold">{{plan.name}}</h4>
+				<div class="price" style="font-size: 2rem; font-weight: bold;">
+					<span class="currency">R$</span><span class="value">{{plan.price}}</span><span class="currency" style="font-size: 1rem;">/{{plan.interval_type}}</span>
+				</div>
+			</div>
+			<div class="card-body" style="padding: 1.5rem;">
+				<h6 class="text-muted mb-3 text-center">Recursos inclusos:</h6>
+				<ul class="list-unstyled li-space-lg">
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Painel de Controle (Dashboard)</div>
+					</li>
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Tela de Vendas</div>
+					</li>
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Gestão Automática de Repasses</div>
+					</li>
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Controle Financeiro</div>
+					</li>
+					{% if plan.name == 'BÁSICO' %}
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Suporte por Email</div>
+					</li>
+					{% else %}
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Suporte por Whatsapp</div>
+					</li>
+					{% endif %}
+					<li class="media">
+						<i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+						<div class="media-body">Precificação Ágil em lote</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	
+	<!-- Modal de documentos fiscais -->
+	<div style="display:none" class="bg-popup"></div>
+	<div id="modal_plano" style="display:none" class="pop-up">
+		<div class="div-block-44">
+			<div class="poppins-bold-24">Como contamos as suas Notas Fiscais e suas Fotos?<br></div>
+			<a onclick="fexar_modal_plano()" class="link-block-4 w-inline-block bg-white"><img src="{% static 'newlanding/images/exit-icon.svg' %}" loading="lazy" alt="" class="image-11"></a>
+		</div>
+		<div class="div-block-43">
+			<div class="poppins-14"><strong class="text-roxo">Sobre Notas Fiscais:<br></strong><br>Analise a sua necessidade e, caso necessário, veja na tabela os pacotes adicionais disponíveis para sua escolha:</div>
+			<img src="{% static 'newlanding/images/Tabela.svg' %}" loading="lazy" alt="" class="img-popup">
+			<div class="poppins-14">Seu plano já inclui a emissão de 100 documentos fiscais por mês. Falamos em &quot;documentos fiscais&quot; porque você pode emitir tanto NFCe (Cupom Fiscal) quanto NFe. Os dois modelos são contados como &quot;documentos fiscais&quot; e a emissão de qualquer um dois dois equivale a 1 emissão.<br><br>Por exemplo, se você acredita que vai usar algo como 400 documentos fiscais por mês, adicione o pacote de 300 emissões. Assim somando as 100 emissões da sua assinatura + o pacote de 300 emissões, você terá 400 emissões para fazer por mês. <strong>A cada mês essa contagem zera e você terá novamente 400 emissões de crédito para usar no mês.<br><br>A utilização das emissões não é cumulativa, ou seja, caso em um certo mês você não utilize totalmente o seu pacote, o que sobra não é adicionado ao mês seguinte. Ou seja, no mês seguinte você começa novamente com o seu pacote total adquirido, no exemplo acima, 400 emissões.<br><br>‍</strong>O sistema vai te apresentar um &quot;contador&quot; de emissão de Notas Fiscais e através do acompanhamento dele você pode dimensionar se vai precisar adicionar um dos pacotes ao seu plano para atender a sua demanda de emissão de Notas Fiscais.<br><br>Tenha em mente que o sistema proporciona uma funcionalidade para emissão de Notas Fiscais de entrada que visa justamente reduzir a necessidade de emissão deste tipo de Nota, trazendo, inclusive enorme agilidade ao seu processo de gestão fiscal, pois tudo foi pensado para a operação de brechós e lojas de roupas.</div>
+			<div class="poppins-14"><strong class="text-roxo"><br>Sobre Fotos : </strong><br><br>Seu plano já inclui um estoque de 4 mil fotos para sua loja. Caso seja necessário ter mais do que 4 mil fotos em sua loja basta adicionar lotes de mil fotos. Você poderá incluir ou remover esses lotes de mil fotos quando quiser na sua tela de administração de sua assinatura e plano.<br><br>É importante ressaltar que assim que uma peça é vendida, a foto dela é excluída, e você passa a ter novamente direito ao espaço de foto deixado pela peça que foi vendida. Ou seja, você não precisa ficar comprando lotes adicionais de fotos sempre que cadastrar peças pois o giro do seu estoque vai liberando fotos para seu uso.<br><br>Isso significa que as 4 mil fotos já incluídas em seu plano podem ser suficientes para sua operação. Basta que para isso seu estoque A VENDA não seja maior do que 4 mil peças.</div>
+		</div>
+		<div class="div-block-45">
+			<div class="poppins-14 text-roxo">Caso ainda tenha dúvidas sobre a emissão de Notas Fiscais ou uso das Fotos, por favor, pode entrar em contato com o nosso suporte pelo Whatsapp</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+<script src={% static "assets/js/plugin.bundle.min.js" %}></script>
+<script src={% static "assets/js/script.bundle.js" %}></script>
+<script src={% static "assets/js/bootstrap.bundle.min.js" %}></script>
+<script src={% static "assets/api/jqueryvalidate/jquery.validate.min.js" %}></script>
+<script src={% static "assets/api/apexcharts/apexcharts.js" %}></script>
+<script src={% static "assets/api/apexcharts/scriptcharts.js" %}></script>
+<script src={% static "assets/api/pace/pace.js" %}></script>
+<script src={% static "assets/api/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js" %}></script>
+<script src={% static "assets/api/datatable/jquery.dataTables.min.js" %}></script>
+<script src={% static "assets/js/sweetalert.js" %}></script>
+<script src={% static "assets/js/sweetalert1.js" %}></script>
+
+<script>
+// Função para abrir a modal dos documentos fiscais
+function abrir_modal_plano() {
+    document.getElementById('modal_plano').style.display = 'block';
+    document.querySelector('.bg-popup').style.display = 'block';
+    // Impede o scroll da página de fundo
+    document.body.style.overflow = 'hidden';
+}
+
+// Função para fechar a modal dos documentos fiscais
+function fexar_modal_plano() {
+    document.getElementById('modal_plano').style.display = 'none';
+    document.querySelector('.bg-popup').style.display = 'none';
+    // Restaura o scroll da página
+    document.body.style.overflow = 'auto';
+}
+
+// Fechar modal clicando no fundo
+document.querySelector('.bg-popup').addEventListener('click', function() {
+    fexar_modal_plano();
+});
+
+// Fechar modal com tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        fexar_modal_plano();
+    }
+});
+
+// Conectar o link "Clique aqui para ver o pacote adicional" à função de abrir modal
+document.addEventListener('DOMContentLoaded', function() {
+    const linkModal = document.querySelector('[data-w-id="f8e50738-07a0-50ab-8b99-b3feae43ef22"]');
+    if (linkModal) {
+        linkModal.addEventListener('click', function(e) {
+            e.preventDefault();
+            abrir_modal_plano();
+        });
+    }
+});
+</script>
+
+{% endblock %}

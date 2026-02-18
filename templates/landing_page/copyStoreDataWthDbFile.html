@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPY STORE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <style>
+        .mainContainer{
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .innerContainer{
+            border: 1px solid black;
+            padding: 0 20px 20px 20px;
+        }
+
+        #storeid{
+            max-width: 60px;
+            margin: 0 10px;
+            height: 30px;
+            font-size: 20px;
+        }
+        .cursor-pointer{
+            cursor: pointer;
+        }
+    </style>
+    <form action="/accounts/copyStoreDataWthDbFile/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mainContainer">
+            <div class="innerContainer">
+                <h1>
+                    Copy The Store
+                </h1>
+                <hr/>
+                <label for="storeid">
+                    Store Id : 
+                </label>
+                <input type="number" name="storeid" id="storeid" >
+                <button class="cursor-pointer" type="button" onclick="fetchStoreDetails()">Check Store Details</button>
+                <hr/>
+                    <h4>Store Name : <span id="storeName"> </span> </h4>
+                    <h4>No. of Products : <span id="products"> </span> </h4>
+                    <h4>No. of Suppliers : <span id="suppliers"> </span> </h4>
+                    <h4>No. of Clients : <span id="clients"> </span> </h4>
+                <hr/>
+                <input type="file" disabled="true" id="file" name="file" >
+                <input type="submit" disabled="true" id="submitButton" class="cursor-pointer" value="submit">
+            </div>
+        </div>
+    </form>
+    <script>
+
+        function getCookie(name) {
+			let cookieValue = null;
+			if (document.cookie && document.cookie !== '') {
+				const cookies = document.cookie.split(';');
+				for (let i = 0; i < cookies.length; i++) {
+					const cookie = cookies[i].trim();
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) === (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+
+		const csrftoken = getCookie('csrftoken');
+
+        const fetchStoreDetails = async () => {
+            if(!document.getElementById("storeid").value) alert("Store Number Is Necessary");
+            let res = await axios.post('/accounts/getStoreDetailsById/',
+					{
+						withCredentials: true,
+						'storeId':document.getElementById("storeid").value
+					},
+					{
+						headers: {'X-CSRFToken': csrftoken}
+					}
+				);
+            if(res.data.status === "success"){
+                document.getElementById("storeName").innerHTML = res.data.storeName;
+                document.getElementById("products").innerHTML = res.data.products;
+                document.getElementById("suppliers").innerHTML = res.data.suppliers;
+                document.getElementById("clients").innerHTML = res.data.clients;
+                document.getElementById("file").disabled = false;
+                document.getElementById("submitButton").disabled = false;
+            }else{
+                alert(res.data.message);
+                document.getElementById("file").disabled = true;
+                document.getElementById("submitButton").disabled = true;
+            }
+        }
+
+        document.getElementById("storeid").addEventListener("change", ()=>{
+            document.getElementById("storeName").innerHTML = "";
+            document.getElementById("products").innerHTML = "";
+            document.getElementById("suppliers").innerHTML = "";
+            document.getElementById("clients").innerHTML = "";
+            document.getElementById("file").disabled = true;
+            document.getElementById("submitButton").disabled = true;
+        })
+
+    </script>
+</body>
+</html>

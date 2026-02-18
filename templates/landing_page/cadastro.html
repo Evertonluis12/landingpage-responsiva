@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se | TicTag - Sistema de Gestão para Brechós</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link href="{% static 'landing_page/css/auth-pages.css' %}?v=10" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="auth-header">
+        <div class="container">
+            <a href="/lp-preview/" class="logo">
+                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+            </a>
+            
+            <nav>
+                <a href="/lp-preview/#inicio">Início</a>
+                <a href="/lp-preview/#funcionalidades">Funcionalidades</a>
+                <a href="/lp-preview/#planos">Planos</a>
+                <a href="/lp-preview/#sobre">Sobre Nós</a>
+                <a href="/lp-preview/#trabalhe">Trabalhe Conosco</a>
+                <a href="/cadastro/" class="btn-cadastrar">Cadastrar-se</a>
+                <a href="/login/" class="btn-login-header">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== CONTAINER PRINCIPAL ========== -->
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Lado Esquerdo: Imagem -->
+            <div class="auth-image-side" style="background-image: url('{% static 'landing_page/images/new/cadastro-mulher.png' %}');"></div>
+
+            <!-- Lado Direito: Formulário de Cadastro -->
+            <div class="auth-form-side">
+                <div class="auth-title">Ainda não tem o sistema?</div>
+                <div class="auth-subtitle">Cadastre-se agora</div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST" action="#" class="auth-form" id="signupForm">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="first_name" 
+                            name="first_name" 
+                            class="form-input" 
+                            placeholder="Nome"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="last_name" 
+                            name="last_name" 
+                            class="form-input" 
+                            placeholder="Sobrenome"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input" 
+                            placeholder="Nome de usuário"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Senha"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="E-mail"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            class="form-input" 
+                            placeholder="Telefone"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="store_name" 
+                            name="store_name" 
+                            class="form-input" 
+                            placeholder="Nome do Brechó"
+                            required
+                        >
+                    </div>
+
+                    <!-- Campos ocultos para UTM tracking -->
+                    <input type="hidden" name="utm_source" value="{{ request.GET.utm_source }}">
+                    <input type="hidden" name="utm_medium" value="{{ request.GET.utm_medium }}">
+                    <input type="hidden" name="utm_campaign" value="{{ request.GET.utm_campaign }}">
+                    <input type="hidden" name="utm_term" value="{{ request.GET.utm_term }}">
+                    <input type="hidden" name="utm_content" value="{{ request.GET.utm_content }}">
+
+                    <button type="submit" class="btn-primary">Criar Minha Conta</button>
+                </form>
+
+                <div class="auth-link">
+                    <p>Já tem conta? <a href="/login/">Faça o login!</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Máscara para telefone
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+                value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                value = value.replace(/^(\d*)/, '($1');
+            }
+            e.target.value = value;
+        });
+
+        // Submissão do formulário - redireciona para escolher plano
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Salvar dados no localStorage para usar depois
+            const formData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                store_name: document.getElementById('store_name').value
+            };
+            localStorage.setItem('signupData', JSON.stringify(formData));
+            
+            // Redirecionar para escolher plano
+            window.location.href = '/escolher-plano/';
+        });
+    </script>
+</body>
+</html>

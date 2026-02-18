@@ -1,0 +1,448 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html data-wf-page="terms-conditions" data-wf-site="tictag">
+<head>
+  <meta charset="utf-8">
+  <title>Termos e Condições de Uso - TicTag | Sistema de Gestão para Brechós</title>
+  <meta name="description" content="Termos e Condições de Uso do TicTag - Sistema completo de gestão para brechós e lojas de roupas usadas. Leia nossos termos de uso e política de privacidade.">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  
+  <!-- CSS Files -->
+  <link href="{% static 'newlanding/css/normalize.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'newlanding/css/webflow.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'newlanding/css/tigtag---site.webflow.css' %}" rel="stylesheet" type="text/css">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","PT Serif:400,400italic,700,700italic","Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic","Poppins:300,regular,500,600,700,800"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  
+  <!-- Favicons -->
+  <link href="{% static 'newlanding/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+  <link href="{% static 'newlanding/images/favicon.png'%}" rel="apple-touch-icon">
+
+  <!-- Custom Styles for Terms Page -->
+  <style>
+    .terms-header {
+      background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+      padding: 100px 0 60px;
+      text-align: center;
+      color: white;
+    }
+    
+    .terms-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      line-height: 1.8;
+    }
+    
+    .terms-content {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    
+    .terms-content h2 {
+      color: #6c5ce7;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      margin: 30px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e9ecef;
+    }
+    
+    .terms-content h3 {
+      color: #495057;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      margin: 25px 0 15px 0;
+    }
+    
+    .terms-content p {
+      color: #6c757d;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+    
+    .breadcrumb {
+      background: #f8f9fa;
+      padding: 20px 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .breadcrumb a {
+      color: #6c5ce7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #6c5ce7;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .back-to-top:hover {
+      background: #5a4fcf;
+      transform: translateY(-2px);
+    }
+    
+    .section-index {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 4px solid #6c5ce7;
+    }
+    
+    .section-index h3 {
+      color: #6c5ce7;
+      margin-bottom: 20px;
+    }
+    
+    .section-index ul {
+      columns: 2;
+      column-gap: 30px;
+      list-style: none;
+      padding: 0;
+    }
+    
+    .section-index li {
+      margin-bottom: 8px;
+      break-inside: avoid;
+    }
+    
+    .section-index a {
+      color: #495057;
+      text-decoration: none;
+      padding: 5px 0;
+      display: block;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .section-index a:hover {
+      color: #6c5ce7;
+      padding-left: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      .terms-container {
+        padding: 40px 15px;
+      }
+      
+      .terms-content {
+        padding: 25px 20px;
+      }
+      
+      .section-index ul {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Menu -->
+  <section class="menu">
+    <div class="w-layout-blockcontainer w-container">
+      <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+        <div class="container-13 w-container">
+          <div class="div-block-37">
+            <a href="/landing/" class="w-nav-brand">
+              <img src="{% static 'landing/images/log_nova_tictag_branca_400x105.png' %}" loading="lazy" alt="TicTag Logo" class="image-7" style="width: 150px; height: auto;">
+            </a>
+            <nav role="navigation" class="nav-menu w-nav-menu">
+              <a href="/landing/" class="poppins-regular-16-branco medium w-nav-link">Home</a>
+              <a href="/landing/#Recursos" class="poppins-regular-16-branco medium w-nav-link">Recursos do Sistema</a>
+              <a href="/landing/#planos" class="poppins-regular-16-branco medium w-nav-link">Planos</a>
+              <a href="/accounts/login-page/" target="_blank" class="bot-o-branco w-button">Entrar</a>
+            </nav>
+            <div class="w-nav-button">
+              <div class="icon-3 w-icon-nav-menu"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Button -->
+  <div class="whatsapp">
+    <a href="https://wa.me/+5511910668088?" class="w-inline-block">
+      <img src="{% static 'newlanding/images/logos_whatsapp-icon.svg' %}" loading="lazy" alt="Suporte via Whatsapp" class="image-6">
+    </a>
+  </div>
+
+  <!-- Header Section -->
+  <div class="terms-header">
+    <div class="w-layout-blockcontainer w-container">
+      <h1 class="poppins-extrabold-33-p" style="margin-bottom: 15px; color: white;">Termos e Condições de Uso</h1>
+      <div class="poppins-regular-18-rox" style="color: rgba(255,255,255,0.9);">
+        Última atualização: Agosto de 2025
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="w-layout-blockcontainer w-container">
+      <div class="poppins-regular-16-branco" style="color: #6c757d;">
+        <a href="/landing/">Início</a> → <span>Termos e Condições de Uso</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Content -->
+  <div class="terms-container">
+    <!-- Table of Contents -->
+    <div class="section-index">
+      <h3>Índice</h3>
+      <ul>
+        <li><a href="#definicoes">1. Definições</a></li>
+        <li><a href="#objeto">2. Objeto</a></li>
+        <li><a href="#licenciamento">3. Licenciamento de Uso</a></li>
+        <li><a href="#vigencia">4. Vigência</a></li>
+        <li><a href="#preco">5. Preço e Forma de Pagamento</a></li>
+        <li><a href="#reajustes">5.1. Reajustes de Preços e Promoções</a></li>
+        <li><a href="#planos">6. Planos e Recursos</a></li>
+        <li><a href="#pagamento">7. Pagamento</a></li>
+        <li><a href="#atraso">8. Atraso no Pagamento</a></li>
+        <li><a href="#protecao-dados">8.0.1. Proteção e Exportação de Dados</a></li>
+        <li><a href="#reativacao">8.1. Taxa de Reativação</a></li>
+        <li><a href="#alteracao">9. Alteração do Plano</a></li>
+        <li><a href="#cancelamento">10. Cancelamento do Plano</a></li>
+        <li><a href="#aplicativos">11. Aplicativos Extras</a></li>
+        <li><a href="#responsabilidade">12. Responsabilidade Solidária</a></li>
+        <li><a href="#disposicoes">13. Disposições Gerais</a></li>
+        <li><a href="#foro">14. Do Foro</a></li>
+      </ul>
+    </div>
+
+    <div class="terms-content">
+      <h2>Introdução</h2>
+      <p>Este documento apresenta as nossas condições sob as quais oferecemos o nosso sistema ao mercado. Por favor leia atentamente os Termos de Uso e Condições abaixo.</p>
+      
+      <p>Ao utilizar o "Sistema TicTag", sob qualquer hipótese de uso, mesmo que de modo parcial ou gratuito, e/ou clicar na marcação "Li e concordo com os Termos de Uso e Condições" da caixa de diálogo você aceita e concorda totalmente com os presentes Termos de Uso e Condições.</p>
+      
+      <p>Nestes Termos de Uso e Condições, você, seja pessoa física ou jurídica, será considerado o "Usuário" para o uso do nosso software, disponível em plataforma web, denominado "Sistema TicTag" (o "Sistema" ou "Software"), pelo prazo que você escolher no ato da contratação do licenciamento.</p>
+      
+      <p>Nós seremos a "Licenciante ou SimFazemos", e nossos dados completos são os seguintes: SIMFAZEMOS DESENVOLVIMENTO DE SISTEMAS LTDA, sociedade limitada, inscrita no CNPJ/ME sob o nº 49.963.464/0001-92, com sede na Rua Clara Nunes, 387, Pituba, CEP 41.810-425, Salvador, Bahia, Brasil.</p>
+
+      <h2 id="definicoes">1. DEFINIÇÕES</h2>
+      <p>Para facilitar a leitura deste adotamos as seguintes definições:</p>
+      
+      <p><strong>Aplicativos:</strong> adicionais às operações e módulos originais do Sistema, cujos valores, modo de funcionamento e termos de uso são próprios;</p>
+      
+      <p><strong>Plano Contratado:</strong> o Plano oferecido pela SimFazemos e contratado pelo Usuário;</p>
+      
+      <p><strong>Perfil no Sistema:</strong> o usuário contratante poderá criar novos usuários no Sistema para que outras partes interessadas (exemplo: colaboradores, outros sócios, etc) possam usar o Sistema, tendo os usuários acesso a diferentes funcionalidades e poderes a depender das configurações predeterminadas escolhidas pelo usuário titular do sistema;</p>
+      
+      <p><strong>"Software" ou "Sistema":</strong> refere-se ao software online de computador "TicTag" (operado em plataforma Web, sem necessidade de download), desenvolvido e de integral propriedade da SimFazemos, distribuído e comercializado sob a modalidade SaaS (Software as a Service, traduzido como "software como um serviço"), não customizável, e demais produtos e serviços atualmente disponibilizados ou que venham a ser desenvolvidos estando seus direitos de uso descritos no presente instrumento;</p>
+      
+      <p><strong>"Usuário" e "Licenciado":</strong> trata-se da pessoa física ou jurídica que aceitou as condições estabelecidas nestes Termos de Uso e que contratou o Sistema ou atua representando o contratante perante à SimFazemos;</p>
+      
+      <p><strong>"Suporte Técnico":</strong> significa o atendimento oferecido pela Licenciante ao Usuário exclusivamente para o fim de esclarecer dúvidas, problemas técnicos ou quaisquer questões relacionadas dificuldades na utilização do Sistema;</p>
+      
+      <p><strong>"Software Não Customizável":</strong> significa que as funcionalidades disponibilizadas pelo Sistema são padronizadas - uniformes e iguais para todos os Usuários e o desenvolvimento de elementos para o Sistema depende de avaliação interna e é facultativo à SimFazemos;</p>
+      
+      <p><strong>"Licenciante" ou "nós" ou "SimFazemos":</strong> refere-se à SIMFAZEMOS DESENVOLVIMENTO DE SISTEMAS LTDA.</p>
+
+      <h2 id="objeto">2. OBJETO</h2>
+      <p>O presente documento tem por objeto disciplinar e regulamentar as condições de utilização e o relacionamento entre a SimFazemos e o Usuário para a prestação do serviço de licenciamento de uso do Sistema TicTag, doravante denominado "Sistema".</p>
+
+      <h2 id="licenciamento">3. LICENCIAMENTO DE USO</h2>
+      <p>O Sistema é licenciado para uso, mas a SimFazemos mantém sua propriedade intelectual plena, inclusive de suas atualizações e aperfeiçoamentos, salvo quanto aos dados inseridos pelo Usuário.</p>
+      
+      <p>A licença concedida é não-exclusiva, intransferível e limitada ao uso do Sistema conforme estabelecido nestes Termos de Uso.</p>
+
+      <h2 id="vigencia">4. VIGÊNCIA</h2>
+      <p>A vigência deste licenciamento será conforme o Plano Contratado, renovando-se automaticamente por períodos iguais e sucessivos, salvo manifestação em contrário de qualquer das partes, observado o prazo mínimo de antecedência de 30 (trinta) dias do término da vigência.</p>
+
+      <h2 id="preco">5. PREÇO E FORMA DE PAGAMENTO</h2>
+      <p>O preço do licenciamento será estabelecido conforme a tabela de preços vigente na data da contratação, podendo ser consultada no site oficial do Sistema.</p>
+      
+      <p>O pagamento deverá ser efetuado nas datas estabelecidas no momento da contratação, através das formas de pagamento disponibilizadas pela SimFazemos.</p>
+
+      <h3 id="reajustes">5.1. REAJUSTES DE PREÇOS E PROMOÇÕES</h3>
+      <p>A SimFazemos reserva-se o direito de proceder ao <strong>reajuste anual das mensalidades</strong> conforme a variação acumulada do <strong>IGP-M (Índice Geral de Preços – Mercado)</strong> da Fundação Getúlio Vargas ou outro índice oficial que venha a substituí-lo, sem necessidade de aviso prévio ao Usuário.</p>
+      
+      <p>O reajuste será aplicado automaticamente na renovação anual da assinatura, sendo considerado legítimo exercício do direito contratual de adequação dos valores às variações inflacionárias.</p>
+      
+      <p><strong>Promoções e Condições Especiais:</strong> As promoções, descontos ou condições especiais oferecidas para novos usuários são de caráter temporário e específico, não gerando direito adquirido aos usuários já contratantes. A SimFazemos não tem obrigação de estender tais benefícios aos contratos vigentes, mantendo a autonomia comercial para estabelecer diferentes condições conforme a estratégia de mercado e momento da contratação.</p>
+      
+      <p>O Usuário, ao aceitar estes termos, concorda expressamente com a política de reajustes e reconhece que as condições promocionais são exclusivas para o momento e público-alvo específicos de cada campanha comercial.</p>
+
+      <h2 id="planos">6. PLANOS E RECURSOS</h2>
+      <p>O Sistema oferece diferentes planos com recursos específicos. O Usuário terá acesso aos recursos conforme o plano contratado.</p>
+      
+      <p><strong>Recursos Contratados:</strong> A obrigação da SimFazemos limita-se exclusivamente aos <strong>recursos explicitamente definidos e descritos no plano no momento da contratação</strong> do Usuário. Somente os recursos formalmente apresentados na descrição do plano contratado constituem obrigações contratuais da SimFazemos.</p>
+      
+      <p><strong>Novidades e Novos Recursos:</strong> Quaisquer novidades, funcionalidades adicionais, recursos extras ou melhorias que venham a ser desenvolvidas e disponibilizadas no Sistema <strong>não podem ser exigidas pelo Usuário como obrigações do plano contratado</strong>, independentemente de serem oferecidas gratuitamente ou mediante pagamento adicional.</p>
+      
+      <p>Tais novidades constituem-se em <strong>ofertas unilaterais da SimFazemos ao Usuário</strong>, de caráter discricionário e facultativo, podendo ser <strong>revogadas, modificadas, descontinuadas ou ter suas condições alteradas sem aviso prévio</strong>, não gerando direito adquirido ou expectativa de manutenção por parte do Usuário.</p>
+      
+      <p>A SimFazemos reserva-se o direito de alterar, adicionar ou remover recursos dos planos, mediante comunicação prévia aos usuários, sendo que tais alterações aplicar-se-ão aos novos contratos ou renovações, respeitando-se os recursos originalmente contratados durante a vigência do período já pago.</p>
+
+      <h2 id="pagamento">7. PAGAMENTO</h2>
+      <p>Pelo licenciamento do uso do Sistema, o Usuário deverá pagar o valor correspondente ao Plano Contratado por meio de uma das modalidades de pagamento disponíveis.</p>
+      
+      <p>No valor a ser pago pelo Usuário poderá haver a adição dos valores relativos a serviços adicionais (como quantidade de usuários, aplicativos, emissões adicionais de documentos fiscais e APIs de nossos parceiros).</p>
+
+      <h2 id="atraso">8. ATRASO NO PAGAMENTO</h2>
+      <p>Atraso no pagamento de qualquer obrigação prevista neste Termos de Uso sujeitará os valores devidos e não pagos à incidência de 2% (dois por cento), mais juros moratórios de 1% ao mês e correção monetária pelo índice IGP-M/FGV, sendo estes últimos devidos pro rata die (proporcionalmente por dia) até a data do efetivo pagamento.</p>
+      
+      <p>Atraso superior a 8 (oito) dias no pagamento de qualquer parcela, inclusive de parcela de aplicativo adicional ou de usuário adicional, ou o pagamento parcial, implicará na suspensão de acesso ao Sistema.</p>
+      
+      <p>A liberação do acesso ao Sistema ocorrerá apenas através da compensação bancária ou processamento do cartão de crédito diretamente com a operadora, ficando assim descartada a liberação mediante comprovante de pagamento.</p>
+      
+      <p>Atraso superior a 10 (dez) dias no pagamento de qualquer parcela, inclusive de parcela de aplicativo adicional, poderá acarretar a negativação do CNPJ/CPF do Usuário (e/ou Devedor Solidário - quando aplicável) nos órgãos de proteção ao crédito SPC/SERASA e/ou Protesto do Título.</p>
+      
+      <p>Caso a inadimplência permaneça por prazo superior a 90 (noventa) dias, a conta do Usuário será cancelada e em atendimento à Lei Geral de Proteção de Dados, serão excluídas integralmente todas as informações lançadas, importadas ou alimentadas no Sistema relativas à conta.</p>
+      
+      <h3 id="protecao-dados">8.0.1. PROTEÇÃO E EXPORTAÇÃO DE DADOS</h3>
+      <p>Para ampla proteção de seus dados, o Usuário sempre tem à disposição a <strong>possibilidade de exportar seu estoque de produtos à venda, bem como seus clientes e fornecedores</strong> através das funcionalidades disponíveis no Sistema.</p>
+      
+      <p><strong>Recomendação importante:</strong> O Usuário deve realizar a exportação desses dados periodicamente como medida de segurança e backup pessoal, garantindo assim a preservação de suas informações comerciais independentemente da situação da conta no Sistema.</p>
+      
+      <p>A SimFazemos disponibiliza essas ferramentas de exportação como forma de garantir a autonomia e proteção dos dados do Usuário, sendo de responsabilidade do próprio Usuário a realização regular dessas exportações.</p>
+
+      <h3 id="reativacao">8.1. TAXA DE REATIVAÇÃO</h3>
+      <p>Conforme estabelecido na cláusula 8, o atraso superior a 8 (oito) dias no pagamento implicará na suspensão do acesso ao Sistema. Após essa suspensão, a reativação do Plano Contratado estará sujeita à cobrança de taxa de reativação no valor de <strong>R$ 80,00 (oitenta reais)</strong>, além do valor em aberto.</p>
+      
+      <p>A taxa de reativação será aplicada a cada reativação necessária e será cobrada juntamente com o valor da mensalidade em aberto, devendo ser quitada para que o acesso ao Sistema seja restabelecido.</p>
+      
+      <p>O Usuário será comunicado sobre a aplicação da taxa de reativação por e-mail e WhatsApp (quando disponível) antes da cobrança.</p>
+
+      <h2 id="alteracao">9. ALTERAÇÃO DO PLANO CONTRATADO</h2>
+      <p>Caso o Usuário, no decorrer da vigência do Plano Contratado, opte por outro plano (downgrade ou upgrade) deverá ser formalizada uma nova negociação e nova contratação de Plano junto aos agentes da SimFazemos.</p>
+      
+      <p>Caso existam créditos (pelos meses pagos e não utilizados) do Plano a ser alterado, os valores proporcionais serão descontados do valor da nova negociação e contratação.</p>
+
+      <h2 id="cancelamento">10. CANCELAMENTO DO PLANO CONTRATADO E INCIDÊNCIA DE MULTA</h2>
+      <p>Usuário poderá solicitar o cancelamento e a devolução total dos valores pagos em até 7 (sete) dias corridos após a data de contratação.</p>
+      
+      <p>O pedido de Cancelamento deverá ocorrer exclusivamente através de email enviado para suporte@tictag.com.br, com confirmação de recebimento, ficando expressamente vedada a solicitação de cancelamento por chat ou telefone.</p>
+
+      <h2 id="aplicativos">11. APLICATIVOS EXTRAS</h2>
+      <p>Sistema possui, além das operações e módulos originais, aplicativos extras, cujos valores e termos de uso são próprios.</p>
+      
+      <p>Os aplicativos incorporam funcionalidades extras ao Sistema, não estão integrados no Plano Contratado e podem ser ou não desenvolvidos por empresas independentes.</p>
+      
+      <p>Os aplicativos são disponibilizados de duas formas: gratuita ou paga, sendo que seu correto funcionamento é de total responsabilidade dos seus desenvolvedores originários, havendo, neste caso, completa isenção de responsabilidade da SimFazemos, que apenas os divulga como possibilidade adicional de uso integrado com o Sistema.</p>
+
+      <h2 id="responsabilidade">25. DA RESPONSABILIDADE SOLIDÁRIA</h2>
+      <p>A responsabilidade solidária é aplicável apenas à contratação do Sistema celebrada em contratos físicos com essa previsão.</p>
+      
+      <p>Nos termos do art. 275 e seguintes do Código Civil Brasileiro, o Devedor Solidário assume, por si e/ou em solidariedade com o Licenciado (Usuário) todas as obrigações, encargos e cominações de natureza financeira decorrentes do presente contrato, respondendo INTEGRALMENTE pelo pagamento dos valores devidos à Licenciante (SimFazemos), arcando inclusive com todas as consequências advindas da inadimplência.</p>
+
+      <h2 id="disposicoes">26. DAS DISPOSIÇÕES GERAIS</h2>
+      <p>Em nenhuma hipótese será atendido o pedido de cancelamento de nota fiscal já emitida, para fins de cancelamento do Plano Contratado.</p>
+      
+      <p>Toda e qualquer concessão ou tolerância, relativamente às prerrogativas ora asseguradas e às condições estabelecidas nestes Termos, será considerada mera liberalidade, não gerando direitos e obrigações, em hipótese alguma, no presente ou no futuro.</p>
+      
+      <p>Os presentes Termos de Uso poderão ser atualizados a qualquer tempo, mediante notificação via e-mail inserido no cadastro ou atualizados no próprio site do sistema.</p>
+      
+      <p>A versão atualizada e vigente dos Termos de Uso e Condições será a última publicada no site do sistema https://tictag.com.br/termos-de-uso</p>
+
+      <h2 id="foro">27. DO FORO</h2>
+      <p>Para dirimir conflitos, as partes elegem o Foro Salvador, Bahia, renunciando qualquer outro, por mais privilegiado que se apresente.</p>
+      
+      <p>Ao prosseguir, você declara que leu, compreendeu e concordou com os termos do presente, bem como com a Política de Privacidade.</p>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="terms-content">
+      <h2>Informações de Contato</h2>
+      <p><strong>SIMFAZEMOS DESENVOLVIMENTO DE SISTEMAS LTDA</strong></p>
+      <p>CNPJ: 49.963.464/0001-92</p>
+      <p>Endereço: Rua Clara Nunes, 387, Pituba, CEP 41.810-425, Salvador, Bahia, Brasil</p>
+      <p>E-mail: suporte@tictag.com.br</p>
+      <p>WhatsApp: +55 11 91066-8088</p>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" onclick="scrollToTop()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+    </svg>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background: #2d3748; color: white; padding: 40px 0; text-align: center; margin-top: 60px;">
+    <div class="w-layout-blockcontainer w-container">
+      <div style="margin-bottom: 20px;">
+        <img src="{% static 'landing/images/log_nova_tictag_branca_400x105.png' %}" alt="TicTag Logo" style="height: 40px; width: auto;">
+      </div>
+      <p style="margin: 0; opacity: 0.8;">© 2025 TicTag - Sistema de Gestão para Brechós. Todos os direitos reservados.</p>
+      <p style="margin: 10px 0 0 0; opacity: 0.6; font-size: 14px;">
+        Desenvolvido por SimFazemos Desenvolvimento de Sistemas LTDA
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show/hide back to top button
+    window.addEventListener('scroll', function() {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTop.style.display = 'flex';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    document.querySelector('.w-nav-button').addEventListener('click', function() {
+      document.querySelector('.nav-menu').classList.toggle('w--open');
+    });
+  </script>
+
+  <script src="{% static 'newlanding/js/webflow.js' %}" type="text/javascript"></script>
+</body>
+</html>

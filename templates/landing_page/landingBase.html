@@ -1,0 +1,94 @@
+{% load static %}
+{% url 'logout' as logout_url %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- SEO Meta Tags -->
+		<meta name="description" content="Updates and statistics.">
+		<meta name="author" content="Inovatik">
+	
+		<!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+		<meta property="og:site_name" content="" /> <!-- website name -->
+		<meta property="og:site" content="" /> <!-- website link -->
+		<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+		<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+		<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+		<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+		<meta property="og:type" content="article" />
+	
+		<!-- Website Title -->
+		<title>TicTag | Gestão de Brechós</title>
+		
+		<!-- Styles -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+		<link href={% static "landing/css/bootstrap.css" %} rel="stylesheet">
+		{% comment %} <link href={% static "landing/css/fontawesome-all.css" %} rel="stylesheet"> {% endcomment %}
+		<link href={% static "landing/css/swiper.css" %} rel="stylesheet">
+		<link href={% static "landing/css/magnific-popup.css" %} rel="stylesheet">
+		<link href={% static "landing/css/styles.css" %} rel="stylesheet">
+		
+		<!-- Favicon  -->
+		<link rel="icon" href={% static "assets/media/logos/favicon.ico" %}>
+		<link rel="shortcut icon" href={% static "assets/media/logos/favicon.ico" %} />
+
+		<!-- Google Tag Manager -->
+		<script>
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-M48PPWX');
+		</script>
+		<!-- End Google Tag Manager -->
+
+
+	</head>
+
+
+  <body>
+	<script>
+		const currencyConverter = (numStr)=>{
+			let strng = numStr.toString().replace('.',',');
+			let data = strng.split(',')[0];
+			let remainingPart = strng.split(',')[1];
+
+			if (remainingPart===undefined || remainingPart===""){
+				remainingPart = '00';
+			}
+
+			let dataArray = data.split("");
+			dataArray = dataArray.reverse();
+
+			let resultantArray = [];
+			dataArray.forEach((ele,i) => {
+				if(i%3==0 && i!==0){resultantArray.push('.')}
+				resultantArray.push(ele);
+			});
+			if (remainingPart.length===1) remainingPart=remainingPart+'0';
+			else if(remainingPart.length===0) remainingPart='00';
+			let result = resultantArray.reverse().join("")+","+remainingPart.substr(0,2);
+			return result;
+		};
+	</script>
+
+    {% block content %}
+    {% endblock %}
+	
+  </body>
+
+   <!-- Scripts -->
+   <script src={% static "landing/js/jquery.min.js"%}></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+   <script src={% static "landing/js/popper.min.js"%}></script> <!-- Popper tooltip library for Bootstrap -->
+   <script src={% static "landing/js/bootstrap.min.js"%}></script> <!-- Bootstrap framework -->
+   <script src={% static "landing/js/jquery.easing.min.js"%}></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+   <script src={% static "landing/js/swiper.min.js"%}></script> <!-- Swiper for image and text sliders -->
+   <script src={% static "landing/js/jquery.magnific-popup.js"%}></script> <!-- Magnific Popup for lightboxes -->
+   <script src={% static "landing/js/validator.min.js"%}></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+   <script src={% static "landing/js/scripts.js"%}></script> <!-- Custom scripts -->
+  
+</html>

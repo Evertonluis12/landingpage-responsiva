@@ -1,0 +1,1313 @@
+{% extends 'landing/landingBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load cent_to_reel %}
+
+{% block content %}
+
+
+<!-- Chat pelo Whatsapp -->
+<!-- <script async src='https://stackwhats.com/pixel/c0b186f1731a79ade0b02cda44f832'></script> -->
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66247789a0c6737bd12e9e90/1hrv75slh';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="ns" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<style>
+    .img-fluid {
+        max-width: 95%;
+        height: auto;
+    }
+
+    .slider-1 {
+        background-color: #5f4dee;
+    }
+
+
+    @media only screen and (max-width: 992px){
+        .mobile-bottom-padding{
+            padding-bottom: 0px!important;
+        }
+
+        .image-in-tab3{
+            position: relative;
+            top: 0px;
+            right: 60px;
+        }
+
+        .mobile-font-reduction{
+            font-size: 26px;
+            line-height: 1.3;
+        }
+    }
+
+    @media only screen and (min-width: 992px){
+        .image-in-tab{
+            position: relative;
+            top: 70px;
+        }
+    }
+
+    @media only screen and (min-width: 1220px){
+        .image-in-tab{
+            position: relative;
+            top: -22px;
+        }
+
+        .image-in-tab3{
+            position: relative;
+            top: 93px;
+            right: 200px;
+        }
+
+        .image-in-tab4{
+            height: 500px;
+            position: relative;
+            top: 6px;
+            right: 30px;
+        }
+
+        .image-in-tab5{
+            position: relative;
+            top: 5px;
+
+        }
+
+        .image-in-tab6{
+            position: relative;
+            top: 19px;
+
+        }
+
+        .image-in-tabsuporte{
+            max-width: 300px;
+            position: relative;
+            left: 120px;
+        }
+    }
+
+    .text-orange{
+        color: orange;
+    }
+
+    .btn-wrap-text {
+        white-space: nowrap;
+      }
+
+    .tabs2 {
+        background-color: #dbfce0;
+        padding: 30px;
+    }
+
+    .textintabs2 {
+        position: relative;
+        top: 60px;
+    }
+
+.observacao{
+    position: relative;
+    left: 1020px;
+    top: -80px;
+    font-size: 13px;
+}
+
+.tableNfs > tr > td, .tableNfs > tr > th {
+    border:1px solid black;
+}
+
+.card-title.most-popular {
+    position: relative;
+}
+
+.card-title.most-popular {
+    position: relative;
+}
+
+.card-title.most-popular {
+    position: relative;
+}
+
+.card-title.most-popular::before {
+    content: "MAIS VENDIDO";
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px;
+    height: 41px;
+    background-color: #5f4dee;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 34px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    z-index: 999999; /* Alterado o valor de z-index */
+    border-radius: 0 0 10px 10px;
+}
+
+</style>
+
+{%if hasInformation %}
+    <script>
+        localStorage.setItem('utm_source','{{utm_source}}');
+        localStorage.setItem('utm_medium','{{utm_medium}}');
+        localStorage.setItem('utm_content','{{utm_content}}');
+        localStorage.setItem('utm_term','{{utm_term}}');
+        localStorage.setItem('utm_campaign','{{utm_campaign}}');
+    </script>
+{% endif %}
+
+<head>
+    {% comment %} <!-- TOUR TUTORIAL DO USERGUIDE -->
+    <script>
+        (function(g,u,i,d,e,s){g[e]=g[e]||[];var f=u.getElementsByTagName(i)[0];var k=u.createElement(i);k.async=true;k.src='https://static.userguiding.com/media/user-guiding-'+s+'-embedded.js';f.parentNode.insertBefore(k,f);if(g[d])return;var ug=g[d]={q:[]};ug.c=function(n){return function(){ug.q.push([n,arguments])};};var m=['previewGuide','finishPreview','track','triggerNps','hideChecklist','launchChecklist'];for(var j=0;j<m.length;j+=1){ug[m[j]]=ug.c(m[j]);}})(window,document,'script','userGuiding','userGuidingLayer','425659384ID');
+    </script>
+     {% endcomment %}
+     <!-- SEO Meta Tags -->
+     <meta name="description" content="O TicTag é um sistema, software, programa, plataforma, aplicativo de gestão, gerenciamento, administração de brechós e lojas de roupas que atua especialmente no mundo da moda cirucular, do consumo sustentável, no mercado de segunda mão.">
+     <meta name="author" content="SimFazemos">
+
+     <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+     <meta property="og:site_name" content="TicTag" /> <!-- website name -->
+     <meta property="og:site" content="www.tictag.com.br" /> <!-- website link -->
+     <meta property="og:title" content="TicTag - Sistema de Gestão de Brechós"/> <!-- title shown in the actual shared post -->
+     <meta property="og:description" content="O TicTag é um sistema, software, programa, plataforma, aplicativo de gestão, gerenciamento, administração de brechós e lojas de roupas que atua especialmente no mundo da moda cirucular, do consumo sustentável, no mercado de segunda mão." /> <!-- description shown in the actual shared post -->
+     <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+     <meta property="og:url" content="www.tictag.com.br/landing/" /> <!-- where do you want your post to link to -->
+     <meta property="og:type" content="article" />
+</head>
+
+
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+
+
+
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
+
+            <!-- Image Logo -->
+            <a class="navbar-brand" href="/"><img src="{% static 'landing/images/log_nova_tictag_branca_400x105.png' %}" alt="logo"></a>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <!-- end of mobile menu toggle button -->
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#features">RECURSOS DO SISTEMA</a>
+                    </li>
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#video">VÍDEO DE APRESENTAÇÃO</a>
+                    </li> {% endcomment %}
+
+                    {% comment %} <!-- Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle page-scroll" href="#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">VIDEO</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="article-details.html"><span class="item-text">ARTICLE DETAILS</span></a>
+                            <div class="dropdown-items-divide-hr"></div>
+                            <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMS CONDITIONS</span></a>
+                            <div class="dropdown-items-divide-hr"></div>
+                            <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">PRIVACY POLICY</span></a>
+                        </div>
+                    </li>
+                    <!-- end of dropdown menu --> {% endcomment %}
+
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#pricing">PLANOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/cadastros/faq">DÚVIDAS?</a>
+                    </li>
+                </ul>
+
+                <span class="nav-item">
+                    <a class="btn-outline-sm" href="/accounts/login-page/">ENTRAR</a>
+                </span>
+            </div>
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+    <!-- Header -->
+    {% if pagina == 1%}
+    <header id="header" class="header mt-4">
+        <div class="header-content mobile-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2 class="text-white mobile-font-reduction">Trabalhe com peças consignadas de forma fácil no seu brechó</h2>
+                            <p class="p-large">Quem foi que disse que vender peças consignadas é complicado? Com a ferramenta certa, é o melhor negócio do mercado. E o TicTag é a ferramenta certa para quem trabalha com consignado.
+                            </p>
+                            <a class="btn-solid-lg page-scroll btn-wrap-text btn-sm page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid image-in-tab" src={% static "landing/images/compradas_consignadas_mulher_sacola.png"%} alt="alternative">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    {% comment %} <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 310"><defs><style>.cls-1{fill:#5f4def;}</style></defs><title>header-frame</title><path class="cls-1" d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/></svg> {% endcomment %}
+    <!-- end of header -->
+    {% elif pagina == 2 %}
+    <header id="header" class="header mt-4">
+        <div class="header-content mobile-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2 class="text-white">O único sistema multiusuário pensado para brechós</h2>
+                            <p class="p-large">Com o TicTag você seleciona peças, cadastra, imprime etiquetas e vende, tudo ao mesmo tempo. Mais produtividade, velocidade e muito mais conforto para trabalhar.
+                            </p>
+                            <a class="btn-solid-lg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid image-in-tab" src={% static "landing/images/multiuser.png"%} alt="alternative">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    {% comment %} <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 310"><defs><style>.cls-1{fill:#5f4def;}</style></defs><title>header-frame</title><path class="cls-1" d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/></svg> {% endcomment %}
+    <!-- end of header -->
+    {% elif pagina == 3 %}
+    <header id="header" class="header mt-4">
+        <div class="header-content mobile-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2 class="text-white">Com o TicTag você atende as fornecedoras-parceiras do seu brechó de forma fácil e rápida</h2>
+                            <p class="p-large">Utilize o TicTag e leve a gestão do seu brechó para o próximo nível. Ganhe a credibilidade que você sempre sonhou com suas fornecedoras e clientes.
+                            </p>
+                            <a class="btn-solid-lg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid image-in-tab3" src={% static "landing/images/fornecedoras_parceiras.png"%} alt="alternative">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    {% comment %} <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 310"><defs><style>.cls-1{fill:#5f4def;}</style></defs><title>header-frame</title><path class="cls-1" d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/></svg> {% endcomment %}
+    <!-- end of header -->
+    {% elif pagina == 4 %}
+    <header id="header" class="header mt-4">
+        <div class="header-content mobile-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2 class="text-white">Tenha a apuração do resultado do seu brechó em 1 clique</h2>
+                            <p class="p-large">Quanto tempo você gasta hoje para saber o resultado mensal? Com o TicTag você consegue isso em 1 clique, de verdade. Seu tempo deve ser dedicado à captação de boas peças e vendas. Isso é o que te traz resultado.
+
+                            </p>
+                            <a class="btn-solid-lg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid image-in-tab4" src={% static "landing/images/apuracao_em_um_click.png"%} alt="alternative">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    {% comment %} <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 310"><defs><style>.cls-1{fill:#5f4def;}</style></defs><title>header-frame</title><path class="cls-1" d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/></svg> {% endcomment %}
+    <!-- end of header -->
+    {% elif pagina == 5 %}
+    <header id="header" class="header mt-4">
+        <div class="header-content mobile-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2 class="text-white">Com o TicTag seu faturamento e seu caixa aumentam de verdade</h2>
+                            <p class="p-large">Se o seu sistema rouba seu tempo você perde dinheiro. Com o TicTag você consegue isso em 1 clique, de verdade. Seu tempo deve ser dedicado à captação de boas peças e vendas. Isso é o que te traz resultado.
+                            </p>
+                            <a class="btn-solid-lg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid image-in-tab5" src={% static "landing/images/mulher_confiante.png"%} alt="alternative">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    {% comment %} <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 310"><defs><style>.cls-1{fill:#5f4def;}</style></defs><title>header-frame</title><path class="cls-1" d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/></svg> {% endcomment %}
+    <!-- end of header -->
+    {% elif pagina == 6 %}
+    <header id="header" class="header mt-4">
+        <div class="header-content mobile-bottom-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-xl-5">
+                        <div class="text-container">
+                            <h2 class="text-white">Acelere o crescimento do seu brechó e leve sua gestão para o próximo nível
+                            </h2>
+                            <p class="p-large"> Cuidado. Você não precisa de mil funções no seu sistema. Você precisa do que importa porque o mais importante para você é profissionalizar o seu tempo. Não trabalhe muito, trabalhe certo.
+                            </p>
+                            <a class="btn-solid-lg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 col-xl-7">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid image-in-tab6" src={% static "landing/images/mulher_confiante.png"%} alt="alternative">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    {% comment %} <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 310"><defs><style>.cls-1{fill:#5f4def;}</style></defs><title>header-frame</title><path class="cls-1" d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/></svg> {% endcomment %}
+    <!-- end of header -->
+    {% endif %}
+
+
+
+
+
+    <!-- Description -->
+    <div id="features" class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="above-heading">RECURSOS QUE RESOLVEM SUA VIDA</div>
+                    <h2 class="h2-heading mobile-font-reduction">Organização que impressiona seus fornecedores e clientes</h2>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Team.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Multiusuário</h4>
+                            <p>Selecione e cadastre, enquanto outra pessoa faz vendas, autoriza peças, imprime etiquetas ou faz apuração de resultado do negócio. Mais produtividade, velocidade e muito mais conforto para trabalhar.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Shopping.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Peças Consignadas</h4>
+                            <p>Vender peças em consignação é o melhor negócio para os brechós. Com o TicTag isso é fácil, fácil. Num click veja quanto cada fornecedora-parceira tem a receber. Ganhe a credibilidade das suas fornecedoras.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Messaging.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Comunicação via Whatsapp</h4>
+                            <p>Sua fornecedora perguntou quanto tem a receber? Perguntou quais peças dela ainda estão à venda? Com o TicTag você envia essas, e outras informações, por Whatsapp com muita precisão e facilidade.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Barcode.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Código de Barras</h4>
+                            <p>Etiquetas com códigos de barras evitam os erros humanos no momento da venda e aumentam a velocidade do atendimento. E tudo isso é simples e você também pode ter seu estoque assim.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/bag.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Pré-venda</h4>
+                            <p>Atualmente quem tem loja costuma fazer "condicional", "bag" ou pré-venda. Ou seja, o seu cliente pode levar as peças para provar em casa e devolver as que não quis comprar. Com o TicTag você controla tudo isso fácil, fácil.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/piggy_bank.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Apuração do Resultado</h4>
+                            <p>Estou ganhando ou perdendo dinheiro a cada mês? Essa é uma pergunta que todo dono de negócio faz. Tornamos isso muito simples de saber. Com um click você responde essa e outras perguntas.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Spreadsheets-amico.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Controle de Estoque</h4>
+                            <p>Nosso sistema oferece controle em tempo real do estoque, visão clara e fácil de usar. Adquira agora e gerencie suas operações com eficiência. Não perca mais tempo!</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Cash_Payment_rafiki.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Frente de Caixa</h4>
+                            <p>Tela de vendas simples de usar com flexibilidade para cadastro de formas de pagamento, uso de mais de uma forma de pagamento por venda e aplicação de descontos por peça e na venda em geral.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src={% static "landing/images/Server-bro.svg"%} alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Importação de Dados</h4>
+                            <p>Importe seus dados sem esforço! Nossa solução permite importar de planilhas e outros sistemas desde que exportem os dados. Economize tempo, comece já.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-1 -->
+    <!-- end of description -->
+
+    <!-- Details 2 -->
+    <div id="details2" class="lightbox-basic">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="text-container">
+                        <h2 class="mobile-font-reduction">Emissão de NFCe e NFE</h2>
+                        <p>Optando pela versão <strong class="text-primay">TOTAL</strong> você vai contar com integração com API Fiscal para emissão das suas Notas Ficais. O TicTag foi pensado para ser completo, <strong class="text-primary">para resolver de verdade</strong> tudo que você mais precisa para gerenciar seu negócio de forma simples, integrada e sem complicações.
+
+                        </p>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">MEI</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Simples Nacional</div>
+                            </li>
+                        </ul>
+                        <a class="btn-solid-reg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-7">
+                    <div class="image-container">
+                        <img class="img-fluid" src={% static "landing/images/nfce_nfe.png"%} alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of details -->
+
+
+    <!-- Pinpad -->
+<div id="tabs2" class="tabs2">
+    <div class="container">
+        <div class="row align-items-center"> <!-- Alterado para 'align-items-center' -->
+            <div class="col-lg-5 ml-4">
+                <div class="image-container">
+                    <img class="image-in-tabsuporte" src={% static "landing/images/pinpad.png"%} alt="alternative">
+                </div> <!-- end of image-container -->
+            </div> <!-- end of col -->
+            <div class="col-lg-5"> <!-- Removido estilo inline -->
+                <div class="text-container"> <!-- Removido estilo inline -->
+                    <h3>Em breve: Integração com TEF</h3>
+                    <p>A partir do plano TOTAL você poderá adicionar a <strong class="text-primay">INTEGRAÇÃO TEF (maquininha integrada ao sistema e ligada ao computador)</strong> ao seu plano e ter ainda mais segurança e agilidade no fechamento das suas vendas e atender a legislação de alguns estados.</p>
+                    <a class="btn-solid-reg btn-wrap-text page-scroll" href="https://api.whatsapp.com/send?phone=5511910668088">QUERO SABER MAIS SOBRE A INTEGRAÇÃO TEF</a>
+                </div> <!-- end of text-container -->
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of basic-1 -->
+<!-- end of details -->
+
+
+
+
+    <!-- Features -->
+    <div class="tabs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="above-heading">RECURSOS QUE SÓ TICTAG TEM</div>
+                    <h2 class="h2-heading mobile-font-reduction">Aplicativos que aumentam sua qualidade e produtividade</h2>
+                    <p class="p-heading">O TicTag tem <strong class="text-primary">2 apps para celular </strong>para tornar sua gestão ainda mais rápida e produtiva e seus clientes impressionados com a qualidade do seu atendimento e eficiência.</p>
+                    <p class="above-heading"><strong class="text-primary">Clique nas opções abaixo e veja o que os apps para celular vão fazer pelo seu negócio.</strong></p>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Tabs Links -->
+                    <ul class="nav nav-tabs" id="argoTabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"><i class="fas fa-users"></i>App Fornecedoras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><i class="fas fa-camera"></i>App Fotos</a>
+                        </li>
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><i class="fas fa-store"></i>App Lojista</a>
+                        </li> {% endcomment %}
+                    </ul>
+                    <!-- end of tabs links -->
+
+                    <!-- Tabs Content -->
+                    <div class="tab-content" id="argoTabsContent">
+
+                        <!-- Tab -->
+                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image-container">
+                                        <img class="img-fluid" src={% static "landing/images/supplier_app_garota_blur.png"%} alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Você vende, seus fornecedores acompanham.</h3>
+                                        <p>Chega de emails, mensagens de Whatsapp e telefonemas, com o App "Brechó" seus fornecedores podem ver as movimentações <strong class="text-primary">automaticamente</strong>. E como a gente entende mesmo de brechó, fique tranquilo, pois <strong class="text-primary">é você que configura o app</strong> e define o que é visto e quando. Algumas das informações que você não vai mais se preocupar em informar:</p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Saldo a receber</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Peças à venda</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Peças vendidas, e muito mais...</div>
+                                            </li>
+                                        </ul>
+                                        <a class="btn-solid-reg btn-wrap-text popup-with-move-anim" href="#details-lightbox-1">QUERO USAR GRATUITAMENTE</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+                        <!-- end of tab -->
+
+                        <!-- Tab -->
+                        <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image-container">
+                                        <img class="img-fluid" src={% static "landing/images/app_photos.png"%} alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Quer fotos? Temos um app pra isso.</h3>
+                                        <p>Porque fizemos um app para fazer fotos dos produtos? É simples, sem um app como esse é simplesmente impossível trabalhar com fotos, pois demora demais. Com nosso app, é simples e rapidíssimo.</p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Pequisa de produtos direto da sua base de produtos</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Filtros inteligentes e ágeis</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Em breve <strong class="text-primary">e-commerce</strong> integrado.</div>
+                                            </li>
+                                        </ul>
+                                        <a class="btn-solid-reg btn-wrap-text popup-with-move-anim" href="#details-lightbox-2">QUERO USAR GRATUITAMENTE</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+                        <!-- end of tab -->
+
+                        <!-- Tab -->
+                        <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image-container">
+                                        <img class="img-fluid" src={% static "landing/images/features-3.png"%} alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Analytics Control Panel</h3>
+                                        <p>Analytics control  panel is important for every marketing team so it's beed implemented from the begging and designed to produce reports based on very little input information.</p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">If you set it up correctly you will get acces to great intel</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Easy to integrate in your websites and landing pages</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">The generated reports are important for your strategy</div>
+                                            </li>
+                                        </ul>
+                                        <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-3">LIGHTBOX</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+                        <!-- end of tab -->
+
+                    </div> <!-- end of tab content -->
+                    <!-- end of tabs content -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of tabs -->
+    <!-- end of features -->
+
+     <!-- Testimonials -->
+     <div class="slider-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Text Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container text-slider">
+                            <div class="swiper-wrapper">
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src={% static "landing/images/depoimento_gau.jpg"%} alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="testimonial-text">Considero o TicTag fundamental para o sucesso do meu brechó. Hoje só recebo elogios de minhas clientes e fornecedoras sobre a qualidade dos meus controles e organização do meu negócio. E tudo isso com muito mais tempo livre.</div>
+                                        <div class="testimonial-author">Gláucia Baruch - Compritchas Brechó</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src={% static "landing/images/depoimento_rayanne.jpg"%} alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="testimonial-text">Hoje eu tenho tudo que preciso dentro do sistema Tic Tag. O sistema trouxe uma realidade que nós buscavamos, organização, trabalhar on line, facilidade de contato com fornecedoras por link de whatsapp, e o mais importante, economia de tempo. A satisfação e confiança que sentimos não tem preço. Com o sistema, podemos crescer com tranquilidade e certeza de que tudo está sob controle.</div>
+                                        <div class="testimonial-author">Rayanne - Rare Brechó</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                            </div> <!-- end of swiper-wrapper -->
+
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <!-- end of add arrows -->
+
+                        </div> <!-- end of swiper-container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of text slider -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-2 -->
+    <!-- end of testimonials -->
+
+     <!-- Customers -->
+     <div class="slider-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Image Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container image-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src={% static "landing/images/logo_compritchas.png"%} alt="Compritchas Brechó">
+                                </div>
+                                <div class="swiper-slide">
+                                        <img class="img-fluid" src={% static "landing/images/logo_rare.png"%} alt="Rare Brechó">
+                                </div>
+                            </div> <!-- end of swiper-wrapper -->
+                        </div> <!-- end of swiper container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of image slider -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-1 -->
+    <!-- end of customers -->
+
+    <!-- Details -->
+    <div id="details" class="basic-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="text-container">
+                        <h2 class="mobile-font-reduction">100% na Nuvem.</h2>
+                        <p>Uso imediato em qualquer lugar. Você pode usar o mesmo sistema em vários equipamentos disponíveis no mercado. Seja um tablet, smartfone, notebook ou desktop. Não precisa instalar. É só digitar <strong class="text-primary">www.tictag.com.br</strong> no seu navegador e pronto.
+
+                        </p>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Tablets e Smartfones</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Notebooks e Desktops</div>
+                            </li>
+                        </ul>
+                        <a class="btn-solid-reg btn-wrap-text page-scroll" href="/accounts/signup/free/">QUERO USAR GRATUITAMENTE</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-7">
+                    <div class="image-container">
+                        <img class="img-fluid" src={% static "landing/images/devices.png"%} alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of details -->
+
+    <!-- Suporte -->
+    <div id="tabs2" class="tabs2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 ml-4">
+                    <div class="image-container">
+                        <img class="image-in-tabsuporte" src={% static "landing/images/suporte.png"%} alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-5">
+                    <div class="text-container textintabs2">
+                        <h2 class="mobile-font-reduction">E se precisar de suporte?</h2>
+                        <p>Sim, temos suporte <strong class="text-primary" > integrado no próprio sistema</strong>. Adicionalmente atendemos pelo Whatsapp</p>
+                        <a class="btn-solid-reg btn-wrap-text page-scroll" href="https://api.whatsapp.com/send?phone=5511951417219">QUERO FALAR COM O ATENDIMENTO VIA WHATSAPP</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of details -->
+
+
+    {% comment %} <!-- Video -->
+    <div id="video" class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Video Preview -->
+                    <div class="image-container">
+                        <div class="video-wrapper">
+                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                <img class="img-fluid" src={% static "landing/images/video-image.png"%} alt="alternative">
+                                <span class="video-play-button">
+                                    <span></span>
+                                </span>
+                            </a>
+                        </div> <!-- end of video-wrapper -->
+                    </div> <!-- end of image-container -->
+                    <!-- end of video preview -->
+
+                    <div class="p-heading">Você quer uma apresentação rápida, que mostre desde o cadastro, vendas, etiquetas, controle finaceiro, ou seja, um circuito completo? Então esse vídeo é para você.</div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-2 -->
+    <!-- end of video --> {% endcomment %}
+
+
+    <!-- Pricing -->
+    <div id="pricing" class="cards-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="above-heading">PLANOS</div>
+                    <h2 class="h2-heading">Escolha o plano mais adequado ao momento do seu negócio</h2>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    {% for plan in plans %}
+                    <!-- Card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title {% if plan.name == 'ESSENCIAL' %}most-popular{% endif %}">{{plan.name}}
+                                {% if plan.name == 'Essencial' %}
+                                <div class="popular-badge">MAIS VENDIDO</div>
+                                {% endif %}
+                            </div>
+                            <div class="price"><span class="currency">R$</span><span class="value">{{plan.price}}</span><span class="currency">/{{plan.interval_type}}</span></div>
+                            <div class="frequency">Use 14 dias gratuitamente</div>
+                            <div class="divider"></div>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Painel de Controle (Dashboard)</div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Tela de Vendas</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Gestão Automática de Repasses</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Contas a Pagar</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Comunicação via Whatsapp</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Precificação Ágil em lote</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Compatível com Impressora Térmica</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Imprime Etiquetas com Código de Barras</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Layout de Etiquetas Configurável</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Controle Financeiro</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Apuração Automática de Comissões de Vendedores</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Apuração de Resultado do Negócio</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Apuração de Vendas por Forma de Pagamento</div>
+                                </li>
+
+                                <li class="media">
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    <div class="media-body">Apuração de Vendas por Fornecedor</div>
+                                </li>
+
+                                <li class="media">
+                                    {% if plan.supplierApp %}
+                                        <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                        <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">App Celular para Fornecedores</div>
+                                </li>
+
+                                <li class="media">
+                                    {% if plan.photosApp %}
+                                        <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                        <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">App Celular para Fotos</div>
+                                </li>
+
+                                <li class="media">
+                                    {% if plan.preSales %}
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                    <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">Pré-venda, Condicional, Bag, Reservas, Lives</div>
+                                </li>
+
+                                <li class="media">
+                                    {% if plan.access_consultas %}
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                    <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">Ranking de Clientes</div>
+                                </li>
+                                <li class="media">
+                                    {% if plan.access_consultas %}
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                    <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">Ranking de Fornecedores</div>
+                                </li>
+                                <li class="media">
+                                    {% if plan.access_consultas %}
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                    <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">Grade Categorias x Tamanhos</div>
+                                </li>
+
+
+                                <li class="media">
+                                    {% if plan.access_nf_revisao %}
+                                        <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                        <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">Emissão de Nota Fiscal Eletronica - NFE </div>
+                                </li>
+
+                                <li class="media">
+                                    {% if plan.access_nf_revisao %}
+                                     <i class="fas fa-check" style="color:green; font-weight:bold; font-size: 20px;" ></i>
+                                    {% else %}
+                                    <i class="fas fa-times" style="color:red; font-weight:bold; font-size: 20px;"></i>
+                                    {% endif %}
+                                    <div class="media-body">Emissão de Cupom Fiscal - NFCE</div>
+                                </li>
+
+                                {% if plan.name == "TOTAL" %}
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <span data-toggle="modal" title="Clique para abrir" data-target="#showFullText"><p class="media-body" style="cursor:pointer; color:blue; font-size:14px;"><i class="fa fa-file-text" style="color:blue"></i> Até 100 emissões por mês já incluídas. <strong>Clique aqui para ver o pacote adicional que melhor atende suas necessidades.</strong></p></span>
+                                        </div>
+                                    </li>
+                                {% endif %}
+
+                                {% if plan.name == "ESSENCIAL" or plan.name == "TOTAL" %}
+                                    <li class="media">
+                                        <div class="media-body">
+                                            <span data-toggle="modal" title="Clique para abrir" data-target="#showFullText"><p style="cursor:pointer; color:blue; font-size:14px;"><i class="fa-solid fa-camera" style="color:blue"></i> 4 mil fotos já incluídas. Cada mil fotos adicionais: R$ 50,00/mês.<p></span>
+                                        </div>
+                                    </li>
+                                    {% comment %} <li>
+                                        <div class="media-body">
+                                            <i class="fa-solid fa-info-circle" style="color:blue"></i>
+                                            <span data-toggle="modal" title="Click To Open" data-target="#showFullText">
+                                                <p style="cursor:pointer; color:blue; font-size:14px;">Clique aqui para saber mais sobre como funciona a contagem das fotos e das Notas Fiscais.</p>
+                                            </span>
+                                        </div>
+                                    </li> {% endcomment %}
+                                {% endif %}
+
+                                <li class="media">
+                                    <div class="media-body">
+                                        <i class="fa-solid fa-users" style="color:blue"></i>
+                                        <span><a style="font-weight:bold; color:blue">Usuário adicional {{plan.users}}/mês</a></span>
+                                        <span><a style="font-size:10px; line-height:normal; color:blue">(O plano já inclui 1 usuário e você pode adicionar mais usuários ao seu plano.)</a></span>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="/accounts/planSubscription/{{plan.identifier}}/1/">CONTRATAR</a>
+                            </div>
+                            <div class="button-wrapper mt-3 pt-2">
+                                <a class="text-orange" style="font-weight:bold" href="/accounts/signup/free/">USAR GRÁTIS POR 14 DIAS</a>
+                            </div>
+                        </div>
+
+                    </div> <!-- end of card -->
+
+                    <!-- end of card -->
+                    {% endfor %}
+
+
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-2 -->
+    <!-- end of pricing -->
+
+    <div class="modal fade text-left" id="showFullText" tabindex="-1" role="dialog" aria-labelledby="myModalLabel122" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable  modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header row">
+                <h3 class="modal-title ml-4 text-primary" id="myModalLabel122">Como contamos as suas Notas Fiscais e suas Fotos?</h3>
+                <button type="button" class="close rounded-pill btn btn-sm btn-icon btn-light btn-hover-primary m-0 mr-4" data-dismiss="modal" aria-label="Close">
+                  <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row m-4">
+                    <p class="text-primary">Sobre Notas Fiscais:</p>
+                    <p>Analise a sua necessidade e, caso necessário, veja na tabela os pacotes adicionais disponíveis para sua escolha:</p>
+                </div>
+                <div class="ml-4">
+                    <table>
+                        <thead class="tableNfs">
+                            <tr>
+                            <th>Pacote de Emissões Adicionais por Mês</th>
+                            <th>Preço Unitário (R$)</th>
+                            <th>Percentual de Desconto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableNfs">
+                            <tr>
+                            <td align="center">100</td>
+                            <td align="center">0,50</td>
+                            <td align="center">-</td>
+                            </tr>
+                            <tr>
+                            <td align="center">300</td>
+                            <td align="center">0,43</td>
+                            <td align="center">14,0%</td>
+                            </tr>
+                            <tr>
+                            <td align="center">500</td>
+                            <td align="center">0,39</td>
+                            <td align="center">22,0%</td>
+                            </tr>
+                            <tr>
+                            <td align="center">1000</td>
+                            <td align="center">0,32</td>
+                            <td align="center">36,0%</td>
+                            </tr>
+                            <tr>
+                            <td align="center">2000</td>
+                            <td align="center">0,29</td>
+                            <td align="center">42,0%</td>
+                            </tr>
+                            <tr>
+                            <td align="center">5000</td>
+                            <td align="center">0,24</td>
+                            <td align="center">52,0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="row m-4">
+                    <p>Seu plano já inclui  a emissão de 100 documentos fiscais por mês. Falamos em "documentos fiscais" porque você pode emitir tanto NFCe (Cupom Fiscal) quanto NFe. Os dois modelos são contados como "documentos fiscais" e a emissão de qualquer um dois dois equivale a 1 emissão.</p>
+                    <p></p>
+                    <p>Por exemplo, se você acredita que vai usar algo como 400 documentos fiscais por mês, adicione o pacote de 300 emissões. Assim somando as 100 emissões da sua assinatura + o pacote de 300 emissões, você terá 400 emissões para fazer por mês. <strong>A cada mês essa contagem zera e você terá novamente 400 emissões de crédito para usar no mês.</strong> </p>
+                    <p></p>
+                    <p><strong>A utilização das emissões não é cumulativa, ou seja, caso em um certo mês você não utilize totalmente o seu pacote, o que sobra não é adicionado ao mês seguinte. Ou seja, no mês seguinte você começa novamente com o seu pacote total adquirido, no exemplo acima, 400 emissões.</strong></p>
+                    <p></p>
+                    <p>O sistema vai te apresentar um "contador" de emissão de Notas Fiscais e através do acompanhamento dele você pode dimensionar se vai precisar adicionar um dos pacotes ao seu plano para atender a sua demanda de emissão de Notas Fiscais.</p>
+                    <p></p>
+                    <p>Tenha em mente que o sistema proporciona uma funcionalidade para emissão de Notas Fiscais de entrada que visa justamente reduzir a necessidade de emissão deste tipo de Nota, trazendo, inclusive enorme agilidade ao seu processo de gestão fiscal, pois tudo foi pensado para a operação de brechós e lojas de roupas.</p>
+                    <p></p>
+                </div>
+                  <div class="row m-4">
+                    <p class="text-primary">Sobre Fotos:</p>
+                  </div>
+                  <div class="row m-4">
+                    <p>Seu plano já inclui um estoque de 4 mil fotos para sua loja. Caso seja necessário ter mais do que 4 mil fotos em sua loja basta adicionar lotes de mil fotos. Você poderá incluir ou remover esses lotes de mil fotos quando quiser na sua tela de administração de sua assinatura e plano.</p>
+                    <p></p>
+                    <p>É importante ressaltar que assim que uma peça é vendida, a foto dela é excluída, e você passa a ter novamente direito ao espaço de foto deixado pela peça que foi vendida. Ou seja, você não precisa ficar comprando lotes adicionais de fotos sempre que cadastrar peças pois o giro do seu estoque vai liberando fotos para seu uso. </p>
+                    <p></p>
+                    <p>Isso significa que as 4 mil fotos já incluídas em seu plano podem ser suficientes para sua operação. Basta que para isso seu estoque A VENDA não seja maior do que 4 mil peças.</p>
+                    <p></p>
+                    <p></p>
+                  </div>
+                </div>
+
+                <div class="row p-4 ml-3 mr-3">
+                    <p class="text-primary">Caso ainda tenha dúvidas sobre a emissão de Notas Fiscais ou uso das Fotos, por favor, pode entrar em contato com o nosso suporte pelo Whatsapp.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79"><defs><style>.cls-2{fill:#5f4def;}</style></defs><title>footer-frame</title><path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)"/></svg>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-col first">
+                        <h4>Sobre a SimFazemos</h4>
+                        <p class="p-small">Criamos e aprimoramos continuamente, softwares que, <strong>realmente</strong>, resolvem. Reduzem seu trabalho e aumentam seu faturamento.</p>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col middle">
+                        <h4>Links Importantes</h4>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Leia nossos <a class="white" href="/landing/termoscondicoes/">Termos e Condições de Uso</a>, <a class="white" href="/landing/politicaprivacidade/">Política de Privacidade</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col last">
+                        <h4>Fale Conosco</h4>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            {% comment %} <li class="media">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="media-body">22 Innovative, San Francisco, CA 94043, US</div>
+                            </li> {% endcomment %}
+                            <li class="media">
+                                <i class="fas fa-envelope"></i>
+                                <div class="media-body"><a class="white" href="mailto:contato@tictag.com.br">contato@tictag.com.br</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->
+    <!-- end of footer -->
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © 2022 <a>Sim, Fazemos.</a>
+                    </p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright -->
+    <!-- end of copyright -->
+
+
+</body>
+{% endblock %}

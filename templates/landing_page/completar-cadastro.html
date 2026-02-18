@@ -1,0 +1,721 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete seu Cadastro | TicTag</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link href="{% static 'landing_page/css/auth-pages.css' %}?v=1" rel="stylesheet" type="text/css">
+    
+    <style>
+        .completion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .completion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            margin-bottom: 30px;
+        }
+        
+        .plan-summary {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .plan-summary h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            margin-bottom: 20px;
+        }
+        
+        .plan-name-display {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--roxo);
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .features-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 14px;
+            color: #333;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li.included:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--roxo);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .features-list li.not-included {
+            opacity: 0.4;
+        }
+        
+        .features-list li.not-included:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #999;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .form-actions button,
+        .form-actions a {
+            flex: 1;
+        }
+        
+        /* ===== SEÇÃO DE PAGAMENTO (inline) ===== */
+        .payment-section {
+            display: none;
+        }
+        
+        .payment-section.active {
+            display: block;
+        }
+        
+        .payment-title {
+            font-size: 28px;
+            font-weight: 400;
+            color: #201F4B;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .payment-method {
+            border: 1.5px solid #1A1A3E;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .payment-method.active {
+            border-color: #201F4B;
+            background: #F0F0FF;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-method-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .payment-method-name {
+            font-size: 16px;
+            font-weight: 400;
+            color: #201F4B;
+        }
+        
+        .payment-form {
+            display: none;
+        }
+        
+        .payment-form.active {
+            display: block;
+        }
+        
+        .card-brands {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .card-brand {
+            width: 50px;
+            height: 32px;
+            border: 1px solid #1A1A3E;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: #201F4B;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 968px) {
+            .completion-grid {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+            
+            .plan-summary {
+                position: static;
+                margin-bottom: 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="auth-header">
+        <div class="container">
+            <a href="/lp-preview/" class="logo">
+                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+            </a>
+            
+            <nav>
+                <a href="/lp-preview/#inicio">Início</a>
+                <a href="/lp-preview/#funcionalidades">Funcionalidades</a>
+                <a href="/lp-preview/#planos">Planos</a>
+                <a href="/login/" class="btn-login-header">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== CONTAINER PRINCIPAL ========== -->
+    <div class="completion-container">
+        <div class="completion-grid" id="formGrid">
+            <!-- Formulário de Dados -->
+            <div class="form-section">
+                <h2>Preencha os campos abaixo:</h2>
+                
+                <form method="POST" action="#" class="auth-form" id="completionForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="plan" value="{{ plan }}" id="planInput">
+                    
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Seu nome completo"
+                            value="{{ user.get_full_name }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="seu@email.com"
+                            value="{{ user.email }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Celular</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            class="form-input" 
+                            placeholder="(00) 00000-0000"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input 
+                            type="text" 
+                            id="cep" 
+                            name="cep" 
+                            class="form-input" 
+                            placeholder="00000-000"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bairro">Bairro</label>
+                            <input 
+                                type="text" 
+                                id="bairro" 
+                                name="bairro" 
+                                class="form-input" 
+                                placeholder="Seu bairro"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input 
+                                type="text" 
+                                id="cidade" 
+                                name="cidade" 
+                                class="form-input" 
+                                placeholder="Sua cidade"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado" class="form-input" required>
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cupom">Recebeu algum cupom? Insira aqui</label>
+                        <input 
+                            type="text" 
+                            id="cupom" 
+                            name="cupom" 
+                            class="form-input" 
+                            placeholder="Código do cupom (opcional)"
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="/escolher-plano/" class="btn-secondary">Voltar</a>
+                        <button type="submit" class="btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Resumo do Plano -->
+            <div class="plan-summary">
+                <h3>Seu plano escolhido foi:</h3>
+                <div class="plan-name-display" id="planNameDisplay">{{ plan|default:"Básico" }}</div>
+                
+                <ul class="features-list" id="featuresList">
+                    <!-- Será preenchido via JavaScript baseado no plano -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== SEÇÃO DE PAGAMENTO (mesma página) ===== -->
+        <div class="payment-section" id="paymentSection">
+            <div class="completion-grid">
+                <div class="form-section">
+                    <h1 class="payment-title">Método de pagamento:</h1>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method" id="pixMethod" onclick="selectPaymentMethod('pix')">
+                            <div class="payment-method-icon">💳</div>
+                            <div class="payment-method-name">Pix</div>
+                        </div>
+                        
+                        <div class="payment-method" id="creditMethod" onclick="selectPaymentMethod('credit')">
+                            <div class="payment-method-icon">💳</div>
+                            <div class="payment-method-name">Cartão de Crédito</div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário PIX -->
+                    <div class="payment-form" id="pixForm">
+                        <div class="alert alert-info" style="background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px;">
+                            <p><strong>Pagamento via Pix</strong></p>
+                            <p>Após confirmar, você será redirecionado para gerar o QR Code do Pix.</p>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="showFormSection()">Voltar</button>
+                            <button type="button" class="btn-primary" onclick="submitPayment('pix')">Próximo</button>
+                        </div>
+                    </div>
+
+                    <!-- Formulário Cartão de Crédito -->
+                    <div class="payment-form" id="creditForm">
+                        <form class="auth-form" id="creditCardForm">
+                            <div class="form-group">
+                                <input type="text" id="card_number" name="card_number" class="form-input" placeholder="Número do cartão" maxlength="19" required>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="card_holder" name="card_holder" class="form-input" placeholder="Titular" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="card_expiry" name="card_expiry" class="form-input" placeholder="Validade (MM/AA)" maxlength="5" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="card_cvv" name="card_cvv" class="form-input" placeholder="CVV" maxlength="4" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <select id="installments" name="installments" class="form-input" required>
+                                    <option value="">Parcelas...</option>
+                                    <option value="1">1x sem juros</option>
+                                    <option value="2">2x sem juros</option>
+                                    <option value="3">3x sem juros</option>
+                                    <option value="6">6x sem juros</option>
+                                    <option value="12">12x sem juros</option>
+                                </select>
+                            </div>
+
+                            <div class="card-brands">
+                                <div class="card-brand">VISA</div>
+                                <div class="card-brand">MASTER</div>
+                                <div class="card-brand">ELO</div>
+                                <div class="card-brand">AMEX</div>
+                                <div class="card-brand">HIPER</div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="showFormSection()">Voltar</button>
+                                <button type="submit" class="btn-primary">Próximo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Resumo do Plano (repetido para manter layout) -->
+                <div class="plan-summary">
+                    <h3>Seu plano escolhido foi:</h3>
+                    <div class="plan-name-display" id="planNameDisplay2"></div>
+                    <div style="text-align: center; font-size: 32px; font-weight: 700; color: var(--roxo); margin: 20px 0;" id="planPrice2"></div>
+                    <ul class="features-list" id="featuresList2"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Preços dos planos
+        const planPrices = {
+            basico: 'R$ 118,00/Mês',
+            essencial: 'R$ 198,00/Mês',
+            total: 'R$ 288,00/Mês',
+            gratuito: 'R$ 0,00/14 dias'
+        };
+
+        // Dados dos planos
+        const planFeatures = {
+            basico: [
+                { name: 'Painel de Controle (Dashboard)', included: true },
+                { name: 'Tela de Vendas', included: true },
+                { name: 'Gestão Automática de Repasses', included: true },
+                { name: 'Contas a Pagar e a receber', included: true },
+                { name: 'Comunicação via Whatsapp', included: true },
+                { name: 'Precificação Ágil em lote', included: true },
+                { name: 'Impressora Térmica', included: true },
+                { name: 'Etiquetas com Código de Barras', included: true },
+                { name: 'Layout de Etiquetas Configurável', included: true },
+                { name: 'Controle Financeiro', included: true },
+                { name: 'Apuração Automática de Comissões', included: true },
+                { name: 'Apuração de Resultado do Negócio', included: true },
+                { name: 'Apuração de Vendas por Forma de Pagamento', included: true },
+                { name: 'Apuração de Vendas por Fornecedor', included: true },
+                { name: 'App Celular para Fornecedores', included: true },
+                { name: 'App Celular para Fotos', included: false },
+                { name: 'Pré-venda, Condicional, Bag', included: false },
+                { name: 'Ranking de Clientes', included: false },
+                { name: 'Ranking de Fornecedores', included: false },
+                { name: 'Grade Categorias x Tamanhos', included: false },
+                { name: 'Emissão de Nota Fiscal (NFE)', included: false },
+                { name: 'Emissão de Cupom Fiscal (NFCE)', included: false }
+            ],
+            essencial: [
+                { name: 'Painel de Controle (Dashboard)', included: true },
+                { name: 'Tela de Vendas', included: true },
+                { name: 'Gestão Automática de Repasses', included: true },
+                { name: 'Contas a Pagar e a receber', included: true },
+                { name: 'Comunicação via Whatsapp', included: true },
+                { name: 'Precificação Ágil em lote', included: true },
+                { name: 'Impressora Térmica', included: true },
+                { name: 'Etiquetas com Código de Barras', included: true },
+                { name: 'Layout de Etiquetas Configurável', included: true },
+                { name: 'Controle Financeiro', included: true },
+                { name: 'Apuração Automática de Comissões', included: true },
+                { name: 'Apuração de Resultado do Negócio', included: true },
+                { name: 'Apuração de Vendas por Forma de Pagamento', included: true },
+                { name: 'Apuração de Vendas por Fornecedor', included: true },
+                { name: 'App Celular para Fornecedores', included: true },
+                { name: 'App Celular para Fotos', included: true },
+                { name: 'Pré-venda, Condicional, Bag', included: true },
+                { name: 'Ranking de Clientes', included: true },
+                { name: 'Ranking de Fornecedores', included: true },
+                { name: 'Grade Categorias x Tamanhos', included: true },
+                { name: 'Emissão de Nota Fiscal (NFE)', included: false },
+                { name: 'Emissão de Cupom Fiscal (NFCE)', included: false }
+            ],
+            total: [
+                { name: 'Painel de Controle (Dashboard)', included: true },
+                { name: 'Tela de Vendas', included: true },
+                { name: 'Gestão Automática de Repasses', included: true },
+                { name: 'Contas a Pagar e a receber', included: true },
+                { name: 'Comunicação via Whatsapp', included: true },
+                { name: 'Precificação Ágil em lote', included: true },
+                { name: 'Impressora Térmica', included: true },
+                { name: 'Etiquetas com Código de Barras', included: true },
+                { name: 'Layout de Etiquetas Configurável', included: true },
+                { name: 'Controle Financeiro', included: true },
+                { name: 'Apuração Automática de Comissões', included: true },
+                { name: 'Apuração de Resultado do Negócio', included: true },
+                { name: 'Apuração de Vendas por Forma de Pagamento', included: true },
+                { name: 'Apuração de Vendas por Fornecedor', included: true },
+                { name: 'App Celular para Fornecedores', included: true },
+                { name: 'App Celular para Fotos', included: true },
+                { name: 'Pré-venda, Condicional, Bag', included: true },
+                { name: 'Ranking de Clientes', included: true },
+                { name: 'Ranking de Fornecedores', included: true },
+                { name: 'Grade Categorias x Tamanhos', included: true },
+                { name: 'Emissão de Nota Fiscal (NFE)', included: true },
+                { name: 'Emissão de Cupom Fiscal (NFCE)', included: true }
+            ],
+            gratuito: [
+                { name: 'Acesso completo por 14 dias', included: true },
+                { name: 'Todas as funcionalidades', included: true },
+                { name: 'Sem cartão de crédito', included: true },
+                { name: 'Sem compromisso', included: true },
+                { name: 'Cancele quando quiser', included: true }
+            ]
+        };
+
+        // Pegar plano da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const plan = urlParams.get('plan') || 'basico';
+        
+        // Atualizar input hidden
+        document.getElementById('planInput').value = plan;
+        
+        // Atualizar nome do plano
+        document.getElementById('planNameDisplay').textContent = plan.charAt(0).toUpperCase() + plan.slice(1);
+        
+        // Renderizar features
+        const featuresList = document.getElementById('featuresList');
+        const features = planFeatures[plan] || planFeatures.basico;
+        
+        featuresList.innerHTML = features.map(feature => 
+            `<li class="${feature.included ? 'included' : 'not-included'}">${feature.name}</li>`
+        ).join('');
+
+        // Máscara para telefone
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+                value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                value = value.replace(/^(\d*)/, '($1');
+            }
+            e.target.value = value;
+        });
+
+        // Máscara para CEP
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{5})(\d{3}).*/, '$1-$2');
+            e.target.value = value;
+        });
+
+        // Buscar CEP via ViaCEP
+        document.getElementById('cep').addEventListener('blur', function() {
+            const cep = this.value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            document.getElementById('bairro').value = data.bairro;
+                            document.getElementById('cidade').value = data.localidade;
+                            document.getElementById('estado').value = data.uf;
+                        }
+                    })
+                    .catch(error => console.error('Erro ao buscar CEP:', error));
+            }
+        });
+
+        // Submissão do formulário - mostra pagamento na mesma página
+        document.getElementById('completionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Se for plano gratuito, pula para confirmação
+            if (plan === 'gratuito') {
+                window.location.href = '/confirmacao/?plan=gratuito';
+            } else {
+                // Esconder formulário e mostrar seção de pagamento
+                document.getElementById('formGrid').style.display = 'none';
+                document.getElementById('paymentSection').classList.add('active');
+                
+                // Preencher resumo do plano na seção de pagamento
+                document.getElementById('planNameDisplay2').textContent = plan.charAt(0).toUpperCase() + plan.slice(1);
+                document.getElementById('planPrice2').textContent = planPrices[plan] || 'R$ 118,00/Mês';
+                const featuresList2 = document.getElementById('featuresList2');
+                featuresList2.innerHTML = features.map(feature => 
+                    `<li class="${feature.included ? 'included' : 'not-included'}">${feature.name}</li>`
+                ).join('');
+                
+                // Scroll suave para o topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        // Voltar para o formulário
+        function showFormSection() {
+            document.getElementById('paymentSection').classList.remove('active');
+            document.getElementById('formGrid').style.display = 'grid';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Selecionar método de pagamento
+        function selectPaymentMethod(method) {
+            document.getElementById('pixMethod').classList.remove('active');
+            document.getElementById('creditMethod').classList.remove('active');
+            document.getElementById('pixForm').classList.remove('active');
+            document.getElementById('creditForm').classList.remove('active');
+            
+            if (method === 'pix') {
+                document.getElementById('pixMethod').classList.add('active');
+                document.getElementById('pixForm').classList.add('active');
+            } else {
+                document.getElementById('creditMethod').classList.add('active');
+                document.getElementById('creditForm').classList.add('active');
+            }
+        }
+
+        // Submeter pagamento Pix
+        function submitPayment(method) {
+            window.location.href = '/confirmacao/?plan=' + plan + '&payment_method=' + method;
+        }
+
+        // Máscara para número do cartão
+        document.getElementById('card_number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+            e.target.value = value;
+        });
+
+        // Máscara para validade
+        document.getElementById('card_expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Máscara para CVV
+        document.getElementById('card_cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        // Submissão do formulário de cartão
+        document.getElementById('creditCardForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = '/confirmacao/?plan=' + plan + '&payment_method=credit';
+        });
+    </script>
+</body>
+</html>

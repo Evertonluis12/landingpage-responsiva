@@ -1,0 +1,1479 @@
+{% load static %}
+{% url 'logout' as logout_url %}
+
+
+<!DOCTYPE html><!--  Last Published: Sat Oct 12 2024 22:46:51 GMT+0000 (Coordinated Universal Time)  -->
+<html data-wf-page="66476d6dfc6de91d6a95dbab" data-wf-site="66476d6cfc6de91d6a95dba5">
+<head>
+  <meta charset="utf-8">
+  <title>TicTag | Sistema de Gestão para Brechós</title>
+  <meta name="description" content="Plataforma completa para brechós: gestão de consignados, emissão de NF, precificação por IA, apps integrados, e-commerce e muito mais. Descubra tudo o que o TicTag pode fazer por você.">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="{% static 'landing_page/css/normalize.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'landing_page/css/webflow.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'landing_page/css/tigtag---site.webflow.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Varela:400","PT Serif:400,400italic,700,700italic","Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic","Poppins:300,regular,500,600,700,800"]  }});</script>
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+  <link href="{% static 'landing_page/images/favicon.png'%}" rel="apple-touch-icon">
+
+  <!--  Google Tag Manager  -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M48PPWX');
+</script>
+  <!--  End Google Tag Manager  -->
+
+  <!--  Google Tag Manager (noscript)  -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M48PPWX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!--  End Google Tag Manager (noscript)  -->
+
+</head>
+
+<style>
+  /* Esconde a imagem em telas menores que 768px */
+  @media (max-width: 768px) {
+    .responsive-image {
+      display: none;
+    }
+    .app-icon-container {
+      text-align: center; /* Centraliza o ícone */
+    }
+    .app-icon {
+      margin: 0 auto; /* Garante centralização do próprio ícone */
+      display: block; /* Necessário para centralização */
+    }
+  }
+
+  .mais-vendido {
+    position: absolute;
+    top: 0%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Garante centralização precisa no eixo X e Y */
+    background-color: var(--roxo); /* Define a cor de fundo */
+    text-align: center; /* Centraliza o texto dentro do badge */
+    border-radius: 30px; /* Arredonda as bordas */
+    padding: 1rem; /* Espaçamento interno */
+    display: flex; /* Alinha itens no centro */
+    justify-content: center; /* Centraliza itens horizontalmente */
+    align-items: center; /* Centraliza itens verticalmente */
+    z-index: 10; /* Garante que o badge fique sobreposto */
+    width: 15rem; /* Define a largura fixa */
+  }
+
+  .mais-vendido .poppins-regular-16-branco {
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+    color: #fff; /* Define a cor do texto como branco */
+  }
+
+  /* ========================================
+     BLACK FRIDAY 2025 - CUSTOMIZAÇÃO
+     DESATIVADO EM 30/11/2025 - Hotfix
+     ======================================== */
+  /*
+  .bf-banner {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    color: #fff;
+    text-align: center;
+    padding: 25px 20px;
+    margin-bottom: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .bf-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 107, 0, 0.1), transparent);
+    animation: bf-shine 3s infinite;
+  }
+
+  @keyframes bf-shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  .bf-banner-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #FF6B00;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bf-banner-subtitle {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 15px 0 0 0;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+    line-height: 1.1;
+  }
+
+  .bf-timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bf-timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 107, 0, 0.2);
+    border: 2px solid #FF6B00;
+    border-radius: 10px;
+    padding: 10px 15px;
+    min-width: 70px;
+  }
+
+  .bf-timer-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: #FF6B00;
+    line-height: 1;
+    font-family: 'Courier New', monospace;
+  }
+
+  .bf-timer-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 1px;
+  }
+
+  @keyframes bf-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .bf-price-box {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    border: 2px solid #FF6B00;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-top: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(255, 107, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bf-price-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 107, 0, 0.1), transparent);
+    animation: bf-shine 3s infinite;
+  }
+
+  .bf-price-box-label {
+    color: #FF6B00;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bf-price-box-value {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bf-price-box-note {
+    color: #ccc;
+    font-size: 11px;
+    font-style: italic;
+    margin-top: 5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bf-free-box {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 2px solid #FF6B00;
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .bf-free-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+
+  .bf-free-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+  }
+
+  .bf-free-subtitle {
+    font-size: 16px;
+    color: #ccc;
+    margin: 0 0 25px 0;
+  }
+
+  .bf-free-button {
+    background: linear-gradient(135deg, #FF6B00 0%, #FF8C00 100%);
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+    text-transform: uppercase;
+  }
+
+  .bf-free-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+  }
+
+  .bf-free-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .bf-free-benefit {
+    color: #00FF00;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .bf-free-benefit i {
+    margin-right: 5px;
+  }
+
+  .bf-disclaimer {
+    background: #f8f9fa;
+    border-left: 4px solid #FF6B00;
+    padding: 15px 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: #333;
+    text-align: left;
+  }
+
+  .bf-disclaimer strong {
+    color: #FF6B00;
+  }
+  */
+
+  /* Responsividade Mobile - BLACK FRIDAY DESATIVADO */
+  /*
+  @media (max-width: 768px) {
+    .bf-banner-title {
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    .bf-banner-subtitle {
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .bf-timer {
+      gap: 10px;
+    }
+
+    .bf-timer-unit {
+      padding: 8px 10px;
+      min-width: 60px;
+    }
+
+    .bf-timer-value {
+      font-size: 24px;
+    }
+
+    .bf-timer-label {
+      font-size: 9px;
+    }
+
+    .bf-badge {
+      top: -10px;
+      right: -10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      min-width: 100px;
+    }
+
+    .bf-free-title {
+      font-size: 24px;
+    }
+
+    .bf-free-button {
+      padding: 15px 30px;
+      font-size: 16px;
+    }
+
+    .bf-free-benefits {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  */
+</style>
+
+
+<body>
+  <div>
+    <section class="menu">
+      <div class="w-layout-blockcontainer w-container">
+        <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+          <div class="container-13 w-container">
+            <div class="div-block-37">
+              <a href="index.html" aria-current="page" class="w-nav-brand w--current"><img src="{% static 'landing/images/log_nova_tictag_branca_400x105.png' %}" loading="lazy" alt="TicTag" class="image-7" style="width: 150px; height: auto;"></a>
+              <nav role="navigation" class="nav-menu w-nav-menu">
+                <a href="index.html" aria-current="page" class="poppins-regular-16-branco medium w-nav-link w--current">Home</a>
+                <a href="blog.html" class="poppins-regular-16-branco medium hide w-nav-link">Blog</a>
+                <a href="#Recursos" class="poppins-regular-16-branco medium w-nav-link">Recursos do Sistema</a>
+                <a href="#planos" class="poppins-regular-16-branco medium w-nav-link">Planos</a>
+                <a href="/accounts/login-page/" target="_blank" class="bot-o-branco w-button">Entrar</a>
+              </nav>
+              <div class="w-nav-button">
+                <div class="icon-3 w-icon-nav-menu"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="whatsapp">
+      <a href="https://wa.me/+5511910668088?" class="w-inline-block"><img src="{% static 'landing_page/images/logos_whatsapp-icon.svg' %}" loading="lazy" alt="Suporte via Whatsapp" class="image-6"></a>
+    </div>
+    <div class="section-banner">
+      <div class="w-layout-blockcontainer container-2 w-container">
+        <div class="nuvemshop">
+          <div id="w-node-abeace83-ca93-2836-9129-377460c769a3-6a95dbab" class="conteudo-coluna-1-2">
+            <div class="poppins-extrabold-33-p">Revolucione a Gestão do seu Brechó com o TicTag:</div>
+            <div class="poppins-semibold-33-r">O Sistema Completo para Simplificar o seu Negócio</div>
+            <div class="espa-ador-10px"></div>
+            <div class="poppins-regular-18-rox">100% na nuvem. Você pode usar o sistema em vários equipamentos, inclusive pelo celular.</div>
+            <div class="espa-ador-10px"></div>
+            <a href="/accounts/signup/free/" target="_blank" class="bot-o-roxo w-button">Quero usar gratuitamente</a>
+          </div>
+          <div class="conteudo-coluna-1-2"><img src="{% static 'landing_page/images/Banner-hero.png' %}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 44vw, (max-width: 991px) 337px, 443px" srcset="{% static 'landing_page/images/Banner-hero-p-500.png' %} 500w, {% static 'landing_page/images/Banner-hero.png' %} 765w" alt=""></div>
+        </div>
+      </div>
+    </div>
+    <div id="Recursos" class="sess-o-2">
+      <div class="w-layout-blockcontainer container-3 w-container">
+        <div id="w-node-_2c1fb5b2-a516-2629-c43d-3e15ca421780-6a95dbab" class="conteudo-center">
+          <div class="poppins-regular-17-cin">RECURSOS QUE TE AJUDAM A VENDER MAIS</div>
+          <div class="poppins-semibold-30-rox">Simplifique processos, aumente lucros e eleve a satisfação do seu cliente.</div>
+        </div>
+        <div class="_3-colunas">
+          <div id="w-node-c94603d8-c0c5-dfd8-7df7-c69a73d04359-6a95dbab" class="coluna-singular">
+            <div class="coluna-imagem"><img src="{% static 'landing_page/images/tigtag-controle-estoque.jpg' %}" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 31vw, (max-width: 991px) 232.6640625px, 303.328125px" srcset="{% static 'landing_page/images/tigtag-controle-estoque-p-500.jpg' %} 500w, 
+              {% static 'landing_page/images/tigtag-controle-estoque-p-800.jpg' %} 800w, 
+              {% static 'landing_page/images/tigtag-controle-estoque.jpg' %} 1179w" alt="" class="image-12"></div>
+            <div id="w-node-ee92b707-723e-3200-71c7-03a8cd21cd32-6a95dbab" class="flutuante"><img src="{% static 'landing_page/images/Img-controle-de-estoque.svg' %}" loading="lazy" alt="" class="image-2"></div>
+            <div id="w-node-_2077c8a7-d551-bf1d-21d4-6ad6094d9432-6a95dbab" class="coluna-container">
+              <div class="opensans-semibold-18-b">Controle </div>
+              <div class="opensans-bold-18-laran">de Estoque</div>
+              <div class="espa-ador-5px"></div>
+              <div class="poppins-regular-16-branco">Controle de estoque em tempo real. Gerencie suas operações com eficiência.</div>
+            </div>
+          </div>
+          <div id="w-node-_00d6b7bc-646c-56de-d3c4-75937320ce3a-6a95dbab" class="coluna-singular">
+            <div class="coluna-imagem"><img src="{% static 'landing_page/images/Foto-Coluna-2.png' %}" loading="lazy" alt="" class="image-colunas"></div>
+            <div id="w-node-_00d6b7bc-646c-56de-d3c4-75937320ce3d-6a95dbab" class="flutuante-2"><img src="{% static 'landing_page/images/img-frente-de-caixa.svg' %}" loading="lazy" alt="" class="image-2"></div>
+            <div id="w-node-_00d6b7bc-646c-56de-d3c4-75937320ce43-6a95dbab" class="coluna-container">
+              <div class="opensans-semibold-18-b">Frente de</div>
+              <div class="opensans-bold-18-laran">Caixa</div>
+              <div class="espa-ador-5px"></div>
+              <div class="poppins-regular-16-branco">Tela de vendas flexível, fácil de usar. Cadastre formas de pagamento, aplique descontos, o crédito do cliente e venda mais.</div>
+            </div>
+          </div>
+          <div id="w-node-e8131ed0-3038-55ad-e0cb-91525fd49263-6a95dbab" class="coluna-singular">
+            <div class="coluna-imagem"><img src="{% static 'landing_page/images/Etiquetas.png' %}" loading="lazy" alt="" class="image-colunas"></div>
+            <div id="w-node-e8131ed0-3038-55ad-e0cb-91525fd49266-6a95dbab" class="flutuante-3"><img src="{% static 'landing_page/images/img-impressão-de-etiquetas.svg' %}" loading="lazy" alt="" class="image-2"></div>
+            <div id="w-node-e8131ed0-3038-55ad-e0cb-91525fd4926c-6a95dbab" class="coluna-container">
+              <div class="opensans-semibold-18-b">Impressão de</div>
+              <div class="opensans-bold-18-laran">Etiquetas com código de barras</div>
+              <div class="espa-ador-5px"></div>
+              <div class="poppins-regular-16-branco">Emita etiquetas facilmente, agilize os processos de venda a organização do seu estoque.</div>
+            </div>
+          </div>
+        </div>
+        <div class="espa-ador-10px"></div>
+        <div class="_3-colunas-borda">
+          <div id="w-node-bdd1b579-686b-b33d-5dec-8cd0ea9cd5de-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone-pecas-consignadas.svg' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Peças</div>
+            <div class="poppins-bold-18-r">Consignadas</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Gerencie quanto cada fornecedora parceira tem a receber de forma automática.</div>
+          </div>
+          <div id="w-node-_52c9f27b-3ac0-2d77-00a8-042fdfa16999-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone-pecas-compradas.svg' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Peças</div>
+            <div class="poppins-bold-18-r">Compradas</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Gerencie de forma precisa as peças compradas. Todo seu estoque em um só lugar.</div>
+          </div>
+          <div id="w-node-_52c9f27b-3ac0-2d77-00a8-042fdfa16999-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/gestao_lotes.png' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Gestão de</div>
+            <div class="poppins-bold-18-r">Lotes</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Gerencie a recepção de suas sacolas com eficiência e evite mal-entendidos com suas fornecedoras.</div>
+          </div>
+          <div id="w-node-_52c9f27b-3ac0-2d77-00a8-042fdfa16999-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/preco_por_ia.png' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Sugestão de Preços</div>
+            <div class="poppins-bold-18-r">Por Inteligência Artificial</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">O sistema vai sugerindo preços adequados aos seus produtos a medida que o cadastro é realizado.</div>
+          </div>
+          <div id="w-node-a12ec6ca-952a-5171-c7a8-6d065f6e22f2-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/Icon-Painel-Multiusuario.png' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Operação</div>
+            <div class="poppins-bold-18-r">Multiusuário</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Realize vendas enquanto seus funcionários cadastram produtos e outras funções, aumentando a produtividade e o conforto.</div>
+          </div>
+          <div id="w-node-_87e9ff4c-7ba8-b44e-427f-df204717d1d8-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone-emissao-de-nf.svg' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Emissão de</div>
+            <div class="poppins-bold-18-r">Nota fiscal</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Emissão simples de Notas Fiscais, de forma otimizada, pensada para o varejo circular, brechós e similares.</div>
+          </div>
+          <div id="w-node-_87e9ff4c-7ba8-b44e-427f-df204717d1e2-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/Icon-Apuração-de-Resultado.png' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Apuração de</div>
+            <div class="poppins-bold-18-r">Resultado</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Apuração de resultado financeiro do seu negócio em 1 clique.</div>
+          </div>
+          <div class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone-conectividade-whats.svg' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Conectividade</div>
+            <div class="poppins-bold-18-r">Whatsapp</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Envie informativo de peças e relatórios para suas fornecedoras via WhatsApp.</div>
+          </div>
+          <div id="w-node-be1fa02c-f00d-1506-2d1d-d988781617e7-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/Icon-Controle-Total.png' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Controle</div>
+            <div class="poppins-bold-18-r">Total</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Controle tudo que seu negócio precisa em apenas um sistema. TicTag é facilidade e inovação.</div>
+          </div>
+          <div id="w-node-a2c8df5a-f708-fecd-3076-b053911aa995-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone-gestao-de-cashback.svg' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Gestão de</div>
+            <div class="poppins-bold-18-r">Cashback</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Crie campanhas de cashback e aumente as suas vendas.</div>
+          </div>
+          <div id="w-node-_7f65574b-0a38-f9af-11fd-e768c0935b7a-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone-gestao-de-campanhas-promo.svg' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Gestão de Campanhas</div>
+            <div class="poppins-bold-18-r">Promocionais</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Crie campanhas promocionais e imprima etiquetas da promoção em poucos cliques.</div>
+          </div>
+          <div id="w-node-_7f65574b-0a38-f9af-11fd-e768c0935b7a-6a95dbab" class="coluna-singular-borda"><img src="{% static 'landing_page/images/icone_ranking_clientes.png' %}" loading="lazy" alt="" class="icon-colunas">
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-medium-18-r">Ranking</div>
+            <div class="poppins-bold-18-r">de Clientes</div>
+            <div class="espa-ador-5px"></div>
+            <div class="poppins-regular-16-preto">Quais marcas mais compram? Quais categorias? Qual o ticket médio? Saiba mais sobre seus clientes e fornecedores.</div>
+          </div>
+        </div>
+          
+        <a href="/accounts/signup/free/" target="_blank" class="bot-o-roxo margim-top w-button">Quero usar gratuitamente</a>
+      </div>
+      <div id="w-node-_9eeace73-1030-ec0b-2841-d3e98e457ca7-6a95dbab" class="space-64"></div>
+    </div>
+    <div class="sess-o-roxa">
+      <div id="w-node-f0573395-33b2-48a7-d1f9-c0314c280459-6a95dbab" class="space-64"></div>
+      <div class="w-layout-blockcontainer container-slider w-container">
+        <div class="container-center-copy">
+          <div class="poppins-regular-17-cin white">RECURSOS QUE SÓ TICTAG TEM</div>
+          <div class="poppins-semibold-33-r white u-align-center">Aplicativos que aumentam sua qualidade e produtividade</div>
+          <div class="poppins-regular-16-preto u-align-center white">O TicTag tem 3 apps para celular para tornar sua gestão ainda mais rápida e produtiva e impressionar seus clientes com a qualidade do seu atendimento, eficiência e transparência.</div>
+          <div id="w-node-_7d380cbe-5fad-cd59-6ec7-05e89613307b-6a95dbab" data-current="Tab 2" data-easing="ease" data-duration-in="300" data-duration-out="100" class="tabs w-tabs">
+            <div class="tabs-menu w-tab-menu">
+              <a data-w-tab="Tab 1" class="bot-o-tab w-inline-block w-tab-link">APP FOTOS</a>
+              <a data-w-tab="Tab 2" class="bot-o-tab w-inline-block w-tab-link w--current">BRECHÓ</a>
+              <a data-w-tab="Tab 3" class="bot-o-tab w-inline-block w-tab-link">INVENTÁRIO</a>
+            </div>
+            <div class="tabs-content w-tab-content">
+              <div data-w-tab="Tab 1" class="tab w-tab-pane">
+                <div class="slide-app-fotos">
+                  <div id="w-node-_72b62586-72cf-37b3-e2c1-be2bd8846d74-6a95dbab" class="conteudo-coluna-1-2">
+                    <!-- Ícone do App -->
+                    <div class="app-icon-container">
+                      <img src="{% static 'landing_page/images/icone_app_tictag_fotos.png' %}" style="height: 70px; margin-bottom: 8px;" alt="Ícone do App TicTag Brechó, pelo qual suas fornecedoras acompanham as movimentações das peças no seu brechó" class="app-icon">
+                    </div>
+                    <div class="poppins-regular-17-cin">TICTAG FOTOS</div>
+                    <div class="poppins-bold-26-roxo">Quer fotos?<br>Temos um app pra isso.</div>
+                    <div class="espa-ador-10px"></div>
+                    <div class="poppins-regular-16-preto">
+                      <div class="poppins-regular-16-preto u-align-left">Porque fizemos um app para fazer fotos dos produtos? É simples, sem um app como esse é simplesmente impossível trabalhar com fotos, pois demora demais. Com nosso app, é simples e rapidíssimo.<br><br>Pequisa de produtos direto da sua base de produtos<br>Filtros inteligentes e ágeis<br>E agora com e-commerce integrado (NuvemShop).</div>
+                      <div id="w-node-_72b62586-72cf-37b3-e2c1-be2bd8846d7d-6a95dbab" class="space-8"></div>
+                    </div>
+                    <div class="app-icon-container">
+                      <img src="{% static 'landing_page/images/play_apple.png' %}" style="height: 70px; margin-bottom: 8px;" alt="Ícone do App TicTag Brechó, pelo qual suas fornecedoras acompanham as movimentações das peças no seu brechó" class="app-icon">
+                    </div>
+                    <div class="espa-ador-10px"></div>
+                  </div>
+                  <div id="w-node-_72b62586-72cf-37b3-e2c1-be2bd8846d8d-6a95dbab" class="conteudo-coluna-2-2"><img id="w-node-_72b62586-72cf-37b3-e2c1-be2bd8846d8e-6a95dbab" sizes="100vw" alt="" src="{% static 'landing_page/images/App-Fotos.webp' %}" loading="lazy" srcset="{% static 'landing_page/images/App-Fotos-p-500.webp' %} 500w, 
+                    {% static 'landing_page/images/App-Fotos.webp' %} 844w" class="image-3"></div>
+                </div>
+              </div>
+              <div data-w-tab="Tab 2" class="tab w-tab-pane w--tab-active">
+                <div class="slide-app-fotos">
+                  <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df193b-6a95dbab" class="conteudo-coluna-1-2">
+                      <!-- Ícone do App -->
+                    <div class="app-icon-container">
+                      <img src="{% static 'landing_page/images/icone_app_tictag_brecho.png' %}" style="height: 70px; margin-bottom: 8px;" alt="Ícone do App TicTag Brechó, pelo qual suas fornecedoras acompanham as movimentações das peças no seu brechó" class="app-icon">
+                    </div>
+                    <div class="poppins-regular-17-cin">TicTag Brechó</div>
+                    <div class="poppins-bold-26-roxo">Você vende, seus fornecedores acompanham.</div>
+                    <div class="espa-ador-10px"></div>
+                    <div class="poppins-regular-16-preto">
+                      <div class="poppins-regular-16-preto u-align-left">Chega de emails, mensagens de Whatsapp e telefonemas, com o App &quot;Brechó&quot; seus fornecedores podem ver as movimentações automaticamente. E como entendemos mesmo de brechó, fique tranquilo, pois é você que configura o app e define o que é visto e quando. Algumas das informações que você não vai mais se preocupar em informar:</div>
+                      <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df1944-6a95dbab" class="space-8"></div>
+                      <div class="div-bloquinho">
+                        <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df1946-6a95dbab" class="div-block-4"></div>
+                        <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df1947-6a95dbab" class="poppins-regular-16-preto">Saldo a receber</div>
+                      </div>
+                      <div class="div-bloquinho">
+                        <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df194a-6a95dbab" class="div-block-4"></div>
+                        <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df194b-6a95dbab" class="poppins-regular-16-preto">Peças à venda</div>
+                      </div>
+                      <div class="div-bloquinho">
+                        <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df194e-6a95dbab" class="div-block-4"></div>
+                        <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df194f-6a95dbab" class="poppins-regular-16-preto">Peças vendidas, e muito mais...</div>
+                      </div>
+                    </div>
+                    <div class="app-icon-container">
+                      <img src="{% static 'landing_page/images/play_apple.png' %}" style="height: 70px; margin-bottom: 8px;" alt="Ícone do App TicTag Brechó, pelo qual suas fornecedoras acompanham as movimentações das peças no seu brechó" class="app-icon">
+                    </div>
+                    <div class="espa-ador-10px"></div>
+                  </div>
+                  <div id="w-node-d26bfec6-cd7f-7eee-d502-dae445df1954-6a95dbab" class="conteudo-coluna-2-2"><img id="w-node-d26bfec6-cd7f-7eee-d502-dae445df1955-6a95dbab" sizes="(max-width: 479px) 100vw, (max-width: 767px) 315px, (max-width: 991px) 42vw, 392.9765625px" alt="" src="{% static 'landing_page/images/TicTag-Brecho.png' %}" loading="lazy" srcset="{% static 'landing_page/images/TicTag-Brecho-p-500.png' %} 500w, 
+                    {% static 'landing_page/images/TicTag-Brecho-p-800.png' %} 800w, 
+                    {% static 'landing_page/images/TicTag-Brecho.png' %} 952w" class="image-3"></div>
+                </div>
+              </div>
+              <div data-w-tab="Tab 3" class="tab w-tab-pane">
+                <div class="slide-app-fotos">
+                  <div id="w-node-_4e6e3601-1cdd-9a9e-20b0-745e510ea4e0-6a95dbab" class="conteudo-coluna-1-2">
+                      <!-- Ícone do App -->
+                    <div class="app-icon-container">
+                      <img src="{% static 'landing_page/images/icone_app_tictag_inventario.png' %}" style="height: 70px; margin-bottom: 8px;" alt="Ícone do App TicTag Brechó, pelo qual suas fornecedoras acompanham as movimentações das peças no seu brechó" class="app-icon">
+                    </div>
+                    <div class="poppins-regular-17-cin">TicTag Inventário</div>
+                    <div class="poppins-bold-26-roxo">Conte seu estoque em alta velocidade</div>
+                    <div class="espa-ador-10px"></div>
+                    <div class="poppins-regular-16-preto">
+                      <div class="poppins-regular-16-preto u-align-left">Com o aplicativo de Inventário, você poderá realizar a contagem do seu estoque com grande velocidade de precisão de forma periódica e detectar falta de produtos.O TicTag inventário é o único app do mercado do tipo e agiliza muito uma tarefa extremamente importante mas tradicionalmente trabalhosa, tornando-a simples, fácil e muito veloz.</div>
+                      <div id="w-node-_4e6e3601-1cdd-9a9e-20b0-745e510ea4e9-6a95dbab" class="space-8"></div>
+                    </div>
+                    <div class="app-icon-container">
+                      <img src="{% static 'landing_page/images/play_apple.png' %}" style="height: 70px; margin-bottom: 8px;" alt="Ícone do App TicTag Brechó, pelo qual suas fornecedoras acompanham as movimentações das peças no seu brechó" class="app-icon">
+                    </div>
+                    <div class="espa-ador-10px"></div>
+                  </div>
+                  <div id="w-node-_4e6e3601-1cdd-9a9e-20b0-745e510ea4f9-6a95dbab" class="conteudo-coluna-2-2"><img id="w-node-_4e6e3601-1cdd-9a9e-20b0-745e510ea4fa-6a95dbab" sizes="100vw" alt="" src="{% static 'landing_page/images/TICTAG-Inventário.png' %}" loading="lazy" srcset="{% static 'landing_page/images/TICTAG-Inventário-p-500.png' %} 500w, 
+                    {% static 'landing_page/images/TICTAG-Inventário-p-800.png' %} 800w, 
+                    {% static 'landing_page/images/TICTAG-Inventário.png' %} 946w" class="image-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="features">
+      <div class="w-layout-blockcontainer container-features w-container">
+        <div id="w-node-_7510690a-0d85-3d5b-ef4f-05c2ef9e5743-6a95dbab" class="space-64"></div>
+        <div class="nuvemshop">
+          <div id="w-node-_7165b951-6466-171c-619b-8683f739c2bc-6a95dbab" class="conteudo-coluna-2-2"><img src="{% static 'landing_page/images/Integração-NuvemShop.webp' %}" loading="lazy" id="w-node-_036370ab-e3f7-4b46-d629-fae9cf2cf990-6a95dbab" sizes="100vw" alt="" srcset="{% static 'landing_page/images/Integração-NuvemShop-p-500.webp' %} 500w, 
+            {% static 'landing_page/images/Integração-NuvemShop-p-800.webp' %} 800w, 
+            {% static 'landing_page/images/Integração-NuvemShop.webp' %} 1008w" class="nuvem-image"></div>
+          <div id="w-node-_857f2b0a-f8bb-1631-a189-3adb5612c7ca-6a95dbab" class="conteudo-coluna-1-2">
+            <div class="poppins-regular-17-cin">NUVEMSHOP</div>
+            <div class="poppins-bold-26-roxo">Integração com e-commerce</div>
+            <div class="espa-ador-10px"></div>
+            <div class="poppins-regular-16-preto">
+              <div class="poppins-regular-16-preto u-align-left">Nuvemshop é a maior plataforma de e-commerce da América Latina. E através dessa integração você vai poder ter seu site e gerenciar tanto sua operação online como sua loja física ampliando seus canais de venda e faturando ainda mais sem ter trabalho adicional por isso.<br><br> Sua operação será integrada, <strong>cadastrou no TicTag, publica na NuvemShop, vendeu na NuvemShop já baixa do TicTag e vice-versa.</strong> Isso é um sonho para o gestor do varejo. Funcionalidade incluída em todos os planos. </div>
+              <div id="w-node-_9776f3dc-5f07-9e49-f452-c53eb301be34-6a95dbab" class="space-8"></div>
+            </div>
+            <div>
+              <!-- <div class="text-block">Clique aqui para ver os percentuais aplicados sobre o total de vendas realizadas pela integração apenas.</div>
+              <div id="w-node-_1e56bd71-eddf-0d11-5b50-5154febb361e-6a95dbab" class="space-8"></div> -->
+            </div>
+            <div class="espa-ador-10px"></div>
+            <div class="tabelanuvemshop poppins-regular-16-preto">
+              <div class="text-block-2">Percentual aplicado somente sobre as <br>vendas realizadas pela integração.</div>
+              <ul role="list" class="list">
+                <li>4,0% até R$ 5mil</li>
+                <li>3,0% de R$ 5mil até R$ 10mil </li>
+                <li>2,0% de R$ 10mil até 80mil<br></li>
+                <li>1,4% acima de 80mil<br></li>
+              </ul>
+            </div>
+            <a href="/accounts/signup/free/" target="_blank" class="bot-o-roxo w-button">Quero usar gratuitamente</a>
+          </div>
+        </div>
+        <div id="w-node-_02cb0037-56b9-ce6d-5c32-236336f23845-6a95dbab" class="space-64"></div>
+        <div class="emissao-nfc">
+          <div id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace70299b-6a95dbab" class="conteudo-coluna-right center-mobile">
+            <div class="poppins-regular-17-cin u-align-right">RESOLVA DE FORMA MAIS FÁCIL</div>
+            <div class="poppins-bold-26-roxo u-align-right center-mobile">Emissão de Cupom Fiscal, <br>NFE e em breve NFSe</div>
+            <div class="espa-ador-10px"></div>
+            <div class="poppins-regular-16-preto">
+              <div class="poppins-regular-16-preto u-align-right">Optando pelo plano <strong>TOTAL</strong> você vai contar com integração com API Fiscal para emissão das suas Notas Ficais. O TicTag foi pensado para ser completo, <span class="bold-roxo">para resolver de verdade</span> tudo que você mais precisa para gerenciar seu negócio de forma simples, integrada e sem complicações.</div>
+              <div class="align-mobile">
+                <div id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace7029a7-6a95dbab" class="div-block-4"></div>
+                <div id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace7029a8-6a95dbab" class="poppins-regular-16-preto">MEI</div>
+              </div>
+              <div class="align-desktop">
+                <div id="w-node-_6822e1ec-a34e-a4a6-d42f-64a3c1c89fc7-6a95dbab" class="poppins-regular-16-preto">MEI</div>
+                <div id="w-node-_6822e1ec-a34e-a4a6-d42f-64a3c1c89fc6-6a95dbab" class="div-block-4"></div>
+              </div>
+              <div class="align-mobile">
+                <div id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace7029ab-6a95dbab" class="div-block-4"></div>
+                <div id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace7029ac-6a95dbab" class="poppins-regular-16-preto">Simples Nacional</div>
+              </div>
+              <div class="align-desktop">
+                <div id="w-node-_78fde8d7-bc2e-6e72-d0a9-e93e53d31c12-6a95dbab" class="poppins-regular-16-preto">Simples Nacional</div>
+                <div id="w-node-_78fde8d7-bc2e-6e72-d0a9-e93e53d31c11-6a95dbab" class="div-block-4"></div>
+              </div>
+              <div class="align-desktop">
+                <div id="w-node-_6c6982f0-c9f0-605d-1cc2-4b7605859e52-6a95dbab" class="poppins-regular-16-preto">Seja abordagem de comércio ou de intermediação (serviços)*</div>
+                <div id="w-node-_6c6982f0-c9f0-605d-1cc2-4b7605859e54-6a95dbab" class="div-block-4"></div>
+              </div>
+            </div>
+            <div class="espa-ador-10px"></div>
+            <a href="/accounts/signup/free/" target="_blank" class="bot-o-roxo w-button">Quero usar gratuitamente</a>
+          </div>
+          <div id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace7029b1-6a95dbab" class="conteudo-coluna-2-2"><img src="{% static 'landing_page/images/emissao_nfc_web.webp' %}" loading="lazy" id="w-node-aeb6248d-0c5a-e87b-79ac-cd9ace7029b2-6a95dbab" sizes="100vw" alt="" srcset="{% static 'landing_page/images/emissao_nfc_web-p-500.webp' %} 500w, 
+            {% static 'landing_page/images/emissao_nfc_web-p-800.webp' %} 800w, 
+            {% static 'landing_page/images/emissao_nfc_web-p-1080.webp' %} 1080w, 
+            {% static 'landing_page/images/emissao_nfc_web-p-1600.webp' %} 1600w, 
+            {% static 'landing_page/images/emissao_nfc_web-p-2000.webp' %} 2000w, 
+            {% static 'landing_page/images/emissao_nfc_web.webp' %} 2484w" class="image-3"></div>
+        </div>
+        <div id="w-node-_9d03a23d-fa91-117b-4af9-ede9f27045a6-6a95dbab" class="space-64"></div>
+      </div>
+    </section>
+    <div class="div-block-5">
+      <div class="w-layout-blockcontainer container-5 w-container">
+        <div class="_2-colunas-deslocado">
+          <div id="w-node-_03925af9-93b8-aa9f-84d2-ed2e1407a2e1-6a95dbab" class="div-block-6">
+            <div class="div-block-12"><img src="{% static 'landing_page/images/ima-integracao-tef.jpg' %}" loading="lazy" width="500" id="w-node-dd29b505-2a97-68f8-48fe-a4a51637aa5d-6a95dbab" alt="" srcset="{% static 'landing_page/images/ima-integracao-tef-p-500.jpg' %} 500w, 
+              {% static 'landing_page/images/ima-integracao-tef-p-800.jpg' %} 800w, 
+              {% static 'landing_page/images/ima-integracao-tef.jpg' %} 838w" sizes="(max-width: 479px) 100vw, (max-width: 767px) 38vw, (max-width: 991px) 279.0625px, 360.3203125px" class="img-tef"></div>
+          </div>
+          <div id="w-node-_4d6671a6-ce0e-767e-4974-0dc2b861107c-6a95dbab" class="div-block-7">
+            <div class="poppins-bold-26-roxo">Integração com TEF</div>
+            <!-- <div class="espa-ador-10px"></div> -->
+            <div class="poppins-regular-16-preto u-align-right">A partir do plano TOTAL você poderá adicionar a INTEGRAÇÃO TEF (maquininha integrada ao sistema e ligada ao computador) ao seu plano e ter ainda mais segurança e agilidade no fechamento das suas vendas e atender a legislação de alguns estados.<br>CONSULTE-NOS SOBRE ESSA INTEGRAÇÃO</div>
+          </div>
+        </div>
+        <div id="w-node-_1cec9994-2de9-a226-7940-57e8c243773e-6a95dbab" class="space-64"></div>
+      </div>
+    </div>
+    <!-- <section class="section">
+      <div class="w-layout-blockcontainer w-container">
+        <div class="div-block-20">
+          <div id="w-node-_5f4de41d-ff7e-4b2b-81ba-3be82f3d63b8-6a95dbab" class="div-block-21">
+            <div id="w-node-a75482fc-f8a1-3496-cb9d-22cd65a422d9-6a95dbab" class="poppins-bold-30 text-color-black u-align-right">Aumente suas vendas e melhore <span class="span-whit">o engajamento com seu público</span></div><img src="{% static 'landing_page/images/Logo-Megawpp.svg' %}" loading="lazy" alt="" class="margim-top">
+          </div><img src="{% static 'landing_page/images/Imagem-Whatsapp.svg' %}" loading="lazy" id="w-node-_906b8063-0e8a-04d8-e6f7-3508c354c77c-6a95dbab" alt="" class="image-4">
+          <div id="w-node-_8c64938b-2000-3352-defd-e69154ecede5-6a95dbab" class="div-block-22">
+            <div id="w-node-_8c64938b-2000-3352-defd-e69154ecede8-6a95dbab" class="poppins-bold-30 text-color-white u-align-left center-mobile">O disparo de mensagens com<span class="span-balck"> MegaWpp tem muitos benefícios</span></div>
+            <a href="https://api.whatsapp.com/send?phone=5511910668088" target="_blank" class="bot-o-wpp w-button">QUERO CONTRATAR</a>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <section class="section-3">
+      <div class="w-layout-blockcontainer container-7 w-container">
+        <!-- <div class="espaco-3rem"></div> -->
+        <div class="poppins-semibold-30-rox">Marcas que confiam no TicTag</div>
+        <div class="div-block-23"><img src="{% static 'landing_page/images/Logo-Rare.svg' %}" loading="lazy" id="w-node-_06f21e24-c9a8-9221-8f3f-b307a42b3cf2-6a95dbab" alt=""><img src="{% static 'landing_page/images/Logo-Compritchas.svg' %}" loading="lazy" id="w-node-ab73d9e1-6ebe-807b-f9b6-b5bbbf348f02-6a95dbab" alt=""><img src="{% static 'landing_page/images/new_again_110.jpg' %}" loading="lazy" width="Auto" height="Auto" alt="" id="w-node-e3ddd83d-e362-ea19-32c6-1db71306c0c5-6a95dbab"><img src="{% static 'landing_page/images/0919_adb_Logotipo_final_A3.png' %}" loading="lazy" id="w-node-_0e5b2204-9234-992a-63d9-9b7b97dfb6be-6a95dbab" alt=""><img src="{% static 'landing_page/images/carrossel_novo_110.png' %}" loading="lazy" id="w-node-_65d1ffc8-8008-e761-5fa1-ab6475343c3e-6a95dbab" alt=""><img src="{% static 'landing_page/images/jadore_110.jpg' %}" loading="lazy" id="w-node-a3041dd8-582e-7ac6-2907-29d4f5ee7081-6a95dbab" alt=""><img src="{% static 'landing_page/images/logo-mundo-popis_90.jpg' %}" loading="lazy" id="w-node-_455a5e3a-5dac-26dc-f6e9-492cb1642572-6a95dbab" alt=""><img src="{% static 'landing_page/images/maria_fofura_110.jpg' %}" loading="lazy" id="w-node-_775d65e4-aa9e-89ac-4659-623e3bac1d66-6a95dbab" alt=""><img src="{% static 'landing_page/images/somos_duas_110.jpg' %}" loading="lazy" id="w-node-_90aea571-bf43-18f9-fe65-d2575180fce7-6a95dbab" alt=""></div>
+      </div>
+    </section>
+    <section style="position: relative; overflow: hidden;">
+      <img class="responsive-image" src="{% static 'landing_page/images/Fundo-Whatsapp2.png' %}" alt="Fundo de Suporte" style="width: 100%; height: auto; position: absolute; top: 0; left: 0; z-index: -1;">
+      <div class="w-layout-blockcontainer container-8 w-container" style="position: relative; z-index: 1; padding: 2rem;">
+        <div class="poppins-semibold-30-rox u-align-left color-text-white">Nosso suporte</div>
+        <div class="poppins-regular-16-preto u-align-left color-text-white center-mobile">
+          Sim, temos suporte integrado ao sistema e, se necessário,<br>
+          suporte via Whatsapp. É só nos chamar no<br>
+          ícone do Whatsapp do site ou no botão abaixo.
+        </div>
+        <a href="https://api.whatsapp.com/send?phone=5511951417219" target="_blank" class="bot-o-wpp2 w-button">Quero falar com o suporte</a>
+      </div>
+    </section>
+    <div style="display:none" class="bg-popup"></div>
+    <section id="planos" class="section-2">
+      <div class="w-layout-blockcontainer container-maior w-container">
+
+        <!-- BLACK FRIDAY 2025 - Banner de Topo - DESATIVADO EM 30/11/2025 - Hotfix -->
+        <!--
+        <div class="bf-banner" id="bfBanner" style="display: none;">
+          <h2 class="bf-banner-title">🔥 BLACK FRIDAY 2025</h2>
+          <p class="bf-banner-subtitle">50% OFF nos 2 primeiros meses</p>
+          <div class="bf-timer" id="bfTimer">
+            <div class="bf-timer-unit">
+              <div class="bf-timer-value" id="bfDays">00</div>
+              <div class="bf-timer-label">Dias</div>
+            </div>
+            <div class="bf-timer-unit">
+              <div class="bf-timer-value" id="bfHours">00</div>
+              <div class="bf-timer-label">Horas</div>
+            </div>
+            <div class="bf-timer-unit">
+              <div class="bf-timer-value" id="bfMinutes">00</div>
+              <div class="bf-timer-label">Minutos</div>
+            </div>
+            <div class="bf-timer-unit">
+              <div class="bf-timer-value" id="bfSeconds">00</div>
+              <div class="bf-timer-label">Segundos</div>
+            </div>
+          </div>
+        </div>
+        -->
+
+        <div id="w-node-b1ccd46f-7849-bb3d-d7f4-6007a5ff28f6-6a95dbab" class="conteudo-center">
+          <div class="poppins-regular-17-cin">PLANOS</div>
+          <div class="poppins-bold-30 text-color-pink">Escolha o plano mais adequado ao momento do seu negócio</div>
+        </div>
+        <div class="_3-colunas">
+          <div id="w-node-a959a72e-1ea1-ce50-5496-f0967635ab85-6a95dbab" class="plano">
+            <div class="poppins-bold-24">BÁSICO</div>
+            <div class="poppins-regular-16-preto u-align-center">Brechós que <br>estão iniciando</div>
+
+            <!-- Preço Normal (sempre visível) -->
+            <div class="opensans-bold-24 margin-top-2rem" id="normalPrice1">
+              R$<span class="opensans-bold-48">118,00</span>/MÊS
+            </div>
+
+            <!-- Box Preto Black Friday (aparece embaixo) - DESATIVADO EM 30/11/2025 - Hotfix -->
+            <!--
+            <div class="bf-price-box" id="bfPriceBox1" style="display: none;">
+              <div class="bf-price-box-label">🔥 BLACK FRIDAY</div>
+              <div class="bf-price-box-value">R$ 59,00/mês</div>
+              <div class="bf-price-box-note">*2 primeiros meses</div>
+            </div>
+            -->
+
+            <div class="linha"></div>
+            <div class="box-features">
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Painel de Controle (Dashboard)</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Tela de Vendas</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Gestão Automática de Repasses</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Contas a Pagar e a receber</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Comunicação via ponte com Whatsapp</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Precificação Ágil em lote</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Compatível com Impressora Térmica e impressora de página</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Imprime Etiquetas com Código de Barras</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Controle Financeiro</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Apuração Automática de Comissões de Vendedores</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Apuração de Resultado do Negócio</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">Apuração de Vendas por Forma de Pagamento</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto">App Celular para Fornecedores</div>
+              </div>
+              <div class="div-block-14">
+                <div class="poppins-regular-16-preto"></div>
+              </div>
+            </div>
+            <div class="box-rodape">
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Symbol.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto weight-medium">Usuário adicional R$ 50,00/mês</div>
+              </div>
+              <div class="poppins-14">(O plano já inclui 1 usuário e você pode adicionar mais usuários ao seu plano.)</div>
+              <a id="w-node-accac238-6a6c-9d1e-4078-ce13b4276698-6a95dbab" href="/accounts/signup/B%C3%81SICO/" class="button poppins-regular-16-branco w-button">QUERO CONTRATAR</a>
+            </div>
+          </div>
+          <div id="w-node-_44bfb7cb-ec8e-8b00-fbf8-9d6e3ce51fc5-6a95dbab" class="plano">
+            <div class="mais-vendido">
+              <div class="poppins-regular-16-branco"><strong>MAIS VENDIDO</strong></div>
+            </div>
+            <div class="topo">
+              <div class="poppins-bold-24">ESSENCIAL</div>
+              <div class="poppins-regular-16-preto u-align-center">Brechós consolidados que <br>querem crescer ainda mais.</div>
+
+              <!-- Preço Normal (sempre visível) -->
+              <div class="opensans-bold-24 margin-top-2rem" id="normalPrice2">
+                R$<span class="opensans-bold-48">198,00</span>/MÊS
+              </div>
+
+              <!-- Box Preto Black Friday (aparece embaixo) - DESATIVADO EM 30/11/2025 - Hotfix -->
+              <!--
+              <div class="bf-price-box" id="bfPriceBox2" style="display: none;">
+                <div class="bf-price-box-label">🔥 BLACK FRIDAY</div>
+                <div class="bf-price-box-value">R$ 99,00/mês</div>
+                <div class="bf-price-box-note">*2 primeiros meses</div>
+              </div>
+              -->
+
+              <div class="linha"></div>
+              <div class="box-features">
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto black">Tudo do plano Basico + Essencial</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Gestão de Cashback</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Gestão de Campanhas Promocionais</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Gestão de Lotes</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Sugestão de Preço por Inteligência Artificial</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Pré-venda, Condicional, Bag, Reservas, Lives</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Ranking de Clientes</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Ranking de Fornecedores</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Grade Categorias x Tamanhos</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Gráfico de Categorias, tamanhos e marcas mais vendidos</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">App de fotos para celular</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">App de inventário</div>
+                </div>
+              </div>
+            </div>
+            <div class="box-rodape">
+              <div class="div-block-14"><img src="{% static 'landing_page/images/CamSymbol.svg' %}" loading="lazy" alt="">
+                <div class="poppins-14">4 mil fotos já incluídas. Cada mil fotos adicionais: R$ 50,00/mês.</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Symbol.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto weight-medium">Usuário adicional R$ 40,00/mês</div>
+              </div>
+              <div class="poppins-14">(O plano já inclui 1 usuário e você pode adicionar mais usuários ao seu plano.)</div>
+              <a id="w-node-_44bfb7cb-ec8e-8b00-fbf8-9d6e3ce51fde-6a95dbab" href="/accounts/signup/ESSENCIAL/" class="button poppins-regular-16-branco w-button">QUERO CONTRATAR</a>
+            </div>
+          </div>
+          <div id="w-node-c4674cbb-b727-afda-61b5-6a5588f8c724-6a95dbab" class="plano">
+            <div class="topo">
+              <div class="poppins-bold-24">TOTAL</div>
+              <div class="poppins-regular-16-preto u-align-center">Brechós que precisam<br>emitir notas fiscais.</div>
+
+              <!-- Preço Normal (sempre visível) -->
+              <div class="opensans-bold-24 margin-top-2rem" id="normalPrice3">
+                R$<span class="opensans-bold-48">288,00</span>/MÊS
+              </div>
+
+              <!-- Box Preto Black Friday (aparece embaixo) - DESATIVADO EM 30/11/2025 - Hotfix -->
+              <!--
+              <div class="bf-price-box" id="bfPriceBox3" style="display: none;">
+                <div class="bf-price-box-label">🔥 BLACK FRIDAY</div>
+                <div class="bf-price-box-value">R$ 144,00/mês</div>
+                <div class="bf-price-box-note">*2 primeiros meses</div>
+              </div>
+              -->
+
+              <div class="linha"></div>
+              <div class="box-features">
+                <div class="div-block-41"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto black">Tudo do plano essencial + total</div>
+                </div>
+                <div class="div-block-14"><img src="{% static 'landing_page/images/Check.svg' %}" loading="lazy" alt="">
+                  <div class="poppins-regular-16-preto">Emissão de Cupom Fiscal-NFCE ou NFE, em breve NFSe</div>
+                </div>
+                <div class="div-block-14">
+                  <div class="poppins-14">Até 100 emissões por mês já incluídas. <a href="#" data-w-id="f8e50738-07a0-50ab-8b99-b3feae43ef22">Clique aqui para ver o pacote adicional que melhor atende suas necessidades.</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-w-id="fcbb2eef-c1e1-3e22-e2b2-726a5bf43899" class="div-block-14"></div>
+            <div class="box-rodape">
+              <div class="div-block-14"><img src="{% static 'landing_page/images/CamSymbol.svg' %}" loading="lazy" alt="">
+                <div class="poppins-14">4 mil fotos já incluídas. Cada mil fotos adicionais: R$ 50,00/mês.</div>
+              </div>
+              <div class="div-block-14"><img src="{% static 'landing_page/images/Symbol.svg' %}" loading="lazy" alt="">
+                <div class="poppins-regular-16-preto weight-medium">Usuário adicional R$ 30,00/mês</div>
+              </div>
+              <div class="poppins-14">(O plano já inclui 1 usuário e você pode adicionar mais usuários ao seu plano.)</div>
+              <a id="w-node-c4674cbb-b727-afda-61b5-6a5588f8c73d-6a95dbab" href="/accounts/signup/TOTAL/" class="button poppins-regular-16-branco w-button">QUERO CONTRATAR</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box "USE GRÁTIS POR 14 DIAS" Centralizado -->
+        <div style="background-color: #f8f9fa; border-radius: 10px; padding: 40px 20px; text-align: center; margin-top: 50px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <div class="poppins-bold-30 text-color-pink" style="margin-bottom: 15px;">USE GRÁTIS POR 14 DIAS</div>
+          <div class="poppins-regular-16-preto" style="margin-bottom: 25px; text-align: center;">Conheça o sistema sem compromisso</div>
+          <a href="/accounts/signup/free/" class="button poppins-regular-16-branco w-button" style="display: inline-block; margin-bottom: 20px;">COMEÇAR A USAR GRÁTIS AGORA</a>
+          <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 15px;">
+            <div class="poppins-14" style="color: #28a745;"><i class="fa fa-check-circle"></i> Sem cartão de crédito</div>
+            <div class="poppins-14" style="color: #28a745;"><i class="fa fa-check-circle"></i> Sem cobrança automática</div>
+            <div class="poppins-14" style="color: #28a745;"><i class="fa fa-check-circle"></i> Não precisa cancelar</div>
+          </div>
+        </div>
+
+        <!-- Disclaimer Black Friday - DESATIVADO EM 30/11/2025 - Hotfix -->
+        <!--
+        <div class="bf-disclaimer" id="bfDisclaimer" style="display: none;">
+          <strong>BLACK FRIDAY 2025:</strong> Desconto de 50% aplicado nas mensalidades dos 2 primeiros meses. Válido de 17 a 30 de Novembro de 2025. Não cumulativo com outros cupons de desconto.
+        </div>
+        -->
+
+        <div id="modal_plano" style="display:none" class="pop-up">
+          <div class="div-block-44">
+            <div class="poppins-bold-24">Como contamos as suas Notas Fiscais e suas Fotos?<br></div>
+            <a  onclick="fexar_modal_plano()" class="link-block-4 w-inline-block bg-white"><img src="{% static 'landing_page/images/exit-icon.svg' %}" loading="lazy" data-w-id="e52d3164-f5ac-2bc0-2595-840d42b023e6" alt="" class="image-11"></a>
+          </div>
+          <div class="div-block-43">
+            <div class="poppins-14"><strong class="text-roxo">Sobre Notas Fiscais:<br></strong><br>Analise a sua necessidade e, caso necessário, veja na tabela os pacotes adicionais disponíveis para sua escolha:</div><img src="{% static 'landing_page/images/Tabela.svg' %}" loading="lazy" alt="" class="img-popup">
+            <div class="poppins-14">Seu plano já inclui a emissão de 100 documentos fiscais por mês. Falamos em &quot;documentos fiscais&quot; porque você pode emitir tanto NFCe (Cupom Fiscal) quanto NFe. Os dois modelos são contados como &quot;documentos fiscais&quot; e a emissão de qualquer um dois dois equivale a 1 emissão.<br><br>Por exemplo, se você acredita que vai usar algo como 400 documentos fiscais por mês, adicione o pacote de 300 emissões. Assim somando as 100 emissões da sua assinatura + o pacote de 300 emissões, você terá 400 emissões para fazer por mês. <strong>A cada mês essa contagem zera e você terá novamente 400 emissões de crédito para usar no mês.<br><br>A utilização das emissões não é cumulativa, ou seja, caso em um certo mês você não utilize totalmente o seu pacote, o que sobra não é adicionado ao mês seguinte. Ou seja, no mês seguinte você começa novamente com o seu pacote total adquirido, no exemplo acima, 400 emissões.<br><br>‍</strong>O sistema vai te apresentar um &quot;contador&quot; de emissão de Notas Fiscais e através do acompanhamento dele você pode dimensionar se vai precisar adicionar um dos pacotes ao seu plano para atender a sua demanda de emissão de Notas Fiscais.<br><br>Tenha em mente que o sistema proporciona uma funcionalidade para emissão de Notas Fiscais de entrada que visa justamente reduzir a necessidade de emissão deste tipo de Nota, trazendo, inclusive enorme agilidade ao seu processo de gestão fiscal, pois tudo foi pensado para a operação de brechós e lojas de roupas.</div>
+            <div class="poppins-14"><strong class="text-roxo"><br>Sobre Fotos : </strong><br><br>Seu plano já inclui um estoque de 4 mil fotos para sua loja. Caso seja necessário ter mais do que 4 mil fotos em sua loja basta adicionar lotes de mil fotos. Você poderá incluir ou remover esses lotes de mil fotos quando quiser na sua tela de administração de sua assinatura e plano.<br><br>É importante ressaltar que assim que uma peça é vendida, a foto dela é excluída, e você passa a ter novamente direito ao espaço de foto deixado pela peça que foi vendida. Ou seja, você não precisa ficar comprando lotes adicionais de fotos sempre que cadastrar peças pois o giro do seu estoque vai liberando fotos para seu uso.<br><br>Isso significa que as 4 mil fotos já incluídas em seu plano podem ser suficientes para sua operação. Basta que para isso seu estoque A VENDA não seja maior do que 4 mil peças.</div>
+          </div>
+          <div class="div-block-45">
+            <div class="poppins-14 text-roxo">Caso ainda tenha dúvidas sobre a emissão de Notas Fiscais ou uso das Fotos, por favor, pode entrar em contato com o nosso suporte pelo Whatsapp</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section class="section-2">
+      <div class="w-layout-blockcontainer container-11 w-container">
+        <div class="div-block-35">
+          <div class="poppins-semibold-30-rox u-align-left u-align-center-mobile">O que dizem nossos clientes</div>
+        </div>
+        <div data-delay="4000" data-animation="slide" class="slider-2 w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
+          <div class="mask-2 w-slider-mask">
+            <div class="slide-2 w-slide">
+              <div class="content-testimonials">
+                <div id="w-node-e637e687-d8ae-a2a9-fed2-5a1a7ced7b9a-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Estou muito satisfeita com o sistema de controle implementado em nosso brechó. Desde sua adoção, a gestão das operações melhorou significativamente. O controle de estoque em tempo real facilita decisões rápidas, e a interface intuitiva permite que a equipe se adapte facilmente. Os relatórios detalhados oferecem uma visão clara do desempenho do brechó, essencial para o planejamento estratégico. A integração com outras plataformas e o suporte técnico ágil nos dão confiança em uma ferramenta robusta e em constante evolução. O sistema TicTag é crucial para o sucesso do nosso brechó. </div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/katia_zaneti_80x80.png' %}" loading="lazy" id="w-node-e637e687-d8ae-a2a9-fed2-5a1a7ced7ba1-6a95dbab" alt="">
+                    <div id="w-node-e637e687-d8ae-a2a9-fed2-5a1a7ced7ba2-6a95dbab">
+                      <div id="w-node-e637e687-d8ae-a2a9-fed2-5a1a7ced7ba3-6a95dbab" class="poppins-medium-18-r">Katia Zanetti</div>
+                      <div id="w-node-e637e687-d8ae-a2a9-fed2-5a1a7ced7ba5-6a95dbab" class="poppins-regular-16-preto u-align-left">Maria Fofura Brechó</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="w-node-_569ff2c2-e3fa-e951-e392-61417eb0f5cb-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Hoje eu tenho tudo que preciso dentro do sistema Tic Tag. O sistema trouxe uma realidade que nós buscavamos, organização, trabalhar on line, facilidade de contato com fornecedoras por link de whatsapp, e o mais importante, economia de tempo. A satisfação e confiança que sentimos não tem preço. Com o sistema, podemos crescer com tranquilidade e certeza de que tudo está sob controle.</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/Rayanne-Rare-Brecho.svg' %}" loading="lazy" id="w-node-_569ff2c2-e3fa-e951-e392-61417eb0f5d0-6a95dbab" alt="">
+                    <div id="w-node-_569ff2c2-e3fa-e951-e392-61417eb0f5d1-6a95dbab">
+                      <div id="w-node-_569ff2c2-e3fa-e951-e392-61417eb0f5d2-6a95dbab" class="poppins-medium-18-r">Rayanne</div>
+                      <div id="w-node-_569ff2c2-e3fa-e951-e392-61417eb0f5d4-6a95dbab" class="poppins-regular-16-preto u-align-left">Rare Brechó</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-2 w-slide">
+              <div class="content-testimonials">
+                <div id="w-node-ce08afab-308e-b562-ec34-ee6b407df720-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Considero o TicTag fundamental para o sucesso do meu brechó. Hoje só recebo elogios de minhas clientes e fornecedoras sobre a qualidade dos meus controles e organização do meu negócio. E tudo isso com muito mais tempo livre.</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/Glaucia-Baruch.svg' %}" loading="lazy" id="w-node-_21acf905-43a3-05f9-9f34-6cf2004be3f4-6a95dbab" alt="">
+                    <div id="w-node-bc1d2321-c73c-32c2-7fbd-26fd2049dd2e-6a95dbab">
+                      <div id="w-node-_96972646-1a79-abfc-05d8-250ec0af4c51-6a95dbab" class="poppins-medium-18-r">Gláucia Baruch</div>
+                      <div id="w-node-_6f123cf6-687c-9ce9-498a-be08fd528a17-6a95dbab" class="poppins-regular-16-preto u-align-left">Compritchas Brechó</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="w-node-_191e140c-86fe-81d7-59dc-3c4f146f1c91-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Desde a implementação do Tictag em nosso brechó, conseguimos organizar melhor nosso estoque, agilizar o atendimento aos clientes, fornecedoras e consequentemente, aumentar nossas vendas. O sistema é intuitivo, fácil de usar, e tem sido fundamental para o crescimento do nosso negócio. Estamos muito satisfeitas com os resultados.</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/lika_80x80.png' %}" loading="lazy" id="w-node-_191e140c-86fe-81d7-59dc-3c4f146f1c96-6a95dbab" alt="">
+                    <div id="w-node-_191e140c-86fe-81d7-59dc-3c4f146f1c97-6a95dbab">
+                      <div id="w-node-_191e140c-86fe-81d7-59dc-3c4f146f1c98-6a95dbab" class="poppins-medium-18-r">Lika</div>
+                      <div id="w-node-_191e140c-86fe-81d7-59dc-3c4f146f1c9a-6a95dbab" class="poppins-regular-16-preto u-align-left">New Again</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-2 w-slide">
+              <div class="content-testimonials">
+                <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d75d-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Não consigo ver a J’adore Boutique Brechó sem o sistema Tictag. Sua funcionalidade é essencial para o andamento da gestão complexa que é a consignação. O suporte é rápido e preciso. As fornecedoras amam o aplicativo, elogiam a organização e transparência. O sistema é intuitivo, fácil e prático. Não fico mais sem.</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/kris_80x80.png' %}" loading="lazy" id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d762-6a95dbab" alt="">
+                    <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d763-6a95dbab">
+                      <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d764-6a95dbab" class="poppins-medium-18-r">Kris</div>
+                      <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d766-6a95dbab" class="poppins-regular-16-preto u-align-left">J&#x27;adore Boutique Brechó</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d768-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">TicTag meu parceiro a quase 1 ano e meio. E cada dia que passa fico ainda mais perplexa com tanta atualização funcional! E falando de atualização, eles são especialistas nesse assunto, quando eu idealizo algo na minha cabeça, eles já estão botando em prática e concluindo! Sistema que facilita a minha vida e das minhas clientes diariamente. Sistema claro, super organizado. É sensacional..</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/tais_80x80.png' %}" loading="lazy" id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d76d-6a95dbab" alt="">
+                    <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d76e-6a95dbab">
+                      <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d76f-6a95dbab" class="poppins-medium-18-r">Taís Shimizu</div>
+                      <div id="w-node-_9231bb9c-1114-e10b-80f1-be7be154d771-6a95dbab" class="poppins-regular-16-preto u-align-left">Carrossel Reutilize</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-2 w-slide">
+              <div class="content-testimonials">
+                <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae860-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Há muito tempo procurava um sistema que atendesse as demandas de um brechó. Quando encontrei o Tic Tag fiquei surpresa com tudo que ele oferecia. O Ana Duleh é um brechó conceito administrado por uma consultora de imagem. Com isso procurava um sistema  diferenciado para atender a demanda exigente das minhas clientes e fornecedoras. Quando percebi que todo meu tempo com fechamento de planilhas seria resolvido e minhas fornecedoras acompanhariam suas vendas na palma de suas mãos, não pensei duas vezes. O sistema faz as tarefas mais difíceis na gestão do meu BreXó. E a cada melhoria que o sistema vem implantando me encanta cada dia mais .</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/ana_80x80.png' %}" loading="lazy" id="w-node-_44265235-88a3-289b-dc2d-5922043ae865-6a95dbab" alt="">
+                    <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae866-6a95dbab">
+                      <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae867-6a95dbab" class="poppins-medium-18-r">Ana Duleh</div>
+                      <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae869-6a95dbab" class="poppins-regular-16-preto u-align-left">Ana Duleh BreXó</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae86b-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Tic Tag foi a melhor solução que encontrei para organizar meu brechó. Eu fazia tudo no papel e planilha mas para crescer e ter um controle melhor de tudo que entrava, vendia e era repassado para as fornecedoras eu precisei do Tic Tag porque senão era muita bagunça. É uma ferramenta completa aqui no meu brechó e tem o app para as fornecedoras, que ajuda muito pois elas tem autonomia para ver o saldo e as vendas a qualquer hora! Agora conseguimos fazer todo o cadastro das peças com código de barras, controle de vendas, repasses além de poder consultar informações importantes para elaborar metas e gerenciar o brechó. Indico muito o sistema!</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/daniela_prado_80x80.jpg' %}" loading="lazy" id="w-node-_44265235-88a3-289b-dc2d-5922043ae870-6a95dbab" alt="">
+                    <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae871-6a95dbab">
+                      <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae872-6a95dbab" class="poppins-medium-18-r">Daniela Prado</div>
+                      <div id="w-node-_44265235-88a3-289b-dc2d-5922043ae874-6a95dbab" class="poppins-regular-16-preto u-align-left">Mundo Poopiss Brechó</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-2 w-slide">
+              <div class="content-testimonials">
+                <div id="w-node-e2d5569a-16c6-afd8-cb14-846b3ff97e5a-6a95dbab" class="coluna-depoimentos">
+                  <div class="poppins-regular-16-preto u-align-left">Tictag mudou completamente nossa rotina, tornando-a mais leve e organizada. Graças ao sistema, hoje temos total controle sobre vendas, estoque e fornecedoras. Facilitou o nosso trabalho em 100%, ficando ainda mais ágil e organizado. Oque transmite ainda mais segurança e credibilidade do nosso brechó!</div>
+                  <div class="div-block-33"></div>
+                  <div class="div-block-34"><img src="{% static 'landing_page/images/somos_duas_80x80.jpg' %}" loading="lazy" id="w-node-e2d5569a-16c6-afd8-cb14-846b3ff97e5f-6a95dbab" alt="">
+                    <div id="w-node-e2d5569a-16c6-afd8-cb14-846b3ff97e60-6a95dbab">
+                      <div id="w-node-e2d5569a-16c6-afd8-cb14-846b3ff97e61-6a95dbab" class="poppins-medium-18-r">Somos Duas Brechó</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="left-arrow w-slider-arrow-left">
+            <div class="icon w-icon-slider-left"></div>
+          </div>
+          <div class="right-arrow w-slider-arrow-right">
+            <div class="icon w-icon-slider-right"></div>
+          </div>
+          <div class="slide-nav w-slider-nav"></div>
+        </div>
+      </div>
+    </section>
+    <section class="tabela">
+      <div class="w-layout-blockcontainer container-5 w-container">
+        <div class="container-center">
+          <!-- <div class="poppins-bold-30 text-color-pink">Compare funcionalidades</div> -->
+          <div class="poppins-bold-30 text-color-pink"></div>
+          <!-- <div class="tabela-div">
+            <div id="linh" class="linha-nova-copy">
+              <div id="w-node-_3a54abb5-10e1-edad-fe2a-1e4ab36dc882-6a95dbab">
+                <div class="poppins-regular-16-preto _11">Funcionalidade</div>
+              </div>
+              <div id="w-node-_00eafe4c-f838-7533-ced3-422cb9c25bf6-6a95dbab" class="bloco-cms">
+                <div class="div-block-11">
+                  <div class="poppins-regular-16-preto _11">Básico</div>
+                </div>
+                <div class="div-block-11">
+                  <div class="poppins-regular-16-preto _11">Essencial</div>
+                </div>
+                <div class="div-block-11">
+                  <div class="poppins-regular-16-preto _11">Total</div>
+                </div>
+              </div>
+            </div>
+            <div class="linha-nova">
+              <div class="collection-list-wrapper w-dyn-list">
+                <div role="list" class="w-dyn-items">
+                  <div role="listitem" class="collection-item w-dyn-item">
+                    <div class="linha-nova-copy">
+                      <div id="w-node-_198b1c82-9960-376b-f96a-70d0f204d18c-6a95dbab" class="div-block-19">
+                        <div id="w-node-d3b5cd7a-c466-e0ce-da37-0ee6f07a272d-6a95dbab" class="poppins-regular-16-preto u-align-left _14 w-dyn-bind-empty"></div>
+                      </div>
+                      <div class="bloco-cms">
+                        <div class="div-block-11"><img src="{% static 'landing_page/images/Icon-OK.png' %}" loading="lazy" alt="" class="image-tabela"><img src="{% static 'landing_page/images/Icon-NO.png' %}" loading="lazy" alt="" class="image-tabela"></div>
+                        <div class="div-block-11"><img src="{% static 'landing_page/images/Icon-OK.png' %}" loading="lazy" alt="" class="image-tabela"><img src="{% static 'landing_page/images/Icon-NO.png' %}" loading="lazy" alt="" class="image-tabela"></div>
+                        <div class="div-block-11"><img src="{% static 'landing_page/images/Icon-OK.png' %}" loading="lazy" alt="" class="image-tabela"><img src="{% static 'landing_page/images/Icon-NO.png' %}" loading="lazy" alt="" class="image-tabela"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-dyn-empty">
+                  <div>No items found.</div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+    <div>
+      <section class="rodap">
+        <div class="w-layout-blockcontainer container-maior w-container">
+          <div class="div-block-24"><img src="{% static 'landing/images/log_nova_tictag_branca_400x105.png' %}" loading="lazy" id="w-node-_990ed6cc-2609-47b2-0d78-744c949252ce-949252ca" alt="TicTag" class="image-5">
+            <div id="w-node-_990ed6cc-2609-47b2-0d78-744c949252cf-949252ca" class="div-block-25">
+              <div class="poppins-bold-18-r text-white">Sobre a SimFazemos :</div>
+              <div class="poppins-regular-18-rox text-white height-32">Criamos e aprimoramos continuamente, softwares que, realmente, resolvem. Reduzem seu trabalho e aumentam seu faturamento.</div>
+            </div>
+            <div id="w-node-_990ed6cc-2609-47b2-0d78-744c949252d4-949252ca" class="div-block-25">
+              <div class="poppins-bold-18-r text-white">Links Importantes :</div>
+              <div class="poppins-regular-18-rox text-white height-32">
+                <a href="/landing/termoscondicoes/" target="_blank" class="link">Leia nossos Termos e Condições de Uso, Política de Privacidade</a><br>
+                <a href="/landing/excluir-conta/" target="_blank" class="link">Excluir conta e dados</a>
+              </div>
+            </div>
+            <div id="w-node-_990ed6cc-2609-47b2-0d78-744c949252da-949252ca" class="div-block-25">
+              <div class="poppins-bold-18-r text-white">Fale Conosco :</div>
+              <div class="poppins-regular-18-rox text-white height-32">contato@tictag.com.br</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="rodap bg-white">
+        <div class="w-layout-blockcontainer container-maior w-container">
+          <div class="div-block-26">
+            <div id="w-node-_990ed6cc-2609-47b2-0d78-744c949252e2-949252ca" class="poppins-22px u-align-right center-mobile">Conectividade com os maiores players do mercado</div>
+            <div id="w-node-_990ed6cc-2609-47b2-0d78-744c949252e4-949252ca" class="div-block-27"><img src="{% static 'landing_page/images/logo-parceiro-multiplus.svg' %}" loading="lazy" id="w-node-_990ed6cc-2609-47b2-0d78-744c949252e6-949252ca" alt=""><img src="{% static 'landing_page/images/logo-parceiro-nuvemshow.svg' %}" loading="lazy" id="w-node-_990ed6cc-2609-47b2-0d78-744c949252e7-949252ca" alt=""><img src="{% static 'landing_page/images/logo-nfc-e.svg' %}" loading="lazy" id="w-node-_990ed6cc-2609-47b2-0d78-744c949252e9-949252ca" alt=""></div>
+          </div>
+          <div class="div-block-28">
+            <div class="poppins-10">Copyright © 2024. Sim, Fazemos.</div>
+            <div class="poppins-10">Blah Criativa</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66476d6cfc6de91d6a95dba5" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="{% static 'landing_page/js/webflow.js' %}" type="text/javascript"></script>
+  <script>
+function fexar_modal_plano() {
+    document.getElementById('modal_plano').style.display = 'none';
+    document.querySelector('.bg-popup').style.display = 'none';
+}
+
+/**
+ * ===== PROPAGAÇÃO AUTOMÁTICA DE UTMs PARA TRACKING DE MARKETING =====
+ * Objetivo: Capturar parâmetros UTM da URL da landing page e propagá-los
+ * automaticamente para todos os links de signup, garantindo que campanhas
+ * de marketing (Facebook Ads, Google Ads, etc.) sejam corretamente atribuídas.
+ *
+ * Fluxo:
+ * 1. Usuário chega via: lp.tictag.com.br/?utm_source=facebook&utm_campaign=teste
+ * 2. Script captura UTMs da URL atual
+ * 3. Script adiciona UTMs em TODOS os links de signup
+ * 4. Usuário clica e vai para: /accounts/signup/free/?utm_source=facebook...
+ * 5. Página de signup captura UTMs e envia para backend
+ * 6. Backend registra atribuição correta no MarketingAttribution
+ *
+ * Autor: Claude Code - TicTag Marketing Attribution Fix
+ * Data: 2025-01-27
+ */
+(function() {
+    // 1️⃣ Capturar UTMs da URL atual
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmParams = {};
+
+    // Lista de parâmetros UTM padrão do marketing digital
+    const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+    utmFields.forEach(param => {
+        const value = urlParams.get(param);
+        if (value) {
+            utmParams[param] = value;
+            console.log(`✅ UTM capturado na landing: ${param} = ${value}`);
+        }
+    });
+
+    // Se não há UTMs, não fazer nada (tráfego direto)
+    if (Object.keys(utmParams).length === 0) {
+        console.log('ℹ️ Nenhum UTM encontrado - tráfego direto');
+        return;
+    }
+
+    console.log('🎯 UTMs capturados:', utmParams);
+
+    // 2️⃣ Aguardar DOM carregar e atualizar links
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', propagateUTMs);
+    } else {
+        propagateUTMs();
+    }
+
+    function propagateUTMs() {
+        // Selecionar TODOS os links que levam para /accounts/signup/
+        const signupLinks = document.querySelectorAll('a[href*="/accounts/signup/"]');
+
+        if (signupLinks.length === 0) {
+            console.log('⚠️ Nenhum link de signup encontrado');
+            return;
+        }
+
+        console.log(`🔗 Encontrados ${signupLinks.length} links de signup para atualizar`);
+
+        signupLinks.forEach((link, index) => {
+            const originalHref = link.getAttribute('href');
+
+            try {
+                // Criar URL completa (resolve paths relativos)
+                const url = new URL(originalHref, window.location.origin);
+
+                // Adicionar cada UTM à query string
+                Object.keys(utmParams).forEach(param => {
+                    url.searchParams.set(param, utmParams[param]);
+                });
+
+                // Atualizar o href do link (apenas pathname + search, sem origin)
+                const newHref = url.pathname + url.search;
+                link.setAttribute('href', newHref);
+
+                console.log(`✅ Link ${index + 1} atualizado: ${originalHref} → ${newHref}`);
+            } catch (error) {
+                console.error(`❌ Erro ao atualizar link ${index + 1}:`, error);
+            }
+        });
+
+        console.log('✅ Propagação de UTMs concluída! Campanhas serão corretamente atribuídas.');
+    }
+})();
+
+// ========================================
+// BLACK FRIDAY 2025 - LÓGICA DE CONTROLE
+// DESATIVADO EM 30/11/2025 - Hotfix
+// ========================================
+/*
+(function() {
+    'use strict';
+
+    // Datas da Black Friday (17 a 30 de Novembro de 2025)
+    const BF_START = new Date('2025-11-17T00:00:00-03:00');
+    const BF_END = new Date('2025-11-30T23:59:59-03:00');
+
+    // Função para verificar se está no período Black Friday
+    function isBlackFriday() {
+        const now = new Date();
+        return now >= BF_START && now <= BF_END;
+    }
+
+    // Função para calcular tempo restante (dias, horas, minutos, segundos)
+    function getTimeRemaining() {
+        const now = new Date();
+        const diffTime = BF_END - now;
+
+        if (diffTime <= 0) {
+            return { days: 0, hours: 0, minutes: 0, seconds: 0, total: 0 };
+        }
+
+        const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+        return { days, hours, minutes, seconds, total: diffTime };
+    }
+
+    // Função para formatar número com zero à esquerda
+    function padZero(num) {
+        return num.toString().padStart(2, '0');
+    }
+
+    // Função para atualizar contador regressivo
+    function updateTimer() {
+        const time = getTimeRemaining();
+
+        const daysEl = document.getElementById('bfDays');
+        const hoursEl = document.getElementById('bfHours');
+        const minutesEl = document.getElementById('bfMinutes');
+        const secondsEl = document.getElementById('bfSeconds');
+
+        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+        if (time.total > 0) {
+            daysEl.textContent = padZero(time.days);
+            hoursEl.textContent = padZero(time.hours);
+            minutesEl.textContent = padZero(time.minutes);
+            secondsEl.textContent = padZero(time.seconds);
+        } else {
+            // Promoção encerrada
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+        }
+    }
+
+    // Função para mostrar/ocultar elementos Black Friday
+    function toggleBlackFridayElements() {
+        const isBF = isBlackFriday();
+
+        // Elementos a controlar
+        const elements = {
+            banner: document.getElementById('bfBanner'),
+            disclaimer: document.getElementById('bfDisclaimer')
+        };
+
+        // Mostrar/ocultar banner e disclaimer
+        if (elements.banner) elements.banner.style.display = isBF ? 'block' : 'none';
+        if (elements.disclaimer) elements.disclaimer.style.display = isBF ? 'block' : 'none';
+
+        // Controlar preços nos 3 planos
+        for (let i = 1; i <= 3; i++) {
+            const normalPrice = document.getElementById(`normalPrice${i}`);
+            const bfPriceBox = document.getElementById(`bfPriceBox${i}`);
+
+            if (normalPrice && bfPriceBox) {
+                if (isBF) {
+                    // Modo Black Friday: preço normal riscado + box preto com preço BF
+
+                    // Aplicar tachado em elementos filhos (evita linha dupla)
+                    const textNodes = Array.from(normalPrice.childNodes);
+                    textNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                            // Envolver texto solto em span com tachado
+                            const span = document.createElement('span');
+                            span.style.textDecoration = 'line-through';
+                            span.style.opacity = '0.7';
+                            span.textContent = node.textContent;
+                            node.replaceWith(span);
+                        } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'SPAN') {
+                            // Aplicar tachado em spans existentes
+                            node.style.textDecoration = 'line-through';
+                            node.style.opacity = '0.7';
+                            node.style.color = '#8d20ca';
+                        }
+                    });
+
+                    bfPriceBox.style.display = 'block';
+                } else {
+                    // Modo Normal: restaurar estado original
+
+                    // Remover modificações (recarregar conteúdo original)
+                    normalPrice.style.textDecoration = 'none';
+                    normalPrice.style.opacity = '1';
+
+                    const spans = normalPrice.querySelectorAll('span');
+                    spans.forEach(span => {
+                        span.style.textDecoration = 'none';
+                        span.style.opacity = '1';
+                        span.style.color = '#8d20ca';
+                    });
+
+                    bfPriceBox.style.display = 'none';
+                }
+            }
+        }
+
+        // Atualizar timer se estiver no período
+        if (isBF) {
+            updateTimer();
+        }
+
+        console.log(`🔥 Black Friday Mode: ${isBF ? 'ATIVO' : 'INATIVO'}`);
+    }
+
+    // Executar quando DOM carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleBlackFridayElements();
+
+        // Se estiver no período Black Friday, atualizar contador a cada segundo
+        if (isBlackFriday()) {
+            setInterval(updateTimer, 1000); // Atualiza a cada 1 segundo
+        }
+    });
+})();
+*/
+
+  </script>
+</body>
+</html>

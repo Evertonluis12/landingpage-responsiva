@@ -1,0 +1,466 @@
+{% extends 'gestao/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load subtractComission %}
+<!-- {% load crispy_forms_tags %} -->
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+<style>
+	table.dataTable td {
+		font-size: 0.8em;
+	}
+	table.dataTable th {
+		font-size: 0.8em;
+	}
+	.rowcolor >td {
+		background-color: #c7dcfc !important;
+	}
+	.badge {
+		vertical-align:middle !important;
+		margin-top: 1.2em;
+	}
+</style>
+
+
+<div class="container-fluid">
+	<container class="card border-primary-custom ml-5 mr-4 mb-5 mt-2">
+		<div class="col-12 mr-2 mt-2">
+			<h3 class="card-label text-primary font-weight-bold">Evolução Geral</h3>
+		</div>
+		<div class="row ml-2 mr-2">
+			<div class="col-lg-6 col-xl-3">
+				<div class="card card-custom gutter-b bg-white border-0 theme-circle theme-circle-primary">
+					<div class="card-body border-primary-custom border-0">
+						<h3 class="text-body font-weight-bold">TRIALS</h3>
+						<div class="mt-3">
+							<div class="d-flex align-items-center">
+								<a style="font-size:30px; font-weight:bold;">{{activeStoreCount}}</a>
+							</div>
+							<div class="text-black-50 mt-0">{{lastWeekCreatedStore}} lojas nos últimos 7 dias</div>
+							<div class="text-black-50 mt-0">{{lastsixtyCreatedStore}} lojas nos últimos 60 dias</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3">
+				<div class="card card-custom gutter-b bg-white border-0 theme-circle theme-circle theme-circle-secondary">
+					<div class="card-body border-primary-custom border-0">
+						<h3 class="text-body font-weight-bold">PAGANTES</h3>
+						<div class="mt-3">
+							<div class="d-flex align-items-center">
+								<a style="font-size:30px; font-weight:bold;">{{activeStorePaid}}</a>
+							</div>
+							<div class="text-black-50 mt-0">
+								Ticket Médio: {{ticket_medio|safe}} 
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3">
+				<div class="card card-custom gutter-b bg-white border-0 theme-circle theme-circle-success">
+					<div class="card-body border-primary-custom border-0">
+						<h3 class="text-body font-weight-bold">$ PLANO</h3>
+						<div class="mt-3">
+							<div class="d-flex align-items-center">
+								<a style="font-size:30px; font-weight:bold;">{{faturamento_plano}}</a>
+							</div>
+							<div class="text-black-50 mt-0">
+								Faturamento Usuários: {{faturamento_usuarios|safe}} 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-xl-3">
+				<div class="card card-custom gutter-b bg-white border-0 theme-circle theme-circle-info">
+					<div class="card-body border-primary-custom border-0">
+						<h3 class="text-body font-weight-bold">$ TOTAL</h3>
+						<div class="mt-3">
+							<div class="d-flex align-items-center">
+								<a style="font-size:30px; font-weight:bold;">{{faturamento_total}}</a>
+
+								<span class="font-weight-bold font-size-h4 {% if isIncreasing %}text-success{% else %}text-danger{% endif %}">{{lastYearVendidaComparision}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</container>
+	
+	<div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card card-custom gutter-b bg-white border-1">
+						<div class="card-body border-primary-custom border-1">
+							<div class=" table-responsive" id="printableTable">
+								<div id="productUnitTable_wrapper" class="dataTables_wrapper no-footer">
+									<table id="productUnitTable" class="display dataTable no-footer" role="grid"
+										aria-describedby="productUnitTable_info">
+										<thead class="text-body">
+											<tr role="row">
+												<th>Id</th>
+												<th>Status</th>
+												<th>Loja</th>
+												<th>Whatsapp</th>
+												<th>Email</th>
+												<th>Criada em </th>
+												<th>Trial</th>
+												<th>Situação</th>
+												<th>Produtos</th>
+												<th>Vendas</th>
+												<th>Fornecedores</th>
+												<th>Clientes</th>
+												<th>UsuáriosPlano</th>
+												<th>ValorUsers</th>
+												<th>Plano</th>
+												<th>ValorPlano</th>
+											</tr>	
+										</thead>
+										<tbody class="kt-table-tbody text-dark" id="dataTableBody">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-6">
+					<div class="card card-custom gutter-b bg-white border-1">
+						<div class="card-body border-primary-custom border-1">
+							<div>
+								<h4 class="card-label text-primary font-weight-bold">Lojas por Estado do Brasil</h4>
+							</div>
+							<!-- elemento onde o gráfico será exibido -->
+							<div id="grafico_lojas_por_estado"></div>
+						</div>	
+					</div>	
+				</div>	
+				<div class="col-6">
+					<div class="card card-custom gutter-b bg-white border-1">
+						<div class="card-body border-primary-custom border-1">
+							<div>
+								<h4 class="card-label text-primary font-weight-bold">Lojas por Situação</h4>
+							</div>
+							<!-- elemento onde o gráfico será exibido -->
+							<div id="grafico_situacao_loja"></div>
+						</div>	
+					</div>	
+				</div>	
+			</div>	
+		</div>	
+	</div>	
+
+	{% comment %} <div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card card-custom gutter-b bg-white border-0">
+						<div class="card-body border-primary-custom border-0">
+							<h4>Number of Expired PDF's : {{expiredPdfs}}</h4>
+							<button type="button" onclick="deletePdfs()" class="btn btn-primary text-white font-weight-bold  mb-1">Clear</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card card-custom gutter-b bg-white border-0">
+						<div class="card-body border-primary-custom border-0">
+							<h4>To delete duplicate SP IDs( Solution for an error)</h4>
+							<input type='text' id="storeIdForDeletion" />
+							<button type="button" onclick="duplicateDeletionByStoreId()" class="btn btn-primary text-white font-weight-bold  mb-1">Apply</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> {% endcomment %}
+</div>
+
+<script src={% static "assets/js/plugin.bundle.min.js" %}></script>
+
+<script>
+	jQuery(document).ready(function () {
+
+
+		var decodeEntities = (function() {
+			// this prevents any overhead from creating the object each time
+			var element = document.createElement('div');
+		  
+			function decodeHTMLEntities (str) {
+			  if(str && typeof str === 'string') {
+				// strip script/html tags
+				str = str.replace(/<script[^>]>([\S\s]?)<\/script>/gmi, '');
+				str = str.replace(/<\/?\w(?:[^"'>]|"[^"]"|'[^']')*>/gmi, '');
+				element.innerHTML = str;
+				str = element.textContent;
+				element.textContent = '';
+			  }
+		  
+			  return str;
+			}
+		  
+			return decodeHTMLEntities;
+		  })();
+
+		const lojas_por_estado_json = `{{ lojas_por_estado_json }}`;
+		const lojas_por_estado = JSON.parse(decodeEntities(lojas_por_estado_json));
+		var storesPorEstado = lojas_por_estado.map(lpe=>{
+			return {name:lpe[0],value:lpe[1]}
+		})
+		storesPorEstado = storesPorEstado.filter(dado => dado.name != null);
+
+
+		// função que carrega os dados das lojas
+		function carregarDadosLojas(lojasPorEstado) {
+			// cria o gráfico de torta
+			const grafico = new ApexCharts(document.querySelector('#grafico_lojas_por_estado'), {
+			chart: {
+				width: 400,
+				type: 'pie',
+			},
+			series: lojasPorEstado.map(dado => dado.value),
+			labels: lojasPorEstado.map(dado => dado.name),
+			});
+		
+			// exibe o gráfico
+			grafico.render();
+		}
+		
+		// carrega os dados das lojas assim que a página for carregada
+		carregarDadosLojas(storesPorEstado);
+
+
+		// função que carrega os dados das lojas
+		function carregaSituacaoLojas() {
+			// cria o gráfico de torta
+			const grafico = new ApexCharts(document.querySelector('#grafico_situacao_loja'), {
+			chart: {
+				width: 400,
+				type: 'pie',
+			},
+			series: [{{movimentando_bem}}, {{algum_movimento}},{{paradas}}],
+			labels: ['Movimentando Bem','Algum Movimento','Paradas'],
+			legend: {
+				position: 'bottom',
+			  },
+			colors: ['#28a745','#2596be', '#ff0000'],
+			});
+		
+			// exibe o gráfico
+			grafico.render();
+		}
+		
+		// carrega os dados das lojas assim que a página for carregada
+		carregaSituacaoLojas();
+  
+	
+
+
+		jQuery.fn.dataTableExt.sErrMode = 'throw';
+
+		// To sort brazilian dates format
+		jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+			"date-br-pre": function ( a ) {
+			 if (a == null || a == "") {
+			  return 0;
+			 }
+			 var brDatea = a.split('/');
+			 return (brDatea[2] + brDatea[1] + brDatea[0]) * 1;
+			},
+		   
+			"date-br-asc": function ( a, b ) {
+			 return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+			},
+		   
+			"date-br-desc": function ( a, b ) {
+			 return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+			}
+		   } );
+
+		const datatableInit = ()=>{
+			jQuery('#productUnitTable').dataTable({
+				"pagingType": "simple_numbers",
+				"ordering": true,
+				// a clausula abaixo "dom" referece a interface da datatable e passar o parametro "F" faz sumir a caixa de search
+				"dom": 'LIf<t>P',
+				"sScrollY": 500,
+				"sScrollX": 40,
+				"paging": false,
+				"order": [
+					[0, "desc"]
+				],
+				"columnDefs": [{
+						"type": "html-num-fmt",
+						"targets": [0, 4, 7, 8, 9, 10, 11, 12, 13, 15]
+					},
+					{"type": "date-br","targets": [5]},
+				],
+				"columns": [{
+						"width": "6%"
+					},
+					{
+						"width": "7%"
+					},
+					{
+						"width": "7%"
+					},
+					{
+						"width": "7%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "6%"
+					},
+					{
+						"width": "7%"
+					},
+					{
+						"width": "6%"
+					},
+				],
+				language: {
+					url: 'https://cdn.datatables.net/plug-ins/1.11.2/i18n/pt_br.json'
+				},
+			})
+		};
+		datatableInit();
+		var tableData = document.getElementById("dataTableBody");
+		const getPecasData = async ()=>{
+			setGlobalLoader();
+			let res = await axios.get('/accounts/getSuperAdminData/',
+								{
+									headers: {'X-CSRFToken': csrftoken}
+								}
+			);
+		
+			let htmlData = ``;
+			let activated = ``;
+			let movimento = ``;
+			res.data?.data?.forEach(item => {
+				if (item.is_verified) {
+					activated = `ATIVADA`;
+					badgecolor = `badge-success`;
+				} else {
+					activated = `NÃO-ATIVADA`;
+					badgecolor = `badge-danger`;
+				};
+				if (item.movimento === 'movimentando_bem'){
+					movimento = ` <div class="text-center" style="width: 20px; height: 20px; background-color: green; border-radius: 50%;"></div>`
+				} else if (item.movimento === 'algum_movimento'){
+					movimento = ` <div class="text-center" style="width: 20px; height: 20px; background-color: #2596be; border-radius: 50%;"></div>`
+				} else if (item.movimento === 'parada'){
+					movimento = ` <div class="text-center" style="width: 20px; height: 20px; background-color: red; border-radius: 50%;"></div>`
+								}
+				htmlData += `<tr class="${item.valor_plano === 0?"":"rowcolor"}" role="row">
+								<td>${pad_with_zeroes(item.id) }</td>
+								<td class="badge ${badgecolor}">${ activated }</td>
+								<td class="">${ item.name }</td>
+								<td class="text-left">${ item.whatsapp }</td>
+								<td class="text-left">${ item.email }</td>
+								<td class="text-right">${ item.created_date }</td>
+								<td class="text-right">${ item.days_to_finish_free }</td>
+								<td class="text-right">${ movimento }</td>
+								<td class="text-right">${ item.products }</td>
+								<td class="text-right">${ item.sales }</td>
+								<td class="text-right">${ item.suppliers }</td>
+								<td class="text-right">${ item.clients }</td>
+								<td class="text-right">${ item.planusers }</td>
+								<td class="text-right">${ item.valor_usuarios }</td>
+								<td class="text-right">${ item.plan }</td>
+								<td class="text-right">${ item.valor_plano }</td>
+							</tr>`;
+			});
+			console.log(htmlData);
+			jQuery("#productUnitTable").dataTable().fnDestroy();
+			tableData.innerHTML = htmlData;
+			datatableInit();
+			closeGlobalLoader();
+		}
+		getPecasData();
+	});
+</script>
+<script>
+	const deletePdfs = async ()=>{
+		setGlobalLoader();
+		let res = await axios.get('/accounts/deleteExpiredPdfs/',
+							{
+								headers: {'X-CSRFToken': csrftoken}
+							}
+		);
+	
+		let htmlData = ``;
+		if(res.data.status==='success'){
+			window.location.reload();
+		}else console.log('not working!!');
+		closeGlobalLoader();
+	}
+	const duplicateDeletionByStoreId = async ()=>{
+		setGlobalLoader();
+		let res = await axios.get(`/accounts/duplicateDeletionByStoreId/${document.getElementById("storeIdForDeletion").value}`,
+							{
+								headers: {'X-CSRFToken': csrftoken}
+							}
+		);
+	
+		let htmlData = ``;
+		if(res.data.status==='success'){
+			// window.location.reload();
+			alert("It's done...");
+			console.log(res.data.data);
+		}else console.log('not working!!');
+		closeGlobalLoader();
+	}
+</script>
+
+{% endblock %}

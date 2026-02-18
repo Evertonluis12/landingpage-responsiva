@@ -1,0 +1,197 @@
+{% extends 'landing/landingBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load cent_to_reel %}
+
+{% block content %}
+
+	<style>
+		.plans-container{
+			display: flex;
+			overflow-x: scroll;
+		  }
+		  .plandName{
+			  background-color: #6E89F9;
+			  width: 100%;
+			  height: 50px;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			  margin-bottom: 30px;
+		  }
+		  .plandName>p{
+			  font-size: 24px;
+			  font-weight: bold;
+		  }
+		  @media only screen and (max-width: 600px) {
+			.minWidth{
+			  min-width: 100%;
+			}
+		  }
+	</style>
+
+	<div class="d-flex flex-column-fluid">
+		<!--begin::Container-->
+		<div class="container-fluid">
+			<div class="card card-custom gutter-b bg-white border-0">
+				<div>
+					<container class="card border-primary-custom">
+						<section id="pricing" class="a1r[120px] a2V">
+							<div class="ab">
+							  <div class="a9 a1t ac[-16px]">
+								<div class="a8 ae">
+								  <div class="
+										a1u aA[655px] a1v a2s
+										wow
+										fadeInUp
+									  " data-wow-delay=".1s">
+									<span class="
+										  a1C a1f aI a2m ah
+										">
+									  Affordable Pricing
+									</span>
+									<h2 class="
+										  aH a1k a1y
+										  sm:a1z
+										  md:a1x[45px]
+										  a1O
+										">
+									  Our Pricing Plans
+									</h2>
+									<p class="
+										  a1g aG
+										  md:a1C
+										  a1D
+										  md:a1D
+										  aA[570px] a1u
+										">
+									  There are many variations of passages of Lorem Ipsum available
+									  but the majority have suffered alteration in some form.
+									</p>
+								  </div>
+								</div>
+							  </div>
+							  <div class="a9 a1t a1Y ac[-16px]">
+
+								<div class="plans-container">
+									{% for plan in plans %}
+									<div class="a8 sm:a1U/4 md:a2v/2 lg:a2v/3 ae minWidth">
+										<div class="
+										  ay a2W a3C
+										  md:a1n
+										  lg:a3D lg:ax
+										  xl:a3C
+										  a1v a12 a0 a1 a1E
+										  ">
+										  <div class="plandName">
+											<p>{{plan.name}}</p>
+										  </div>
+										<div class="a9 a1Y a3E">
+										  <h2 class="a1k aH a1x[18px] a2m">
+										  R${{plan.price}}
+										  <span class="a1C a1B a1g">
+											/{{plan.interval_type}}
+										  </span>
+										  </h2>
+										</div>
+										<p class="
+											aG
+											a1g
+											a1D
+											a1B
+											a3F
+											xl:a3F
+											lg:a30
+											a2x
+											lg:a1M
+											xl:a2x
+											a2t a2u[#E9ECF8]
+										  ">
+										  Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim.
+										</p>
+										<div class="a2z">
+										  <p class="a1B aG a1g a2R">
+											Indicação ou Compartilhamento
+										  </p>
+										  <p class="a1B aG a1g a2R">
+											Quantidade de Peças Vendidas por mês
+										  </p>
+										  <p class="a1B aG a1g a2R">
+											Tempo de Uso
+										  </p>
+										  <p class="a1B aG a1g a2R">
+											Usuários
+										  </p>
+										  <p class="a1B aG a1g a2R">
+											Controle Financeiro 
+										  </p>
+										  <p class="a1B aG a1g a2R">
+											Fluxo de Caixa
+										  </p>
+										</div>
+										<a href="/accounts/planSubscription/{{plan.identifier}}/1/" class="
+											a9
+											aa
+											a1Y
+											a2X
+											a12
+											a1F
+											a3G
+											aG
+											a1l
+											hover:a1p
+											a1j a19 a1q
+										  ">
+										  Quero Assinar
+										</a>
+										<div class="a4 aZ a5 a1H[-1]">
+										  <svg width="37" height="154" viewBox="0 0 37 154" fill="none" xmlns="http://www.w3.org/2000/svg">
+										  <rect opacity="0.1" x="17.5237" y="78.0005" width="24.7822" height="24.7822" rx="4"
+											transform="rotate(45 17.5237 78.0005)" fill="#f07218" />
+										  <rect opacity="0.3" x="47.585" y="92.9392" width="41.1567" height="45.1468" rx="5"
+											transform="rotate(45 47.585 92.9392)" fill="#f07218" />
+										  <rect opacity="0.8" x="57.7432" y="-2.99951" width="78.8328" height="78.8328" rx="10"
+											transform="rotate(45 57.7432 -2.99951)" fill="#f07218" />
+										  </svg>
+										</div>
+										<div class="a4 a6 a29 a1H[-1]">
+										  <svg width="229" height="182" viewBox="0 0 229 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+										  <rect opacity="0.05" x="-0.639709" y="21.1696" width="46.669" height="45.7644" rx="10"
+											transform="rotate(45 -0.639709 21.1696)" fill="url(#paint0_linear_25:114)" />
+										  <rect opacity="0.05" x="40.1691" y="0.000488281" width="34.3355" height="33.67" rx="5"
+											transform="rotate(45 40.1691 0.000488281)" fill="url(#paint1_linear_25:114)" />
+										  <rect opacity="0.07" x="60.9458" y="42.1696" width="237" height="380.347" rx="22"
+											transform="rotate(45 60.9458 42.1696)" fill="url(#paint2_linear_25:114)" />
+										  <defs>
+											<linearGradient id="paint0_linear_25:114" x1="29.5176" y1="14.0581" x2="14.35" y2="82.5021"
+											gradientUnits="userSpaceOnUse">
+											<stop stop-color="#f07218" />
+											<stop offset="0.822917" stop-color="#f07218" stop-opacity="0" />
+											</linearGradient>
+											<linearGradient id="paint1_linear_25:114" x1="62.3565" y1="-5.23156" x2="51.1974" y2="45.1244"
+											gradientUnits="userSpaceOnUse">
+											<stop stop-color="#f07218" />
+											<stop offset="0.822917" stop-color="#f07218" stop-opacity="0" />
+											</linearGradient>
+											<linearGradient id="paint2_linear_25:114" x1="214.094" y1="-16.9334" x2="120.415" y2="348.232"
+											gradientUnits="userSpaceOnUse">
+											<stop stop-color="#f07218" />
+											<stop offset="0.822917" stop-color="#f07218" stop-opacity="0" />
+											</linearGradient>
+										  </defs>
+										  </svg>
+										</div>
+										</div>
+									  </div>
+									{% endfor %}
+								</div>
+
+							  </div>
+							</div>
+						  </section>
+					</container>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,838 @@
+{% extends 'landing/landingBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load cent_to_reel %}
+
+{% block content %}
+
+<style>
+    /* Replicação EXATA da seção de planos da landing TicTag - Baseada no screenshot real */
+    :root {
+        --roxo-principal: #7C3AED;
+        --roxo-escuro: #6D28D9;
+        --verde: #059669;
+        --laranja: #F59E0B;
+        --cinza-texto: #6B7280;
+        --cinza-claro: #F9FAFB;
+    }
+    
+    .planos-section {
+        padding: 80px 0;
+        background: var(--cinza-claro);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    .section-header .above-heading {
+        color: var(--cinza-texto);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+    }
+    
+    .section-header h2 {
+        background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+    
+    .planos-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        align-items: stretch;
+    }
+    
+    .plano {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        position: relative;
+        text-align: center;
+        border: 1px solid #E5E7EB;
+        transition: all 0.3s ease;
+        display: grid;
+        grid-template-rows: auto auto auto 1fr auto;
+        height: 100%;
+    }
+    
+    .plano:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+    }
+    
+    .plano.mais-vendido {
+        border: 2px solid var(--roxo-principal);
+        transform: scale(1.02);
+    }
+    
+    .plano.mais-vendido:hover {
+        transform: scale(1.02) translateY(-4px);
+    }
+    
+    .badge-mais-vendido {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--roxo-principal);
+        color: white;
+        padding: 8px 24px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        z-index: 10;
+        text-transform: uppercase;
+    }
+    
+    .plano-nome {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--roxo-principal);
+        margin-bottom: 8px;
+        margin-top: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .plano-descricao {
+        color: var(--cinza-texto);
+        font-size: 14px;
+        margin-bottom: 24px;
+        line-height: 1.4;
+        font-weight: 400;
+    }
+    
+    .preco-container {
+        margin-bottom: 24px;
+    }
+    
+    .preco {
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: #374151;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+    
+    .preco .currency {
+        font-size: 1.5rem;
+        vertical-align: top;
+    }
+    
+    .preco .period {
+        font-size: 1rem;
+        color: var(--cinza-texto);
+        font-weight: 500;
+    }
+    
+    .recursos-lista {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+    
+    .recurso-item {
+        display: flex;
+        align-items: flex-start;
+        padding: 6px 0;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    
+    .check-icon {
+        width: 18px;
+        height: 18px;
+        background: var(--verde);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+    
+    .check-icon i {
+        color: white;
+        font-size: 10px;
+    }
+    
+    .recurso-texto {
+        color: #374151;
+        font-weight: 400;
+        line-height: 1.4;
+    }
+    
+    .recurso-especial {
+        color: var(--roxo-principal);
+        font-weight: 600;
+    }
+    
+    .plano-info {
+        background: #F3F4F6;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        font-size: 12px;
+        color: var(--cinza-texto);
+        line-height: 1.4;
+        margin-top: auto;
+    }
+    
+    .plano-actions {
+        align-self: end;
+    }
+    
+    .btn-contratar {
+        width: 100%;
+        padding: 16px 24px;
+        background: var(--roxo-principal);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin-bottom: 12px;
+    }
+    
+    .btn-contratar:hover {
+        background: var(--roxo-escuro);
+        transform: translateY(-1px);
+        color: white;
+        text-decoration: none;
+    }
+    
+    /* Modal Styles */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        margin: 20px;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+    
+    .modal-header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #E5E7EB;
+        padding-bottom: 20px;
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--roxo-principal);
+        margin-bottom: 0;
+        line-height: 1.3;
+    }
+    
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--cinza-texto);
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+        background: #F3F4F6;
+        color: var(--roxo-principal);
+    }
+    
+    .modal-section {
+        margin-bottom: 30px;
+    }
+    
+    .modal-section-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--roxo-principal);
+        margin-bottom: 15px;
+        border-left: 4px solid var(--roxo-principal);
+        padding-left: 15px;
+    }
+    
+    .modal-text {
+        color: #374151;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+    
+    .modal-highlight {
+        background: #FEF3C7;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid var(--laranja);
+        margin: 20px 0;
+    }
+    
+    .modal-highlight .modal-text {
+        margin-bottom: 0;
+        font-weight: 500;
+    }
+    
+    .modal-example {
+        background: #F0F9FF;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #0EA5E9;
+        margin: 15px 0;
+    }
+    
+    .modal-important {
+        background: #FEF2F2;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #EF4444;
+        margin: 15px 0;
+    }
+    
+    .modal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-table th {
+        background: var(--roxo-principal);
+        color: white;
+        padding: 15px 12px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 13px;
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .modal-table th:last-child {
+        border-right: none;
+    }
+    
+    .modal-table td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #E5E7EB;
+        border-right: 1px solid #E5E7EB;
+        font-size: 14px;
+        color: #374151;
+    }
+    
+    .modal-table td:last-child {
+        border-right: none;
+    }
+    
+    .modal-table tr:last-child td {
+        border-bottom: none;
+    }
+    
+    .modal-table tr:nth-child(even) {
+        background: #F9FAFB;
+    }
+    
+    .modal-table tr:hover {
+        background: #F3F4F6;
+    }
+    
+    @media (max-width: 768px) {
+        .modal-content {
+            margin: 10px;
+            padding: 20px;
+            max-height: 95vh;
+        }
+        
+        .modal-title {
+            font-size: 1.3rem;
+        }
+        
+        .modal-section-title {
+            font-size: 1.1rem;
+        }
+        
+        .modal-table th,
+        .modal-table td {
+            padding: 8px 6px;
+            font-size: 12px;
+        }
+        
+        .modal-table th {
+            font-size: 11px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .planos-container {
+            grid-template-columns: 1fr;
+            align-items: stretch;
+            gap: 24px;
+        }
+        
+        .plano {
+            min-height: auto;
+        }
+        
+        .plano.mais-vendido {
+            transform: none;
+        }
+        
+        .plano.mais-vendido:hover {
+            transform: translateY(-4px);
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+        }
+        
+        .preco {
+            font-size: 2.25rem;
+        }
+    }
+</style>
+
+<!-- Seção Planos - Replica EXATA da Landing baseada no screenshot -->
+<div class="planos-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="above-heading">PLANOS</div>
+            <h2>Escolha o plano mais adequado<br>ao momento do seu negócio</h2>
+        </div>
+        
+        <div class="planos-container">
+            {% for plan in plans %}
+            <!-- Card Plano - Estrutura EXATA da Landing -->
+            <div class="plano {% if forloop.counter == 2 %}mais-vendido{% endif %}">
+                {% if forloop.counter == 2 %}
+                <div class="badge-mais-vendido">MAIS VENDIDO</div>
+                {% endif %}
+                
+                <div class="plano-nome">
+                    {% if forloop.counter == 1 %}BÁSICO
+                    {% elif forloop.counter == 2 %}ESSENCIAL
+                    {% else %}TOTAL{% endif %}
+                </div>
+                <div class="plano-descricao">
+                    {% if forloop.counter == 1 %}
+                        Brechós que<br>estão iniciando
+                    {% elif forloop.counter == 2 %}
+                        Brechós consolidados que<br>querem crescer ainda mais.
+                    {% else %}
+                        Brechós que precisam<br>emitir notas fiscais.
+                    {% endif %}
+                </div>
+                
+                <div class="preco-container">
+                    <div class="preco">
+                        <span class="currency">R$</span>{{plan.price|floatformat:2}}<span class="period">/{{plan.interval_type|upper}}</span>
+                    </div>
+                </div>
+                
+                <ul class="recursos-lista">
+                    {% if forloop.counter == 1 %}
+                    <!-- PLANO BÁSICO -->
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Painel de Controle (Dashboard)</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Tela de Vendas</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Gestão Automática de Repasses</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Contas a Pagar e a receber</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Comunicação via ponte com Whatsapp</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Precificação Ágil em lote</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Compatível com Impressora Térmica e impressora de página</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Imprime Etiquetas com Código de Barras</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Controle Financeiro</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Apuração Automática de Comissões de Vendedores</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Apuração de Resultado do Negócio</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Apuração de Vendas por Forma de Pagamento</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">App Celular para Fornecedores</div>
+                    </li>
+                    
+                    {% elif forloop.counter == 2 %}
+                    <!-- PLANO ESSENCIAL -->
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-especial">Tudo do plano Básico + Essencial</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Gestão de Cashback</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Gestão de Campanhas Promocionais</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Gestão de Lotes</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Sugestão de Preço por Inteligência Artificial</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Pré-venda, Condicional, Bag, Reservas, Lives</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Ranking de Clientes</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Ranking de Fornecedores</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Grade Categorias x Tamanhos</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Gráfico de Categorias, tamanhos e marcas mais vendidos</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">App de fotos para celular</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">App de inventário</div>
+                    </li>
+                    
+                    {% else %}
+                    <!-- PLANO TOTAL -->
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-especial">Tudo do plano essencial + total</div>
+                    </li>
+                    <li class="recurso-item">
+                        <div class="check-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="recurso-texto">Emissão de Cupom Fiscal-NFCE ou NFE, em breve NFSe</div>
+                    </li>
+                    <li class="recurso-item" style="margin-left: 30px; margin-top: 8px;">
+                        <div class="recurso-texto" style="font-size: 12px; color: var(--cinza-texto); line-height: 1.4;">
+                            Até 100 emissões por mês já incluídas. 
+                            <a href="#" id="pacoteAdicionalLink" style="color: var(--roxo-principal); text-decoration: underline;">
+                                Clique aqui para ver o pacote adicional que melhor atende suas necessidades.
+                            </a>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+                
+                <div class="plano-actions">
+                    <div class="plano-info">
+                        {% if forloop.counter >= 2 %}
+                        <div style="margin-bottom: 8px;">4 mil fotos já incluídas. Cada mil fotos adicionais: R$ 50,00/mês.</div>
+                        {% endif %}
+                        <div>
+                            Usuário adicional R$ {% if forloop.counter == 1 %}50,00{% elif forloop.counter == 2 %}40,00{% else %}30,00{% endif %}/mês
+                        </div>
+                        <div>(O plano já inclui 1 usuário e você pode adicionar mais usuários ao seu plano.)</div>
+                    </div>
+                    
+                    <a class="btn-contratar" href="/accounts/planSubscription/{{plan.identifier}}/1/">
+                        QUERO CONTRATAR
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div> <!-- end of planos-container -->
+    </div> <!-- end of container -->
+</div> <!-- end of planos-section -->
+
+<!-- Modal Pacote Adicional -->
+<div id="modalPacoteAdicional" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        
+        <div class="modal-header">
+            <h3 class="modal-title">Como contamos as suas Notas Fiscais e suas Fotos?</h3>
+        </div>
+        
+        <div class="modal-section">
+            <h4 class="modal-section-title">Sobre Notas Fiscais:</h4>
+            
+            <p class="modal-text">
+                Analise a sua necessidade e, caso necessário, veja na tabela os pacotes adicionais disponíveis para sua escolha:
+            </p>
+            
+            <table class="modal-table">
+                <thead>
+                    <tr>
+                        <th>Pacote de Emissões Adicionais por Mês</th>
+                        <th>Preço Unitário (R$)</th>
+                        <th>Percentual de Desconto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>100</td>
+                        <td>0,50</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>300</td>
+                        <td>0,43</td>
+                        <td>14,0%</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>0,39</td>
+                        <td>22,0%</td>
+                    </tr>
+                    <tr>
+                        <td>1000</td>
+                        <td>0,32</td>
+                        <td>36,0%</td>
+                    </tr>
+                    <tr>
+                        <td>2000</td>
+                        <td>0,29</td>
+                        <td>42,0%</td>
+                    </tr>
+                    <tr>
+                        <td>5000</td>
+                        <td>0,24</td>
+                        <td>52,0%</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="modal-highlight">
+                <p class="modal-text">
+                    Seu plano já inclui a emissão de 100 documentos fiscais por mês. Falamos em "documentos fiscais" porque você pode emitir tanto NFCe (Cupom Fiscal) quanto NFe. Os dois modelos são contados como "documentos fiscais" e a emissão de qualquer um dois dois equivale a 1 emissão.
+                </p>
+            </div>
+            
+            <div class="modal-example">
+                <p class="modal-text">
+                    <strong>Por exemplo:</strong> se você acredita que vai usar algo como 400 documentos fiscais por mês, adicione o pacote de 300 emissões. Assim somando as 100 emissões da sua assinatura + o pacote de 300 emissões, você terá 400 emissões para fazer por mês. A cada mês essa contagem zera e você terá novamente 400 emissões de crédito para usar no mês.
+                </p>
+            </div>
+            
+            <div class="modal-important">
+                <p class="modal-text">
+                    <strong>Importante:</strong> A utilização das emissões não é cumulativa, ou seja, caso em um certo mês você não utilize totalmente o seu pacote, o que sobra não é adicionado ao mês seguinte. Ou seja, no mês seguinte você começa novamente com o seu pacote total adquirido, no exemplo acima, 400 emissões.
+                </p>
+            </div>
+            
+            <p class="modal-text">
+                O sistema vai te apresentar um "contador" de emissão de Notas Fiscais e através do acompanhamento dele você pode dimensionar se vai precisar adicionar um dos pacotes ao seu plano para atender a sua demanda de emissão de Notas Fiscais.
+            </p>
+            
+            <p class="modal-text">
+                Tenha em mente que o sistema proporciona uma funcionalidade para emissão de Notas Fiscais de entrada que visa justamente reduzir a necessidade de emissão deste tipo de Nota, trazendo, inclusive enorme agilidade ao seu processo de gestão fiscal, pois tudo foi pensado para a operação de brechós e lojas de roupas.
+            </p>
+        </div>
+        
+        <div class="modal-section">
+            <h4 class="modal-section-title">Sobre Fotos:</h4>
+            
+            <div class="modal-highlight">
+                <p class="modal-text">
+                    Seu plano já inclui um estoque de 4 mil fotos para sua loja. Caso seja necessário ter mais do que 4 mil fotos em sua loja basta adicionar lotes de mil fotos. Você poderá incluir ou remover esses lotes de mil fotos quando quiser na sua tela de administração de sua assinatura e plano.
+                </p>
+            </div>
+            
+            <p class="modal-text">
+                É importante ressaltar que assim que uma peça é vendida, a foto dela é excluída, e você passa a ter novamente direito ao espaço de foto deixado pela peça que foi vendida. Ou seja, você não precisa ficar comprando lotes adicionais de fotos sempre que cadastrar peças pois o giro do seu estoque vai liberando fotos para seu uso.
+            </p>
+            
+            <div class="modal-example">
+                <p class="modal-text">
+                    <strong>Isso significa que:</strong> as 4 mil fotos já incluídas em seu plano podem ser suficientes para sua operação. Basta que para isso seu estoque A VENDA não seja maior do que 4 mil peças.
+                </p>
+            </div>
+            
+            <p class="modal-text">
+                Caso ainda tenha dúvidas sobre a emissão de Notas Fiscais ou uso das Fotos, por favor, pode entrar em contato com o nosso suporte pelo Whatsapp.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Função para abrir a modal
+function openModal() {
+    const modal = document.getElementById('modalPacoteAdicional');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Impede scroll do body
+}
+
+// Função para fechar a modal
+function closeModal() {
+    const modal = document.getElementById('modalPacoteAdicional');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restaura scroll do body
+}
+
+// Event listener para o link
+document.addEventListener('DOMContentLoaded', function() {
+    const link = document.getElementById('pacoteAdicionalLink');
+    if (link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal();
+        });
+    }
+    
+    // Fechar modal clicando fora dela
+    const modal = document.getElementById('modalPacoteAdicional');
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Fechar modal com tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+});
+</script>
+    
+{% endblock %}
