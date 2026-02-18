@@ -1,0 +1,333 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação | TicTag</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #FAF8F3;
+            color: #201F4B;
+        }
+        
+        .header {
+            background: #FAF8F3;
+            padding: 20px 0;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .header-nav a {
+            text-decoration: none;
+            color: #201F4B;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .btn-login {
+            background: #8B5FBF;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #201F4B;
+            margin-bottom: 40px;
+        }
+        
+        .warning-box {
+            background: #FFF9E6;
+            border: 2px solid #F4D03F;
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .warning-box strong {
+            color: #856404;
+            font-weight: 700;
+        }
+        
+        .warning-box p {
+            color: #856404;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .confirmation-card {
+            background: #F5F5F5;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .data-row {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .data-row:last-child {
+            border-bottom: none;
+        }
+        
+        .data-label {
+            font-weight: 700;
+            color: #201F4B;
+            min-width: 180px;
+            font-size: 15px;
+        }
+        
+        .data-value {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn-voltar {
+            flex: 1;
+            background: white;
+            color: #201F4B;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: 2px solid #201F4B;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-proximo {
+            flex: 1;
+            background: #B5BAFE;
+            color: #201F4B;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-voltar:hover {
+            background: #201F4B;
+            color: white;
+        }
+        
+        .btn-proximo:hover {
+            background: #A0ABFD;
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 768px) {
+            .confirmation-card {
+                padding: 30px 20px;
+            }
+            
+            .data-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .data-label {
+                min-width: auto;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .header-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-container">
+            <a href="/lp-preview/" class="logo">
+                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+            </a>
+            <nav class="header-nav">
+                <a href="/lp-preview/#inicio">Início</a>
+                <a href="/lp-preview/#funcionalidades">Funcionalidades</a>
+                <a href="/lp-preview/#planos">Planos</a>
+                <a href="/lp-preview/#sobre">Sobre Nós</a>
+                <a href="/lp-preview/#trabalhe">Trabalhe Conosco</a>
+                <a href="/cadastro/">Cadastrar-se</a>
+                <a href="/login/" class="btn-login">Login</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <h1 class="page-title">Tudo certo? Confira e conclua a compra!</h1>
+
+        <!-- Caixa de Aviso -->
+        <div class="warning-box">
+            <p><strong>Atenção:</strong> Página de confirmação, nenhuma info é editável. Caso haja necessidade de alteração, é só clicar em voltar.</p>
+        </div>
+
+        <!-- Card de Confirmação -->
+        <div class="confirmation-card">
+            <div class="data-row">
+                <div class="data-label">Nome</div>
+                <div class="data-value" id="displayNome">Fabiana Amaral</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Email</div>
+                <div class="data-value" id="displayEmail">fabiana_amaral@gmail.com</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Celular</div>
+                <div class="data-value" id="displayCelular">(71) 98727-1284</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">CEP</div>
+                <div class="data-value" id="displayCep">78689-234</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Bairro</div>
+                <div class="data-value" id="displayBairro">Rio Vermelho</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Cidade</div>
+                <div class="data-value" id="displayCidade">Salvador</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Estado</div>
+                <div class="data-value" id="displayEstado">Bahia</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Forma de pagamento</div>
+                <div class="data-value" id="displayPagamento">Pix</div>
+            </div>
+            
+            <div class="data-row">
+                <div class="data-label">Plano</div>
+                <div class="data-value" id="displayPlano">Básico</div>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="form-actions">
+            <button class="btn-voltar" onclick="goBack()">Voltar</button>
+            <button class="btn-proximo" onclick="finalizarCompra()">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        // Carregar dados da URL ou localStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Tentar pegar dados da URL primeiro
+            const nome = urlParams.get('nome') || localStorage.getItem('confirmacao_nome') || 'Fabiana Amaral';
+            const email = urlParams.get('email') || localStorage.getItem('confirmacao_email') || 'fabiana_amaral@gmail.com';
+            const celular = urlParams.get('celular') || localStorage.getItem('confirmacao_celular') || '(71) 98727-1284';
+            const cep = urlParams.get('cep') || localStorage.getItem('confirmacao_cep') || '78689-234';
+            const bairro = urlParams.get('bairro') || localStorage.getItem('confirmacao_bairro') || 'Rio Vermelho';
+            const cidade = urlParams.get('cidade') || localStorage.getItem('confirmacao_cidade') || 'Salvador';
+            const estado = urlParams.get('estado') || localStorage.getItem('confirmacao_estado') || 'Bahia';
+            const pagamento = urlParams.get('pagamento') || localStorage.getItem('confirmacao_pagamento') || 'Pix';
+            const plano = urlParams.get('plano') || localStorage.getItem('confirmacao_plano') || 'Básico';
+            
+            // Exibir dados
+            document.getElementById('displayNome').textContent = nome;
+            document.getElementById('displayEmail').textContent = email;
+            document.getElementById('displayCelular').textContent = celular;
+            document.getElementById('displayCep').textContent = cep;
+            document.getElementById('displayBairro').textContent = bairro;
+            document.getElementById('displayCidade').textContent = cidade;
+            document.getElementById('displayEstado').textContent = estado;
+            document.getElementById('displayPagamento').textContent = pagamento;
+            document.getElementById('displayPlano').textContent = plano.charAt(0).toUpperCase() + plano.slice(1);
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function finalizarCompra() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pagamento = urlParams.get('pagamento') || localStorage.getItem('confirmacao_pagamento') || 'pix';
+            const plano = urlParams.get('plano') || localStorage.getItem('confirmacao_plano') || 'basico';
+            
+            // Redirecionar para página de Obrigado com método de pagamento
+            window.location.href = '/obrigado/?payment_method=' + pagamento + '&plan=' + plano;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+/* ========================================
+   PÁGINAS DE AUTENTICAÇÃO E CADASTRO
+   Design: Brandbook TicTag (Verde-limão, Roxo, Lilás, Dourado)
+   Responsivo: Desktop e Mobile
+   ======================================== */
+
+:root {
+    --roxo: #4A1D6F;
+    --lilas: #8B5FBF;
+    --verde-limao: #C8FF00;
+    --dourado: #FFD700;
+    --azul-escuro: #1E1548;
+    --branco: #FFFFFF;
+    --cinza-claro: #F5F5F5;
+    --cinza-medio: #E0E0E0;
+    --texto-escuro: #2C2C2C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FCFAF1;
+    color: var(--texto-escuro);
+    line-height: 1.6;
+}
+
+/* ========== HEADER ========== */
+.auth-header {
+    background: var(--branco);
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.auth-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-header .logo img {
+    height: 40px;
+}
+
+.auth-header nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.auth-header nav a {
+    color: var(--texto-escuro);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.auth-header nav a:hover {
+    color: var(--roxo);
+}
+
+.btn-login-header {
+    background: var(--roxo);
+    color: var(--branco) !important;
+    padding: 10px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-login-header:hover {
+    background: var(--lilas);
+    transform: translateY(-2px);
+}
+
+/* ========== CONTAINER PRINCIPAL ========== */
+.auth-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* ========== LOGIN COM FUNDO COMPLETO ========== */
+.login-container-fullbg {
+    min-height: calc(100vh - 80px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 80px;
+}
+
+.login-card {
+    background: #FCFAF1;
+    border-radius: 20px;
+    padding: 60px 50px;
+    max-width: 500px;
+    width: 100%;
+    border: 1.5px solid #1A1A3E;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.auth-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    width: 100%;
+    background: #FCFAF1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== LADO ESQUERDO (IMAGEM) ========== */
+.auth-image-side {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+/* ========== LADO DIREITO (FORMULÁRIO) ========== */
+.auth-form-side {
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #FCFAF1;
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-logo img {
+    height: 50px;
+}
+
+.auth-title {
+    font-size: 28px;
+    font-weight: 400;
+    color: #201F4B;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.auth-subtitle {
+    font-size: 16px;
+    color: #201F4B;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* ========== FORMULÁRIOS ========== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #2D3748;
+}
+
+.form-input {
+    padding: 14px 18px;
+    border: 1.5px solid #1A1A3E;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+    background: var(--branco);
+    color: var(--texto-escuro);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #9CA3AF;
+    box-shadow: none;
+}
+
+.form-input::placeholder {
+    color: #9CA3AF;
+}
+
+/* ========== BOTÕES ========== */
+.btn-primary {
+    background: #B5BAFE;
+    color: #2D3748;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background: #A0ABFD;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(181, 186, 254, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--roxo);
+    padding: 16px 32px;
+    border: 2px solid var(--roxo);
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-secondary:hover {
+    background: var(--roxo);
+    color: var(--branco);
+}
+
+/* ========== LINKS ========== */
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.auth-link a {
+    color: #201F4B;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 13px;
+    margin-top: -10px;
+}
+
+.forgot-password a {
+    color: #201F4B;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* ========== ALERTAS E MENSAGENS ========== */
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* ========== SOCIAL LOGIN ========== */
+.social-login {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--cinza-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: var(--branco);
+}
+
+.social-btn:hover {
+    border-color: var(--roxo);
+    transform: translateY(-2px);
+}
+
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 968px) {
+    .auth-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-image-side {
+        display: none;
+    }
+
+    .auth-form-side {
+        padding: 40px 30px;
+    }
+
+    .login-container-fullbg {
+        padding: 40px 20px;
+        justify-content: center;
+    }
+
+    .login-card {
+        max-width: 100%;
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-header nav {
+        display: none;
+    }
+    
+    .auth-form-side {
+        padding: 30px 20px;
+    }
+    
+    .auth-title {
+        font-size: 24px;
+    }
+    
+    .auth-subtitle {
+        font-size: 14px;
+    }
+    
+    .form-input {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+}
+
+/* ========== ESTAMPAS DECORATIVAS ========== */
+.auth-squares {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.auth-square {
+    position: absolute;
+    border-radius: 15px;
+    opacity: 0.15;
+}
+
+.auth-square-1 {
+    width: 80px;
+    height: 80px;
+    background: var(--verde-limao);
+    top: 10%;
+    left: 5%;
+    border: 3px solid var(--dourado);
+}
+
+.auth-square-2 {
+    width: 60px;
+    height: 60px;
+    background: var(--verde-limao);
+    top: 20%;
+    right: 10%;
+    border: 3px solid var(--dourado);
+}
+
+.auth-square-3 {
+    width: 100px;
+    height: 100px;
+    background: var(--verde-limao);
+    bottom: 15%;
+    left: 8%;
+    border: 3px solid var(--dourado);
+}
+
+.auth-square-4 {
+    width: 70px;
+    height: 70px;
+    background: var(--verde-limao);
+    bottom: 25%;
+    right: 5%;
+    border: 3px solid var(--dourado);
+}
+
+@media (max-width: 968px) {
+    .auth-squares {
+        display: none;
+    }
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha seu Plano | TicTag</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #FCFAF1;
+            color: #201F4B;
+        }
+        
+        .header {
+            background: #FCFAF1;
+            padding: 20px 0;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .header-nav a {
+            text-decoration: none;
+            color: #201F4B;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        
+        .btn-login {
+            background: #B5BAFE;
+            color: #201F4B !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 400;
+            border: 1px solid #1A1A3E;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .success-box {
+            background: white;
+            border: 1.5px solid #1A1A3E;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .success-box h2 {
+            color: #201F4B;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        
+        .success-box p {
+            color: #201F4B;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 400;
+            color: #201F4B;
+            margin-bottom: 50px;
+        }
+        
+        /* ===== PLANOS VERTICAIS ===== */
+        .plans-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .plan-row {
+            display: flex;
+            align-items: stretch;
+            border: 1.5px solid #1A1A3E;
+            border-bottom: none;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .plan-row:last-child {
+            border-bottom: 1.5px solid #1A1A3E;
+        }
+        
+        .plan-row:first-child {
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .plan-row:last-child {
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .plan-left {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        
+        .plan-row.expanded .plan-left {
+            min-width: 320px;
+            width: 320px;
+        }
+        
+        .plan-left-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .plan-left-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .plan-left-sub {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .plan-left-price {
+            font-size: 22px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .plan-left-price small {
+            font-size: 13px;
+            font-weight: 400;
+        }
+        
+        .plan-left-arrow {
+            font-size: 20px;
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .plan-row.expanded .plan-left-arrow {
+            transform: rotate(180deg);
+        }
+        
+        /* Cores dos planos */
+        .plan-row.basico .plan-left {
+            background: #B5BAFE;
+        }
+        
+        .plan-row.essencial .plan-left {
+            background: #8B5FBF;
+            color: white;
+        }
+        
+        .plan-row.total .plan-left {
+            background: #201F4B;
+            color: white;
+        }
+        
+        .plan-row.free .plan-left {
+            background: #C8FF00;
+        }
+        
+        /* Painel expandido (lado direito) */
+        .plan-right {
+            width: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background: white;
+            flex-shrink: 0;
+        }
+        
+        .plan-row.expanded .plan-right {
+            width: calc(100% - 320px);
+            opacity: 1;
+            padding: 25px 30px;
+        }
+        
+        .plan-right-inner {
+            min-width: 400px;
+        }
+        
+        .plan-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+            columns: 2;
+            column-gap: 20px;
+        }
+        
+        .plan-features-list li {
+            font-size: 12px;
+            padding: 4px 0 4px 20px;
+            position: relative;
+            break-inside: avoid;
+        }
+        
+        .plan-features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #201F4B;
+            font-weight: bold;
+        }
+        
+        .plan-right-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .plan-right-info {
+            font-size: 11px;
+            color: #666;
+            flex: 1;
+        }
+        
+        .select-plan-btn {
+            background: #B5BAFE;
+            color: #201F4B;
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: 1.5px solid #1A1A3E;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .select-plan-btn:hover {
+            background: #201F4B;
+            color: white;
+        }
+        
+        .plan-row.essencial .select-plan-btn {
+            background: #C8FF00;
+        }
+        
+        .plan-row.total .select-plan-btn {
+            background: #C8FF00;
+        }
+        
+        .plan-row.free .select-plan-btn {
+            background: #201F4B;
+            color: white;
+        }
+        
+        .hover-info {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            font-weight: 400;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .plan-row {
+                flex-direction: column;
+            }
+            
+            .plan-left {
+                min-width: 100% !important;
+                width: 100% !important;
+            }
+            
+            .plan-row.expanded .plan-right {
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .plan-right-inner {
+                min-width: auto;
+            }
+            
+            .plan-features-list {
+                columns: 1;
+            }
+            
+            .plan-right-footer {
+                flex-direction: column;
+            }
+            
+            .header-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-container">
+            <a href="lp-preview.html" class="logo">
+                <img src="images/tictag-logo-roxo.png" alt="TicTag">
+            </a>
+            <nav class="header-nav">
+                <a href="/lp-preview/#inicio">Início</a>
+                <a href="/lp-preview/#funcionalidades">Funcionalidades</a>
+                <a href="/lp-preview/#planos">Planos</a>
+                <a href="/lp-preview/#sobre">Sobre Nós</a>
+                <a href="/lp-preview/#trabalhe">Trabalhe Conosco</a>
+                <a href="cadastro.html">Cadastrar-se</a>
+                <a href="login.html" class="btn-login">Login</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Mensagem de Sucesso -->
+        <div class="success-box">
+            <h2>Sua loja foi criada com sucesso!</h2>
+            <p>Por favor, verifique seu email para ativar sua conta. Caso não esteja em sua caixa de entrada, verifique sua caixa de SPAM. Você também pode optar por ativar sua conta clicando em <strong>Ativar Minha Conta</strong> na mensagem que enviamos para o seu Whatsapp.</p>
+        </div>
+
+        <h1 class="page-title">Escolha seu plano</h1>
+
+        <!-- Planos Verticais -->
+        <div class="plans-vertical">
+            <!-- Básico -->
+            <div class="plan-row basico" onmouseenter="expandPlan(this)" onmouseleave="collapsePlan(this)">
+                <div class="plan-left">
+                    <div class="plan-left-info">
+                        <span class="plan-left-name">Básico</span>
+                        <span class="plan-left-sub">Brechós que estão iniciando</span>
+                    </div>
+                    <span class="plan-left-price">R$ 118,00<small>/Mês</small></span>
+                    <span class="plan-left-arrow">→</span>
+                </div>
+                <div class="plan-right">
+                    <div class="plan-right-inner">
+                        <ul class="plan-features-list">
+                            <li>Painel de Controle (Dashboard)</li>
+                            <li>Tela de Vendas</li>
+                            <li>Gestão Automática de Repasses</li>
+                            <li>Contas a Pagar e a receber</li>
+                            <li>Comunicação via Whatsapp</li>
+                            <li>Precificação Ágil em lote</li>
+                            <li>Impressora Térmica compatível</li>
+                            <li>Etiquetas com Código de Barras</li>
+                            <li>Ranking de Clientes</li>
+                            <li>Ranking de Fornecedores</li>
+                            <li>App Celular para Fornecedores</li>
+                        </ul>
+                        <div class="plan-right-footer">
+                            <span class="plan-right-info">Usuário adicional R$30,00/Mês</span>
+                            <button class="select-plan-btn" onclick="selectPlan('basico')">Selecionar Básico</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Essencial -->
+            <div class="plan-row essencial" onmouseenter="expandPlan(this)" onmouseleave="collapsePlan(this)">
+                <div class="plan-left">
+                    <div class="plan-left-info">
+                        <span class="plan-left-name">Essencial</span>
+                        <span class="plan-left-sub">Brechós consolidados que querem ainda mais</span>
+                    </div>
+                    <span class="plan-left-price">R$ 198,00<small>/Mês</small></span>
+                    <span class="plan-left-arrow">→</span>
+                </div>
+                <div class="plan-right">
+                    <div class="plan-right-inner">
+                        <ul class="plan-features-list">
+                            <li>Tudo do plano Básico +</li>
+                            <li>Gestão via Chat/Link</li>
+                            <li>Gestão via Compras/Planejamento</li>
+                            <li>Sugestão de Preço por IA</li>
+                            <li>Pré-venda, Condicional, Bag</li>
+                            <li>App de fotos para celular</li>
+                            <li>4 mil fotos já incluídas</li>
+                            <li>Gestão de Cashback</li>
+                            <li>Campanhas Promocionais</li>
+                            <li>Gestão de Lotes</li>
+                        </ul>
+                        <div class="plan-right-footer">
+                            <span class="plan-right-info">Usuário adicional R$40,00/Mês</span>
+                            <button class="select-plan-btn" onclick="selectPlan('essencial')">Selecionar Essencial</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="plan-row total" onmouseenter="expandPlan(this)" onmouseleave="collapsePlan(this)">
+                <div class="plan-left">
+                    <div class="plan-left-info">
+                        <span class="plan-left-name">Total</span>
+                        <span class="plan-left-sub">Lojas maiores que emitem notas fiscais</span>
+                    </div>
+                    <span class="plan-left-price">R$ 288,00<small>/Mês</small></span>
+                    <span class="plan-left-arrow">→</span>
+                </div>
+                <div class="plan-right">
+                    <div class="plan-right-inner">
+                        <ul class="plan-features-list">
+                            <li>Tudo do plano Essencial +</li>
+                            <li>Emissão de Cupom Fiscal NFCE</li>
+                            <li>Até 100 emissões já incluídas</li>
+                            <li>Em breve NFSe</li>
+                            <li>4 mil fotos já incluídas</li>
+                        </ul>
+                        <div class="plan-right-footer">
+                            <span class="plan-right-info">Usuário adicional R$30,00/Mês</span>
+                            <button class="select-plan-btn" onclick="selectPlan('total')">Selecionar Total</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usar Grátis -->
+            <div class="plan-row free" onmouseenter="expandPlan(this)" onmouseleave="collapsePlan(this)">
+                <div class="plan-left">
+                    <div class="plan-left-info">
+                        <span class="plan-left-name">Usar grátis</span>
+                        <span class="plan-left-sub">Uso gratuito por 14 dias</span>
+                    </div>
+                    <span class="plan-left-price">R$ 0,00<small>/14 dias</small></span>
+                    <span class="plan-left-arrow">→</span>
+                </div>
+                <div class="plan-right">
+                    <div class="plan-right-inner">
+                        <ul class="plan-features-list">
+                            <li>Todas funcionalidades do Básico</li>
+                            <li>Teste grátis por 14 dias</li>
+                            <li>Sem compromisso</li>
+                            <li>Cancele quando quiser</li>
+                        </ul>
+                        <div class="plan-right-footer">
+                            <span class="plan-right-info">Sem cartão de crédito necessário</span>
+                            <button class="select-plan-btn" onclick="selectFreePlan()">Quero o Gratuito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="hover-info">Passe o mouse sobre o plano para ver mais detalhes. Clique no botão para selecionar.</p>
+    </div>
+
+    <script>
+        function expandPlan(row) {
+            // Fecha todos os outros
+            document.querySelectorAll('.plan-row.expanded').forEach(r => {
+                if (r !== row) r.classList.remove('expanded');
+            });
+            row.classList.add('expanded');
+        }
+
+        function collapsePlan(row) {
+            row.classList.remove('expanded');
+        }
+
+        function selectFreePlan() {
+            window.location.href = '/completar-cadastro-gratuito/';
+        }
+
+        function selectPlan(planType) {
+            window.location.href = '/completar-cadastro/?plan=' + planType;
+        }
+    </script>
+</body>
+</html>
