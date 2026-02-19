@@ -302,7 +302,7 @@
         function submitPayment(method) {
             const urlParams = new URLSearchParams(window.location.search);
             const plan = urlParams.get('plan') || 'basico';
-            window.location.href = '/confirmacao/?plan=' + plan + '&payment_method=' + method;
+            window.location.href = 'confirmacao.html?plan=' + plan + '&payment_method=' + method;
         }
 
         // Máscara para número do cartão
@@ -331,7 +331,7 @@
             e.preventDefault();
             const urlParams = new URLSearchParams(window.location.search);
             const plan = urlParams.get('plan') || 'basico';
-            window.location.href = '/confirmacao/?plan=' + plan + '&payment_method=credit';
+            window.location.href = 'confirmacao.html?plan=' + plan + '&payment_method=credit';
         });
     </script>
 </body>

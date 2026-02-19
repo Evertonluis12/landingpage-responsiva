@@ -326,7 +326,7 @@
             const plano = urlParams.get('plano') || localStorage.getItem('confirmacao_plano') || 'basico';
             
             // Redirecionar para página de Obrigado com método de pagamento
-            window.location.href = '/obrigado/?payment_method=' + pagamento + '&plan=' + plano;
+            window.location.href = 'obrigado.html?payment_method=' + pagamento + '&plan=' + plano;
         }
     </script>
 </body>

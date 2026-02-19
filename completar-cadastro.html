@@ -643,7 +643,7 @@
             
             // Se for plano gratuito, pula para confirmação
             if (plan === 'gratuito') {
-                window.location.href = '/confirmacao/?plan=gratuito';
+                window.location.href = 'confirmacao.html?plan=gratuito';
             } else {
                 // Esconder formulário e mostrar seção de pagamento
                 document.getElementById('formGrid').style.display = 'none';
@@ -687,7 +687,7 @@
 
         // Submeter pagamento Pix
         function submitPayment(method) {
-            window.location.href = '/confirmacao/?plan=' + plan + '&payment_method=' + method;
+            window.location.href = 'confirmacao.html?plan=' + plan + '&payment_method=' + method;
         }
 
         // Máscara para número do cartão
@@ -714,7 +714,7 @@
         // Submissão do formulário de cartão
         document.getElementById('creditCardForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            window.location.href = '/confirmacao/?plan=' + plan + '&payment_method=credit';
+            window.location.href = 'confirmacao.html?plan=' + plan + '&payment_method=credit';
         });
     </script>
 </body>
