@@ -50,11 +50,9 @@
                 <div class="auth-subtitle">Cadastre-se agora</div>
 
                 
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
+                    
+                        
+                    
                 
 
                 <form method="POST" action="#" class="auth-form" id="signupForm">
@@ -138,11 +136,11 @@
                     </div>
 
                     <!-- Campos ocultos para UTM tracking -->
-                    <input type="hidden" name="utm_source" value="{{ request.GET.utm_source }}">
-                    <input type="hidden" name="utm_medium" value="{{ request.GET.utm_medium }}">
-                    <input type="hidden" name="utm_campaign" value="{{ request.GET.utm_campaign }}">
-                    <input type="hidden" name="utm_term" value="{{ request.GET.utm_term }}">
-                    <input type="hidden" name="utm_content" value="{{ request.GET.utm_content }}">
+                    <input type="hidden" name="utm_source" value="">
+                    <input type="hidden" name="utm_medium" value="">
+                    <input type="hidden" name="utm_campaign" value="">
+                    <input type="hidden" name="utm_term" value="">
+                    <input type="hidden" name="utm_content" value="">
 
                     <button type="submit" class="btn-primary">Criar Minha Conta</button>
                 </form>

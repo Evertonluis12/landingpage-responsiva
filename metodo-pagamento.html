@@ -176,7 +176,7 @@
                 </div>
                 
                 <div class="form-actions">
-                    <a href="/completar-cadastro/?plan={{ plan }}" class="btn-secondary">Voltar</a>
+                    <a href="/completar-cadastro/?plan=" class="btn-secondary">Voltar</a>
                     <button type="button" class="btn-primary" onclick="submitPayment('pix')">Próximo</button>
                 </div>
             </div>
@@ -186,7 +186,7 @@
                 <form method="POST" action="#" class="auth-form" id="creditCardForm">
                     
                     <input type="hidden" name="payment_method" value="credit">
-                    <input type="hidden" name="plan" value="{{ plan }}">
+                    <input type="hidden" name="plan" value="">
                     
                     <div class="form-group">
                         <label for="card_number">Número do cartão</label>
@@ -269,7 +269,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <a href="/completar-cadastro/?plan={{ plan }}" class="btn-secondary">Voltar</a>
+                        <a href="/completar-cadastro/?plan=" class="btn-secondary">Voltar</a>
                         <button type="submit" class="btn-primary">Próximo</button>
                     </div>
                 </form>

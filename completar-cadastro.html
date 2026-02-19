@@ -261,7 +261,7 @@
                 
                 <form method="POST" action="#" class="auth-form" id="completionForm">
                     
-                    <input type="hidden" name="plan" value="{{ plan }}" id="planInput">
+                    <input type="hidden" name="plan" value="" id="planInput">
                     
                     <div class="form-group">
                         <label for="name">Nome</label>
@@ -271,7 +271,7 @@
                             name="name" 
                             class="form-input" 
                             placeholder="Seu nome completo"
-                            value="{{ user.get_full_name }}"
+                            value=""
                             required
                         >
                     </div>
@@ -284,7 +284,7 @@
                             name="email" 
                             class="form-input" 
                             placeholder="seu@email.com"
-                            value="{{ user.email }}"
+                            value=""
                             required
                         >
                     </div>
@@ -394,7 +394,7 @@
             <!-- Resumo do Plano -->
             <div class="plan-summary">
                 <h3>Seu plano escolhido foi:</h3>
-                <div class="plan-name-display" id="planNameDisplay">{{ plan|default:"Básico" }}</div>
+                <div class="plan-name-display" id="planNameDisplay"></div>
                 
                 <ul class="features-list" id="featuresList">
                     <!-- Será preenchido via JavaScript baseado no plano -->
