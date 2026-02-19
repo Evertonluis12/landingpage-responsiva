@@ -1,4 +1,4 @@
-{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -13,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
     
     <!-- CSS -->
-    <link href="{% static 'landing_page/css/auth-pages.css' %}?v=1" rel="stylesheet" type="text/css">
+    <link href="css/auth-pages.css?v=1" rel="stylesheet" type="text/css">
     
     <style>
         .payment-container {
@@ -138,7 +138,7 @@
     <header class="auth-header">
         <div class="container">
             <a href="/lp-preview/" class="logo">
-                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+                <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </a>
             
             <nav>
@@ -184,7 +184,7 @@
             <!-- Formulário Cartão de Crédito -->
             <div class="payment-form" id="creditForm">
                 <form method="POST" action="#" class="auth-form" id="creditCardForm">
-                    {% csrf_token %}
+                    
                     <input type="hidden" name="payment_method" value="credit">
                     <input type="hidden" name="plan" value="{{ plan }}">
                     

@@ -1,4 +1,4 @@
-{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -13,17 +13,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
     
     <!-- CSS -->
-    <link href="{% static 'landing_page/css/auth-pages.css' %}?v=6" rel="stylesheet" type="text/css">
+    <link href="css/auth-pages.css?v=6" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!-- ========== HEADER ========== -->
     <header class="auth-header">
         <div class="container">
             <a href="/lp-preview/" class="logo">
-                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+                <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </a>
             
             <nav>
@@ -39,10 +39,10 @@
     </header>
 
     <!-- ========== CONTAINER PRINCIPAL ========== -->
-    <div class="login-container-fullbg" style="background-image: url('{% static 'landing_page/images/new/login-background.png' %}');">
+    <div class="login-container-fullbg" style="background-image: url('images/new/login-background.png');">
         <div class="login-card">
                 <div class="auth-logo">
-                    <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+                    <img src="images/tictag-logo-roxo.png" alt="TicTag">
                 </div>
 
                 <h2 style="text-align: center; color: #201F4B; margin-bottom: 10px; font-size: 24px;">Esqueceu a senha?</h2>
@@ -50,13 +50,13 @@
                     Digite seu email abaixo e enviaremos um link para redefinir sua senha.
                 </p>
 
-                {% if messages %}
+                
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }}">
                             {{ message }}
                         </div>
                     {% endfor %}
-                {% endif %}
+                
 
                 <div id="successMessage" style="display: none; background: #C8FF00; color: #201F4B; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
                     <strong>Email enviado com sucesso!</strong><br>
@@ -64,7 +64,7 @@
                 </div>
 
                 <form method="POST" action="#" class="auth-form" id="forgotPasswordForm">
-                    {% csrf_token %}
+                    
                     
                     <div class="form-group">
                         <label for="email">E-mail</label>
@@ -91,7 +91,7 @@
     <footer class="mobile-footer">
         <div class="mobile-footer-content">
             <div class="footer-logo-mobile">
-                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+                <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </div>
             
             <div class="footer-text-mobile">
@@ -128,9 +128,9 @@
             <div class="footer-partners-mobile">
                 <span>Conectividade com os maiores players do mercado</span>
                 <div class="partners-logos-mobile">
-                    <img src="{% static 'landing_page/images/new/nuvemshop.png' %}" alt="Nuvemshop">
-                    <img src="{% static 'landing_page/images/new/meta.png' %}" alt="Meta">
-                    <img src="{% static 'landing_page/images/logo-megawpp.svg' %}" alt="MegaWpp">
+                    <img src="images/new/nuvemshop.png" alt="Nuvemshop">
+                    <img src="images/new/meta.png" alt="Meta">
+                    <img src="images/logo-megawpp.svg" alt="MegaWpp">
                 </div>
             </div>
         </div>

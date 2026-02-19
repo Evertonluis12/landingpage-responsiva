@@ -1,4 +1,4 @@
-{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link href="{% static 'landing_page/images/favicon.png' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
     
     <style>
         * {
@@ -250,7 +250,7 @@
     <div class="header">
         <div class="header-container">
             <a href="/lp-preview/" class="logo">
-                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+                <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </a>
             <nav class="header-nav">
                 <a href="/lp-preview/#inicio">Início</a>
@@ -265,14 +265,14 @@
     </div>
 
     <!-- Hero Section -->
-    <div class="hero-section" style="background-image: url('{% static 'landing_page/images/new/obrigado-bg.png' %}');">
+    <div class="hero-section" style="background-image: url('images/new/obrigado-bg.png');">
         <div class="hero-content">
             <h1 class="hero-title">Parabéns!</h1>
-            {% if payment_method == 'pix' %}
+            
             <p class="hero-subtitle">Acabamos de enviar um email com a sua fatura. Realize o pagamento via PIX e complete sua assinatura.</p>
-            {% else %}
+            
             <p class="hero-subtitle">Compra confirmada, recebemos seu pagamento, bem-vinda à família TicTag.</p>
-            {% endif %}
+            
         </div>
     </div>
 
@@ -280,7 +280,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="{% static 'landing_page/images/tictag-logo-roxo.png' %}" alt="TicTag">
+                <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </div>
             
             <div class="footer-brand">
@@ -317,9 +317,9 @@
             <div class="footer-partners">
                 <span>Conectividade com os maiores players do mercado</span>
                 <div class="partners-logos">
-                    <img src="{% static 'landing_page/images/new/nuvemshop.png' %}" alt="Nuvemshop">
-                    <img src="{% static 'landing_page/images/new/meta.png' %}" alt="Meta">
-                    <img src="{% static 'landing_page/images/logo-megawpp.svg' %}" alt="MegaWpp">
+                    <img src="images/new/nuvemshop.png" alt="Nuvemshop">
+                    <img src="images/new/meta.png" alt="Meta">
+                    <img src="images/logo-megawpp.svg" alt="MegaWpp">
                 </div>
             </div>
         </div>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -237,7 +239,7 @@
     <!-- ========== HEADER ========== -->
     <header class="auth-header">
         <div class="container">
-            <a href="lp-preview.html" class="logo">
+            <a href="/lp-preview/" class="logo">
                 <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </a>
             
@@ -245,7 +247,7 @@
                 <a href="/lp-preview/#inicio">Início</a>
                 <a href="/lp-preview/#funcionalidades">Funcionalidades</a>
                 <a href="/lp-preview/#planos">Planos</a>
-                <a href="login.html" class="btn-login-header">Login</a>
+                <a href="/login/" class="btn-login-header">Login</a>
             </nav>
         </div>
     </header>
@@ -258,7 +260,7 @@
                 <h2>Preencha os campos abaixo:</h2>
                 
                 <form method="POST" action="#" class="auth-form" id="completionForm">
-                    {% csrf_token %}
+                    
                     <input type="hidden" name="plan" value="{{ plan }}" id="planInput">
                     
                     <div class="form-group">
@@ -383,7 +385,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <a href="escolher-plano.html" class="btn-secondary">Voltar</a>
+                        <a href="/escolher-plano/" class="btn-secondary">Voltar</a>
                         <button type="submit" class="btn-primary">Enviar</button>
                     </div>
                 </form>

@@ -105,7 +105,7 @@ button {
 
 .nav-link {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--cinza-texto);
 }
 
@@ -121,7 +121,7 @@ button {
 
 .btn-cadastrar {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--cinza-texto);
 }
 
@@ -135,7 +135,7 @@ button {
     padding: 10px 25px;
     border-radius: var(--radius-pill);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     border: 1px solid #1A1A3E;
 }
 
@@ -164,7 +164,7 @@ button {
     padding: 15px 35px;
     border-radius: var(--radius-pill);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     border: 1px solid #1A1A3E;
     transition: var(--transition);
 }
@@ -177,12 +177,14 @@ button {
 .btn-gradient {
     background: linear-gradient(90deg, #BDF2DE 0%, #B7B7F5 100%);
     color: var(--roxo-escuro);
-    border: 1px solid #1A1A3E;
+    border: 2px solid var(--roxo-escuro);
+    font-weight: 400;
 }
 
 .btn-gradient:hover {
-    background: linear-gradient(90deg, #B6EED6 0%, #A8A8F0 100%);
+    background: linear-gradient(90deg, #A8E5CC 0%, #A8A8F0 100%);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(189, 242, 222, 0.4);
 }
 
 .btn-secondary {
@@ -192,9 +194,20 @@ button {
     padding: 15px 35px;
     border-radius: var(--radius-pill);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     border: 1px solid #1A1A3E;
     transition: var(--transition);
+}
+
+.btn-secondary.btn-gradient {
+    background: linear-gradient(90deg, #BDF2DE 0%, #B7B7F5 100%) !important;
+    border: 2px solid var(--roxo-escuro);
+}
+
+.btn-secondary.btn-gradient:hover {
+    background: linear-gradient(90deg, #A8E5CC 0%, #A8A8F0 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(189, 242, 222, 0.4);
 }
 
 .btn-secondary:hover {
@@ -383,7 +396,7 @@ button {
 }
 
 .marca-item {
-    background-image: url('../images/new/modelo-bloco.png');
+    background-image: url('../images/new/modelo-bloco-preto.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -440,7 +453,7 @@ button {
     padding: 10px 20px;
     border-radius: var(--radius-pill);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
@@ -464,7 +477,7 @@ button {
 
 .simplifique-subtitle {
     font-size: 28px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--branco);
     text-align: right;
     line-height: 1.4;
@@ -521,8 +534,8 @@ button {
 
 .feature-info h3 {
     font-size: 20px;
-    font-weight: 700;
-    color: var(--branco);
+    font-weight: 400;
+    color: #201F4B;
     line-height: 1.2;
 }
 
@@ -603,13 +616,16 @@ button {
 }
 
 .func-card {
-    background: var(--branco);
-    border-radius: 20px 20px 20px 5px;
+    background-image: url('../images/new/modelo-bloco-preto.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
     padding: 25px;
     position: relative;
     transition: var(--transition);
     cursor: pointer;
-    border: 1.5px solid #1A1A3E;
 }
 
 .func-card:hover {
@@ -701,7 +717,7 @@ button {
 
 .promo-content h3 {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 10px;
     line-height: 1.2;
 }
@@ -823,7 +839,7 @@ button {
 
 .apps-title {
     font-size: 52px;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--branco);
     margin-bottom: 40px;
     line-height: 1.1;
@@ -853,7 +869,7 @@ button {
     border-radius: var(--radius-pill);
     color: var(--branco);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     backdrop-filter: blur(5px);
 }
 
@@ -936,13 +952,16 @@ button {
     background: var(--branco);
     border-radius: var(--radius);
     border: 1px solid #1A1A3E;
-    padding: 25px;
-    min-width: 300px;
-    max-width: 300px;
+    padding: 20px;
+    min-width: 320px;
+    max-width: 320px;
+    height: 280px;
     flex-shrink: 0;
     box-shadow: var(--shadow);
     transition: var(--transition);
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .depoimento-card:hover {
@@ -954,28 +973,31 @@ button {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin: 0 auto 15px;
+    margin: 0 auto 12px;
     object-fit: cover;
 }
 
 .depoimento-card h4 {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 400;
     color: var(--roxo-escuro);
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .depoimento-empresa {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--roxo);
     margin-bottom: 12px;
 }
 
 .depoimento-card p {
-    font-size: 13px;
+    font-size: 11px;
     color: var(--cinza-texto);
-    line-height: 1.5;
+    line-height: 1.4;
+    overflow-y: auto;
+    flex: 1;
+    text-align: left;
 }
 
 /* ========== PLANOS SECTION ========== */
@@ -992,7 +1014,7 @@ button {
     padding: 8px 20px;
     border-radius: var(--radius-pill);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 
@@ -1035,7 +1057,7 @@ button {
 
 .plano-nome {
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--roxo-escuro);
     margin-bottom: 5px;
 }
@@ -1056,7 +1078,7 @@ button {
 
 .preco-valor {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .preco-periodo {
@@ -1070,7 +1092,7 @@ button {
     padding: 10px 15px;
     border-radius: var(--radius-small);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 20px;
 }
 
@@ -1091,7 +1113,7 @@ button {
 
 .plano-features .check {
     color: var(--roxo);
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .plano-adicional {
@@ -1104,7 +1126,7 @@ button {
 .plano-adicional span {
     display: block;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--roxo-escuro);
 }
 
@@ -1121,7 +1143,7 @@ button {
     padding: 15px;
     border-radius: var(--radius-pill);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 10px;
     border: 1px solid #1A1A3E;
@@ -1289,7 +1311,7 @@ button {
     padding: 5px 15px;
     border-radius: var(--radius-pill);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .valor-card h4 {
@@ -1342,7 +1364,7 @@ button {
     left: 20px;
     color: var(--branco);
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 400;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     z-index: 2;
     transition: var(--transition);
@@ -1475,6 +1497,7 @@ button {
 .partners-logos img {
     height: 25px;
     opacity: 0.7;
+    mix-blend-mode: multiply;
 }
 
 /* ========== WHATSAPP FLOAT ========== */

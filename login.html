@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,7 +22,7 @@
     <!-- ========== HEADER ========== -->
     <header class="auth-header">
         <div class="container">
-            <a href="lp-preview.html" class="logo">
+            <a href="/lp-preview/" class="logo">
                 <img src="images/tictag-logo-roxo.png" alt="TicTag">
             </a>
             
@@ -30,20 +32,29 @@
                 <a href="/lp-preview/#planos">Planos</a>
                 <a href="/lp-preview/#sobre">Sobre Nós</a>
                 <a href="/lp-preview/#trabalhe">Trabalhe Conosco</a>
-                <a href="cadastro.html" class="btn-cadastrar">Cadastrar-se</a>
-                <a href="login.html" class="btn-login-header">Login</a>
+                <a href="/cadastro/" class="btn-cadastrar">Cadastrar-se</a>
+                <a href="/login/" class="btn-login-header">Login</a>
             </nav>
         </div>
     </header>
 
     <!-- ========== CONTAINER PRINCIPAL ========== -->
-    <div class="login-container-fullbg" style="background-image: url('images/new/login-background.jpg');">
+    <div class="login-container-fullbg" style="background-image: url('images/new/login-background.png');">
         <div class="login-card">
                 <div class="auth-logo">
                     <img src="images/new/logo-azul.png" alt="TicTag">
                 </div>
 
+                
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                
+
                 <form method="POST" action="#" class="auth-form" id="loginForm">
+                    
                     
                     <div class="form-group">
                         <input 
@@ -68,14 +79,14 @@
                     </div>
 
                     <div class="forgot-password">
-                        <a href="esqueceu-senha.html">Esqueceu a senha?</a>
+                        <a href="/esqueceu-senha/">Esqueceu a senha?</a>
                     </div>
 
                     <button type="submit" class="btn-primary">Login</button>
                 </form>
 
                 <div class="auth-link">
-                    <p><a href="cadastro.html">Criar nova conta</a></p>
+                    <p><a href="/cadastro/">Criar nova conta</a></p>
                 </div>
         </div>
     </div>
@@ -92,8 +103,8 @@
             </div>
             
             <div class="footer-links-mobile">
-                <a href="termos.html">Termos e Condições de Uso, Política de Privacidade</a>
-                <a href="trabalhe-conosco.html">Trabalhe conosco</a>
+                <a href="/termos/">Termos e Condições de Uso, Política de Privacidade</a>
+                <a href="/trabalhe-conosco/">Trabalhe conosco</a>
                 <div class="footer-contact-mobile">
                     <span>Fale Conosco</span>
                     <a href="mailto:contato@tictag.com.br">contato@tictag.com.br</a>
